@@ -28,7 +28,7 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 	-->
 
-	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+	<link rel="alternate" type="application/rss+xml" title="" href="/blog/feed.xml">
 </head>
 
 <body>
@@ -56,7 +56,7 @@
 				<i class="fa fa-envelope"></i>
 			</a>
 			
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="/blog/">
 				<img src="/blog/assets/avatar.jpg" class="img-circle" />
 				
 			</a>
@@ -65,9 +65,9 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/">Home</a></li>
-				<li><a href="/categories.html">Categories</a></li>
-				<li><a href="/tags.html">Tags</a></li>
+				<li class="active"><a href="/blog/">Home</a></li>
+				<li><a href="/blog/categories.html">Categories</a></li>
+				<li><a href="/blog/tags.html">Tags</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</nav>
@@ -78,9 +78,9 @@
 			<i class="fa fa-bars"></i>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
-			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
-			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li><a href="/blog/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/blog/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/blog/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
@@ -174,13 +174,13 @@
 <p class="western"><!--more--></p>
 <p class="western">Il punto di debolezza delle applicazioni web su dispositivi mobili è sempre stato la mancanza della possibilità di usare funzionalità fornite dal produttore per interfacciarsi con i vari componenti hardware, e mentre si spera che in un futuro questa limitatezza possa essere superata attraverso sforzi di standardizzazione, Cordova fornisce una serie di API alle applicazioni che vengono eseguite all'interno del suo container per poter accedere a tali funzionalità, ad esempio sarà possibile utilizzare la fotocamera, l'accelerometro ed il gps.</p>
 <p class="western">Cordova si occupa anche di realizzare il pacchetto applicativo (ad esempio file .apk per Android ed .ipa per iOS) per ogni piattaforma supportata a partire dai file della web application.</p>
-<p>[caption id="attachment_1992" align="aligncenter" width="953"]<img class="size-full wp-image-1992" src="/assets/Packaging.png" alt="Packaging Cordova" width="953" height="560" /> Packaging Cordova[/caption]</p>
+<p>[caption id="attachment_1992" align="aligncenter" width="953"]<img class="size-full wp-image-1992" src="/blog/assets/Packaging.png" alt="Packaging Cordova" width="953" height="560" /> Packaging Cordova[/caption]</p>
 <p class="western">L'applicazione nativa consisterà in una webview (un browser integrato) che mostrerà il contenuto utilizzando tutto lo schermo disponibile. Questo browser embedded potrà utilizzare l'interprete di Javascript fornito dal sistema operativo che ospita l'applicazione ed in più le API esposte da Cordova.</p>
 <p class="western">Attualmente Cordova supporta le <a href="http://cordova.apache.org/docs/en/3.5.0/guide_support_index.md.html#Platform%20Support">seguenti piattaforme</a> :</p>
-<p>[caption id="attachment_1993" align="aligncenter" width="833"]<img class="size-full wp-image-1993" src="/assets/Piattaforme.png" alt="Piattaforme Cordova" width="833" height="646" /> Piattaforme Cordova[/caption]</p>
+<p>[caption id="attachment_1993" align="aligncenter" width="833"]<img class="size-full wp-image-1993" src="/blog/assets/Piattaforme.png" alt="Piattaforme Cordova" width="833" height="646" /> Piattaforme Cordova[/caption]</p>
 <h2>Architettura</h2>
 <p class="western">A partire dalla versione 3.0 (al momento della scrittura siamo alla versione 3.5.0-0.24) le API sono state separate in diversi plugin, per poter includere nel progetto solamente quelli necessari, e per avere un'architettura più facilmente estensibile anche con plugin di terze parti.</p>
-<p>[caption id="attachment_1994" align="aligncenter" width="633"]<img class="size-full wp-image-1994" src="/assets/Architettura.png" alt="Architettura Cordova" width="633" height="790" /> Architettura Cordova[/caption]</p>
+<p>[caption id="attachment_1994" align="aligncenter" width="633"]<img class="size-full wp-image-1994" src="/blog/assets/Architettura.png" alt="Architettura Cordova" width="633" height="790" /> Architettura Cordova[/caption]</p>
 <p class="western">Dalla figura (tratta dal libro <a href="http://www.cordovaprogramming.com/">Apache Cordova 3 Programming</a>) si può notare come ogni singolo plugin sia composto da una parte in Javascript e una parte invece scritta nel linguaggio supportato dalla specifica piattaforma.</p>
 <p class="western">Attualmente Cordova fornisce questi plugin:</p>
 <ul>

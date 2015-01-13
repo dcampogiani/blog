@@ -28,7 +28,7 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 	-->
 
-	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+	<link rel="alternate" type="application/rss+xml" title="" href="/blog/feed.xml">
 </head>
 
 <body>
@@ -56,7 +56,7 @@
 				<i class="fa fa-envelope"></i>
 			</a>
 			
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="/blog/">
 				<img src="/blog/assets/avatar.jpg" class="img-circle" />
 				
 			</a>
@@ -65,9 +65,9 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/">Home</a></li>
-				<li><a href="/categories.html">Categories</a></li>
-				<li><a href="/tags.html">Tags</a></li>
+				<li class="active"><a href="/blog/">Home</a></li>
+				<li><a href="/blog/categories.html">Categories</a></li>
+				<li><a href="/blog/tags.html">Tags</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</nav>
@@ -78,9 +78,9 @@
 			<i class="fa fa-bars"></i>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
-			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
-			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li><a href="/blog/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/blog/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/blog/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
@@ -173,7 +173,7 @@
 <h3>Applicazione Ibrida</h3>
 <p class="western">Per quanto riguarda l'applicazione ibrida il file <i>apk</i> è stato generato due volte, una volta senza minimizzare il codice e una volta minimizzandolo ottenendo dei risultati non aspettati, come mostrato in tabella:</p>
 <p class="western"><!--more--></p>
-<img title="tabella codice" src="/assets/tabella-codice.png"/>
+<img title="tabella codice" src="/blog/assets/tabella-codice.png"/>
 <p class="western">Come si può notare, semplicemente minimizzando il codice otteniamo un file circa cinque volte più piccolo. Una volta installata sul dispositivo l'applicazione occupa 1,2 MB.</p>
 <h3 class="western">Applicazione Nativa</h3>
 <p class="western">Il file apk generato dal codice dell'applicazione nativa è di 2,1 MB. Nel codice utilizzo una libreria esterna per la gestione delle animazioni, senza usare questa libreria il file apk è di 2 MB.</p>
@@ -192,12 +192,12 @@
 <p class="western">Inoltre ho eseguito il test considerando il fatto che la foto che stessi scattando fosse la prima (dall'apertura dell'applicazione) oppure se fosse una foto successiva, e anche in questo caso non ci sono stati cambiamenti degni di nota.</p>
 <h3 class="western">Applicazione Ibrida</h3>
 <p class="western">In tabella sono riportati in millisecondi i due intervalli sopra descritti nel caso di applicazione con zero foto memorizzate e prima foto scattata dall'apertura dell'applicazione</p>
-<img title="tabella tempo foto ibrida" src="/assets/tabella-tempo-foto-ibrida.png"/>
+<img title="tabella tempo foto ibrida" src="/blog/assets/tabella-tempo-foto-ibrida.png"/>
 <p class="western">In media sono necessari 3602 millisecondi per acquisire un immagine e 197 secondi per memorizzarla.</p>
 <p class="western">Non sono riportati i test con applicazione con cinque foto memorizzate oppure il caso in cui la foto scattata non fosse la prima dall'apertura dell'applicazione perché hanno differenze non significative rispetto al caso riportato.</p>
 <h3 class="western">Applicazione Nativa</h3>
 <p class="western">Analogamente all'applicazione Ibrida riporto in tabella i valori dei due intervalli ottenuti in cinque test</p>
-<img title="tabella tempo foto nativa" src="/assets/tabella-tempo-foto-nativa.png"/>
+<img title="tabella tempo foto nativa" src="/blog/assets/tabella-tempo-foto-nativa.png"/>
 <p class="western">Anche in questo caso non ho riscontrato cambiamenti degni di nota effettuando test con applicazione con cinque foto memorizzate, o scattando una foto che non fosse la prima dall'apertura dell'applicazione, per cui riporto solo il caso di applicazione <i>“pulita”</i> e prima foto scattata.</p>
 <p class="western">In media sono necessari 3254,6 millisecondi per scattare una fotografia e 50,4 millisecondi per memorizzarla nel filesystem e nel database.</p>
 <h3 class="western">Analisi dei risultati</h3>
@@ -206,15 +206,15 @@
 <p class="western">Ho misurato l'utilizzo di RAM delle due applicazioni, e come si può notare in tabella l'applicazione ibrida richiede una quantità di memoria decisamente maggiore.</p>
 <h3 class="western">Apertura</h3>
 <p class="western"><span style="font-family: Helvetica, sans-serif;">È</span><span style="font-family: Helvetica, sans-serif;"> qui di seguito riportata la RAM occupata all'apertura, al variare del numero di immagini memorizzare nell'applicazione:</span></p>
-<img title="tabella ram apertura" src="/assets/tabella-ram-apertura.png"/>
+<img title="tabella ram apertura" src="/blog/assets/tabella-ram-apertura.png"/>
 <p class="western"><span style="font-family: Helvetica, sans-serif;">L'applicazione ibrida richiede sempre almeno 106 MB di memoria, mentre l'applicazione nativa ne usa quasi un sesto.</span></p>
 <h3 class="western">Scorrimento nella timeline</h3>
 <p class="western"><span style="font-family: Helvetica, sans-serif;">Riporto in tabella l'utilizzo di RAM delle due applicazioni dopo aver visualizzato tutte le foto nella timeline (scorrendo la view fino in fondo e poi tornando in cima), anche in questo caso al variare di foto memorizzate:</span></p>
-<img title="tabella ram timeline" src="/assets/tabella-ram-timeline.png"/>
+<img title="tabella ram timeline" src="/blog/assets/tabella-ram-timeline.png"/>
 <p class="western"><span style="font-family: Helvetica, sans-serif;">L'applicazione nativa utilizza quindi circa un quarto della memoria richiesta dall'applicazione ibrida.</span></p>
 <h3 class="western">Mappa</h3>
 <p class="western"><span style="font-family: Helvetica, sans-serif;">Spostandosi nella view che mostra le foto sulla mappa abbiamo questi dati:</span></p>
-<img title="tabella ram mappa" src="/assets/tabella-ram-mappa.png"/>
+<img title="tabella ram mappa" src="/blog/assets/tabella-ram-mappa.png"/>
 <p class="western"><span style="font-family: Helvetica, sans-serif;">Anche in questo caso l'applicazione ibrida risulta molto più </span><span style="font-family: Helvetica, sans-serif;"><i>“pesante”</i></span><span style="font-family: Helvetica, sans-serif;">, richiedendo circa tre volte la memoria necessaria all'applicazione nativa.</span></p>
 <h2 class="western">Considerazioni finali</h2>
 <p class="western"><span style="font-family: Helvetica, sans-serif;">Il modello applicativo utilizzato per realizzare l'applicazione ibrida (utilizzando il framework AngularJS) è molto più semplice del modello usato da Android per la realizzazione di applicazioni native. In AngularJS oltre alle view HTML, </span><span style="font-family: Helvetica, sans-serif;">le directive</span><span style="font-family: Helvetica, sans-serif;"> e </span><span style="font-family: Helvetica, sans-serif;">i </span><span style="font-family: Helvetica, sans-serif;">controller esistono i servizi, componenti software singleton che si occupano di tutto il resto. In Android invece esistono molto più componenti.</span></p>

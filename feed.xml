@@ -12,7 +12,7 @@
 &lt;h3&gt;Applicazione Ibrida&lt;/h3&gt;
 &lt;p class=&quot;western&quot;&gt;Per quanto riguarda l&#39;applicazione ibrida il file &lt;i&gt;apk&lt;/i&gt; è stato generato due volte, una volta senza minimizzare il codice e una volta minimizzandolo ottenendo dei risultati non aspettati, come mostrato in tabella:&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;&lt;!--more--&gt;&lt;/p&gt;
-&lt;img title=&quot;tabella codice&quot; src=&quot;/assets/tabella-codice.png&quot;/&gt;
+&lt;img title=&quot;tabella codice&quot; src=&quot;/blog/assets/tabella-codice.png&quot;/&gt;
 &lt;p class=&quot;western&quot;&gt;Come si può notare, semplicemente minimizzando il codice otteniamo un file circa cinque volte più piccolo. Una volta installata sul dispositivo l&#39;applicazione occupa 1,2 MB.&lt;/p&gt;
 &lt;h3 class=&quot;western&quot;&gt;Applicazione Nativa&lt;/h3&gt;
 &lt;p class=&quot;western&quot;&gt;Il file apk generato dal codice dell&#39;applicazione nativa è di 2,1 MB. Nel codice utilizzo una libreria esterna per la gestione delle animazioni, senza usare questa libreria il file apk è di 2 MB.&lt;/p&gt;
@@ -31,12 +31,12 @@
 &lt;p class=&quot;western&quot;&gt;Inoltre ho eseguito il test considerando il fatto che la foto che stessi scattando fosse la prima (dall&#39;apertura dell&#39;applicazione) oppure se fosse una foto successiva, e anche in questo caso non ci sono stati cambiamenti degni di nota.&lt;/p&gt;
 &lt;h3 class=&quot;western&quot;&gt;Applicazione Ibrida&lt;/h3&gt;
 &lt;p class=&quot;western&quot;&gt;In tabella sono riportati in millisecondi i due intervalli sopra descritti nel caso di applicazione con zero foto memorizzate e prima foto scattata dall&#39;apertura dell&#39;applicazione&lt;/p&gt;
-&lt;img title=&quot;tabella tempo foto ibrida&quot; src=&quot;/assets/tabella-tempo-foto-ibrida.png&quot;/&gt;
+&lt;img title=&quot;tabella tempo foto ibrida&quot; src=&quot;/blog/assets/tabella-tempo-foto-ibrida.png&quot;/&gt;
 &lt;p class=&quot;western&quot;&gt;In media sono necessari 3602 millisecondi per acquisire un immagine e 197 secondi per memorizzarla.&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;Non sono riportati i test con applicazione con cinque foto memorizzate oppure il caso in cui la foto scattata non fosse la prima dall&#39;apertura dell&#39;applicazione perché hanno differenze non significative rispetto al caso riportato.&lt;/p&gt;
 &lt;h3 class=&quot;western&quot;&gt;Applicazione Nativa&lt;/h3&gt;
 &lt;p class=&quot;western&quot;&gt;Analogamente all&#39;applicazione Ibrida riporto in tabella i valori dei due intervalli ottenuti in cinque test&lt;/p&gt;
-&lt;img title=&quot;tabella tempo foto nativa&quot; src=&quot;/assets/tabella-tempo-foto-nativa.png&quot;/&gt;
+&lt;img title=&quot;tabella tempo foto nativa&quot; src=&quot;/blog/assets/tabella-tempo-foto-nativa.png&quot;/&gt;
 &lt;p class=&quot;western&quot;&gt;Anche in questo caso non ho riscontrato cambiamenti degni di nota effettuando test con applicazione con cinque foto memorizzate, o scattando una foto che non fosse la prima dall&#39;apertura dell&#39;applicazione, per cui riporto solo il caso di applicazione &lt;i&gt;“pulita”&lt;/i&gt; e prima foto scattata.&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;In media sono necessari 3254,6 millisecondi per scattare una fotografia e 50,4 millisecondi per memorizzarla nel filesystem e nel database.&lt;/p&gt;
 &lt;h3 class=&quot;western&quot;&gt;Analisi dei risultati&lt;/h3&gt;
@@ -45,15 +45,15 @@
 &lt;p class=&quot;western&quot;&gt;Ho misurato l&#39;utilizzo di RAM delle due applicazioni, e come si può notare in tabella l&#39;applicazione ibrida richiede una quantità di memoria decisamente maggiore.&lt;/p&gt;
 &lt;h3 class=&quot;western&quot;&gt;Apertura&lt;/h3&gt;
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;È&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; qui di seguito riportata la RAM occupata all&#39;apertura, al variare del numero di immagini memorizzare nell&#39;applicazione:&lt;/span&gt;&lt;/p&gt;
-&lt;img title=&quot;tabella ram apertura&quot; src=&quot;/assets/tabella-ram-apertura.png&quot;/&gt;
+&lt;img title=&quot;tabella ram apertura&quot; src=&quot;/blog/assets/tabella-ram-apertura.png&quot;/&gt;
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;L&#39;applicazione ibrida richiede sempre almeno 106 MB di memoria, mentre l&#39;applicazione nativa ne usa quasi un sesto.&lt;/span&gt;&lt;/p&gt;
 &lt;h3 class=&quot;western&quot;&gt;Scorrimento nella timeline&lt;/h3&gt;
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Riporto in tabella l&#39;utilizzo di RAM delle due applicazioni dopo aver visualizzato tutte le foto nella timeline (scorrendo la view fino in fondo e poi tornando in cima), anche in questo caso al variare di foto memorizzate:&lt;/span&gt;&lt;/p&gt;
-&lt;img title=&quot;tabella ram timeline&quot; src=&quot;/assets/tabella-ram-timeline.png&quot;/&gt;
+&lt;img title=&quot;tabella ram timeline&quot; src=&quot;/blog/assets/tabella-ram-timeline.png&quot;/&gt;
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;L&#39;applicazione nativa utilizza quindi circa un quarto della memoria richiesta dall&#39;applicazione ibrida.&lt;/span&gt;&lt;/p&gt;
 &lt;h3 class=&quot;western&quot;&gt;Mappa&lt;/h3&gt;
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Spostandosi nella view che mostra le foto sulla mappa abbiamo questi dati:&lt;/span&gt;&lt;/p&gt;
-&lt;img title=&quot;tabella ram mappa&quot; src=&quot;/assets/tabella-ram-mappa.png&quot;/&gt;
+&lt;img title=&quot;tabella ram mappa&quot; src=&quot;/blog/assets/tabella-ram-mappa.png&quot;/&gt;
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Anche in questo caso l&#39;applicazione ibrida risulta molto più &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;“pesante”&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;, richiedendo circa tre volte la memoria necessaria all&#39;applicazione nativa.&lt;/span&gt;&lt;/p&gt;
 &lt;h2 class=&quot;western&quot;&gt;Considerazioni finali&lt;/h2&gt;
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Il modello applicativo utilizzato per realizzare l&#39;applicazione ibrida (utilizzando il framework AngularJS) è molto più semplice del modello usato da Android per la realizzazione di applicazioni native. In AngularJS oltre alle view HTML, &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;le directive&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; e &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;i &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;controller esistono i servizi, componenti software singleton che si occupano di tutto il resto. In Android invece esistono molto più componenti.&lt;/span&gt;&lt;/p&gt;
@@ -550,13 +550,13 @@
 &lt;p class=&quot;western&quot;&gt;&lt;!--more--&gt;&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;Il punto di debolezza delle applicazioni web su dispositivi mobili è sempre stato la mancanza della possibilità di usare funzionalità fornite dal produttore per interfacciarsi con i vari componenti hardware, e mentre si spera che in un futuro questa limitatezza possa essere superata attraverso sforzi di standardizzazione, Cordova fornisce una serie di API alle applicazioni che vengono eseguite all&#39;interno del suo container per poter accedere a tali funzionalità, ad esempio sarà possibile utilizzare la fotocamera, l&#39;accelerometro ed il gps.&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;Cordova si occupa anche di realizzare il pacchetto applicativo (ad esempio file .apk per Android ed .ipa per iOS) per ogni piattaforma supportata a partire dai file della web application.&lt;/p&gt;
-&lt;p&gt;[caption id=&quot;attachment_1992&quot; align=&quot;aligncenter&quot; width=&quot;953&quot;]&lt;img class=&quot;size-full wp-image-1992&quot; src=&quot;/assets/Packaging.png&quot; alt=&quot;Packaging Cordova&quot; width=&quot;953&quot; height=&quot;560&quot; /&gt; Packaging Cordova[/caption]&lt;/p&gt;
+&lt;p&gt;[caption id=&quot;attachment_1992&quot; align=&quot;aligncenter&quot; width=&quot;953&quot;]&lt;img class=&quot;size-full wp-image-1992&quot; src=&quot;/blog/assets/Packaging.png&quot; alt=&quot;Packaging Cordova&quot; width=&quot;953&quot; height=&quot;560&quot; /&gt; Packaging Cordova[/caption]&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;L&#39;applicazione nativa consisterà in una webview (un browser integrato) che mostrerà il contenuto utilizzando tutto lo schermo disponibile. Questo browser embedded potrà utilizzare l&#39;interprete di Javascript fornito dal sistema operativo che ospita l&#39;applicazione ed in più le API esposte da Cordova.&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;Attualmente Cordova supporta le &lt;a href=&quot;http://cordova.apache.org/docs/en/3.5.0/guide_support_index.md.html#Platform%20Support&quot;&gt;seguenti piattaforme&lt;/a&gt; :&lt;/p&gt;
-&lt;p&gt;[caption id=&quot;attachment_1993&quot; align=&quot;aligncenter&quot; width=&quot;833&quot;]&lt;img class=&quot;size-full wp-image-1993&quot; src=&quot;/assets/Piattaforme.png&quot; alt=&quot;Piattaforme Cordova&quot; width=&quot;833&quot; height=&quot;646&quot; /&gt; Piattaforme Cordova[/caption]&lt;/p&gt;
+&lt;p&gt;[caption id=&quot;attachment_1993&quot; align=&quot;aligncenter&quot; width=&quot;833&quot;]&lt;img class=&quot;size-full wp-image-1993&quot; src=&quot;/blog/assets/Piattaforme.png&quot; alt=&quot;Piattaforme Cordova&quot; width=&quot;833&quot; height=&quot;646&quot; /&gt; Piattaforme Cordova[/caption]&lt;/p&gt;
 &lt;h2&gt;Architettura&lt;/h2&gt;
 &lt;p class=&quot;western&quot;&gt;A partire dalla versione 3.0 (al momento della scrittura siamo alla versione 3.5.0-0.24) le API sono state separate in diversi plugin, per poter includere nel progetto solamente quelli necessari, e per avere un&#39;architettura più facilmente estensibile anche con plugin di terze parti.&lt;/p&gt;
-&lt;p&gt;[caption id=&quot;attachment_1994&quot; align=&quot;aligncenter&quot; width=&quot;633&quot;]&lt;img class=&quot;size-full wp-image-1994&quot; src=&quot;/assets/Architettura.png&quot; alt=&quot;Architettura Cordova&quot; width=&quot;633&quot; height=&quot;790&quot; /&gt; Architettura Cordova[/caption]&lt;/p&gt;
+&lt;p&gt;[caption id=&quot;attachment_1994&quot; align=&quot;aligncenter&quot; width=&quot;633&quot;]&lt;img class=&quot;size-full wp-image-1994&quot; src=&quot;/blog/assets/Architettura.png&quot; alt=&quot;Architettura Cordova&quot; width=&quot;633&quot; height=&quot;790&quot; /&gt; Architettura Cordova[/caption]&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;Dalla figura (tratta dal libro &lt;a href=&quot;http://www.cordovaprogramming.com/&quot;&gt;Apache Cordova 3 Programming&lt;/a&gt;) si può notare come ogni singolo plugin sia composto da una parte in Javascript e una parte invece scritta nel linguaggio supportato dalla specifica piattaforma.&lt;/p&gt;
 &lt;p class=&quot;western&quot;&gt;Attualmente Cordova fornisce questi plugin:&lt;/p&gt;
 &lt;ul&gt;
@@ -746,7 +746,7 @@
 		
 			<item>
 				<title>Alla fine i buoni vincono sempre</title>
-				<description>&lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/07/login-riccardo-luna.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-full wp-image-1568&quot; title=&quot;login-riccardo-luna&quot; src=&quot;/assets/login-riccardo-luna.jpg&quot; alt=&quot;&quot; width=&quot;466&quot; height=&quot;689&quot; /&gt;&lt;/a&gt;Oggi ho comprato il mio primo numero cartaceo di Wired, prima avevo solo letto qualcosa online e due ore  dopo ero sul loro sito a farmi l&#39;abbonamento biennale.&lt;/p&gt;
+				<description>&lt;p&gt;&lt;a href=&quot;/blog/assets/login-riccardo-luna.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-full wp-image-1568&quot; title=&quot;login-riccardo-luna&quot; src=&quot;/assets/login-riccardo-luna.jpg&quot; alt=&quot;&quot; width=&quot;466&quot; height=&quot;689&quot; /&gt;&lt;/a&gt;Oggi ho comprato il mio primo numero cartaceo di Wired, prima avevo solo letto qualcosa online e due ore  dopo ero sul loro sito a farmi l&#39;abbonamento biennale.&lt;/p&gt;
 &lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
 &lt;p&gt;Quello che vedete sopra è l&#39;editoriale di Luglio, belle parole che condivido totalmente. Qualcun&#39;altro invece la &lt;a href=&quot;http://blog.tagliaerbe.com/2010/07/login-riccardo-luna-wired.html&quot;&gt;pensa diversamente&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Voi che ne pensate?&lt;/p&gt;
@@ -758,7 +758,7 @@
 		
 			<item>
 				<title>Installare Android su iPod Touch 1G con iDroid</title>
-				<description>&lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010580.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1524&quot; title=&quot;iDroid iPod Touch&quot; src=&quot;/assets/22052010580-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+				<description>&lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010580.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1524&quot; title=&quot;iDroid iPod Touch&quot; src=&quot;/blog/assets/22052010580-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Mi ha sempre incuriosito Android, l&#39;OS made by Google per dispositivi mobile, e recentemente un gruppo di programmatori ha effettuato il &lt;strong&gt;porting di Android&lt;/strong&gt; per iPhone.&lt;/p&gt;
 &lt;p&gt;&lt;!--more--&gt;Ho quindi cercato di installarlo anche sul mio iPod Touch 1G (prossimo alla pensione) anche se tuttora non esiste una release ufficiale per questo dispositivo.&lt;/p&gt;
 &lt;p&gt;Ci sono riuscito ed ora ho un iPod touch con&lt;strong&gt; dual boot tra iPhone OS e Android&lt;/strong&gt;, ecco come ho fatto:&lt;/p&gt;
@@ -818,7 +818,7 @@
 &lt;li&gt;il touch è leggermente spostato (ossia rileva leggermente più a sinistra)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Vi lascio con una foto&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010582.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1531&quot; title=&quot;android ipod touch&quot; src=&quot;/assets/22052010582-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/blog/assets/2010/05/22052010582.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1531&quot; title=&quot;android ipod touch&quot; src=&quot;/assets/22052010582-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Sun, 23 May 2010 15:07:50 +0200</pubDate>
 				<link>/blog/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</link>
