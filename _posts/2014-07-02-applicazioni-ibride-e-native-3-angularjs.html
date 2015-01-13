@@ -1,0 +1,239 @@
+---
+layout: post
+title: 'Applicazioni Ibride e Native #3 – AngularJS'
+date: 2014-07-02 14:00:58.000000000 +02:00
+categories:
+- Applicazioni Ibride e Native
+- Programmazione
+tags:
+- angularjs
+- applicazioni ibride
+- javascript
+status: publish
+type: post
+published: true
+---
+<p>I hereby declare AngularJS to be MVW framework – Model-View-Whatever. Where Whatever stands for "whatever works for you</p>
+<p style="text-align: right;"><a href="https://plus.google.com/+IgorMinar/posts/DRUAkZmXjNV">Igor Minar</a></p>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">A</span><span style="font-family: Helvetica, sans-serif;">ngularJS è un framework per applicazioni web </span><span style="font-family: Helvetica, sans-serif;"><i>“single page” </i></span><span style="font-family: Helvetica, sans-serif;">sviluppato da Google.</span></p>
+<p class="western" align="JUSTIFY"><!--more--></p>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">S</span><span style="font-family: Helvetica, sans-serif;">i differenzia da</span><span style="font-family: Helvetica, sans-serif;">i</span><span style="font-family: Helvetica, sans-serif;"> framework precedenti come </span><span style="font-family: Helvetica, sans-serif;"><i>jQuery</i></span><span style="font-family: Helvetica, sans-serif;"> nei quali lo sviluppatore doveva avere una conoscenza completa del DOM per poi manipolarlo scrivendo la logica in javascript, ad esempio:</span></p>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">var btn = $("&lt;button&gt;Hi&lt;/button&gt;");</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">btn.on('click', function(evt) { console.log("Clicked button") }); </span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">$("#checkoutHolder").append(btn);</span></p></blockquote>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">AngularJS invece aumenta il potere espressivo dell'</span><span style="font-family: Helvetica, sans-serif;">HTML</span><span style="font-family: Helvetica, sans-serif;"> fornendo agli sviluppatori nuovi tag </span><span style="font-family: Helvetica, sans-serif;">built-in </span><span style="font-family: Helvetica, sans-serif;">e la possibilità di crearne degli altri.</span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">Inoltre la libreria è di dimensioni veramente ridotte, appena 9KB (la versione minimizzata) ed è disponibile open source.</span></p>
+<h2 class="western" align="JUSTIFY">Data Binding</h2>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">I</span><span style="font-family: Helvetica, sans-serif;"> framework web classici come Rails a partire da dati del modello </span><span style="font-family: Helvetica, sans-serif;">producono</span><span style="font-family: Helvetica, sans-serif;"> una view per l'utente, </span><span style="font-family: Helvetica, sans-serif;">generando</span><span style="font-family: Helvetica, sans-serif;"> una view </span><span style="font-family: Helvetica, sans-serif;"><i>“single-way”</i></span><span style="font-family: Helvetica, sans-serif;">che riflette i dati del modello solo al momento al momento </span><span style="font-family: Helvetica, sans-serif;">dell'istanziazione</span><span style="font-family: Helvetica, sans-serif;">.</span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">AngularJS invece adotta un approccio unico, creando dei </span><span style="font-family: Helvetica, sans-serif;"><i>live templates </i></span><span style="font-family: Helvetica, sans-serif;">come view che sono sempre aggiornati rispetto ai dati del modello. Questo ci permette di scrivere nell'HTML</span></p>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;input ng-model="name" type="text" placeholder="Your name"&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;h1&gt;Hello {{ name }}&lt;/h1&gt;</span></p></blockquote>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">Le doppie parentesi graffe indicano un'espressione AngularJS, il framework valuterà l'espressione </span><span style="font-family: Helvetica, sans-serif;">per </span><span style="font-family: Helvetica, sans-serif;">effettuare il rendering del contenuto.</span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">S</span><span style="font-family: Helvetica, sans-serif;">enza scrivere nessuna riga di codice in Javascript abbiamo ottenuto un </span><span style="font-family: Helvetica, sans-serif;"><i>two-way data binding</i></span><span style="font-family: Helvetica, sans-serif;"> direttamente nella view.</span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">In questo esempio, ogni volta che cambierà il valore del tag &lt;input&gt; verrà </span><span style="font-family: Helvetica, sans-serif;">aggiornato</span><span style="font-family: Helvetica, sans-serif;"> anche il contenuto del tag &lt;h1&gt; sottostante.</span></p>
+<h2 class="western" align="JUSTIFY">Scopes</h2>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">G</span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">li </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>sc</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>opes</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> sono componenti core di ogni applicazione AngularJS, vengono utilizzati come </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>glue</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> tra i controller e le view. Grazie al </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>live binding</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> di AngularJS </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">uno</span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>scope</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> è immediatamente aggiornato se l'utente interagisce con la view, e viceversa la view è immediatamente aggiornata se </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">modifichiamo</span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> lo </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>scope</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> eseguendo qualche operazione nel codice Javascript.</span></span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;">AngularJS gestisce i diversi <i>scope</i> di una applicazione attraverso una relazione gerarchica che rispetta la composizione del DOM, all'avvio dell'applicazione viene infatti creato un <i>rootScope</i> e tutti gli altri <i>scope</i> discendono da questo.</span></p>
+<p class="western" align="JUSTIFY"><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">L'oggetto </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>scope</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> è un </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>plain old Javascript object</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">, possiamo quindi aggiunge</span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">re</span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> tutte le </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">proprietà</span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> di cui necessitiamo. Esso funge da </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>data model</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> e tutte le </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">sue </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">proprietà sono automaticamente accessibili dalla view:</span></span></p>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;div ng-app="myApp"&gt; &lt;h1&gt;Hello {{ name }}&lt;/h1&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;/div&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">angular.module('myApp', []) .run(function($rootScope) {</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">$rootScope.name = "World";</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">});</span></p></blockquote>
+<h2 lang="zxx"></h2>
+<h2 lang="zxx">Controllers</h2>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">I <i>controllers</i> in AngularJS sono funzioni definite dallo sviluppatore per aggiungere funzionalità allo scope della view. Attraverso la Dependency Injection AngularJS passa automaticamente lo scope associato ad ogni <i>controller</i> al relativo costruttore. Nel costruttore può essere configurato lo stato iniziale dello scope, lo sviluppatore si deve preoccupare solamente di scrivere la funzione costruttore, poiché l'instanziazione dei controller è a carico del framework.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Ad esempio:</span></p>
+<blockquote lang="zxx"><p>function FirstController($scope) {</p></blockquote>
+<blockquote lang="zxx"><p>$scope.message = "hello";</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Per creare delle azioni invocabili dalle view basterà creare delle funzioni sullo scope associato e poi effettuare il binding, ad esempio sfruttano la built-in directive ng-click che gestisce l'evento click del browser. Quindi volendo fare un esempio leggermente più complesso avremo nella view:</span></p>
+<blockquote lang="zxx"><p>&lt;div ng-controller="FirstController"&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;h4&gt;Il mio contatore&lt;/h4&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;button ng-click="add(1)"&gt;Add&lt;/button&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;a ng-click="subtract(1)"&gt;Subtract&lt;/a&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;h4&gt;Valore : {{ counter }}&lt;/h4&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;/div&gt;</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">E nel relativo controller:</span></p>
+<blockquote lang="zxx"><p>app.controller('FirstController', function($scope) {</p></blockquote>
+<blockquote lang="zxx"><p>$scope.counter = 0;</p></blockquote>
+<blockquote lang="zxx"><p>$scope.add = function(amount) { $scope.counter += amount; };</p></blockquote>
+<blockquote lang="zxx"><p>$scope.subtract = function(amount) { $scope.counter -= amount; };</p></blockquote>
+<blockquote lang="zxx"><p>});</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Sia il bottone che il link sono collegati ad una azione definita nello scope, per cui quando verranno premuti/selezionati AngularJS chiamerà i rispettivi metodi.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Come si può notare nei <i>controll</i><i>ers</i> scritti dal programmatore non c'è una modifica <i>manuale</i> del DOM, il tutto viene gestito automaticamente da AngularJS.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Tutti gli scope che sono creati con ereditarietà prototipale, hanno cioè accesso agli scope <i>“avi”</i>. Quindi ogni qual volta AngularJS non riesce a trovare una proprietà richiesta nello scope corrente risalirà questa catena di ereditarietà fino al <i>rootScope</i> associato all'applicazione.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;"><span style="font-family: Helvetica, sans-serif;">È</span> importante sapere che per motivi di gestione ottimale della memoria e di performances i controllers sono instanziati solo quando sono necessari, e deallocati quando non lo sono più. Per cui ogni volta che cambia lo stato di una applicazione o ricarichiamo una view, i controller correnti vengono deallocati e instanziati i nuovi controller.</span></p>
+<h2 class="western">Directives</h2>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">AngularJS fornisce molte built-in directives che servono ad aumentare l'espressività dell'HTML.Le <i>directives</i><i> </i><i>built-in</i> sono tag che iniziano con il prefisso ng, per un elenco dettagliato si rimanda alla <a href="https://docs.angularjs.org/api/ng/directive">documentazione di AngularJS</a>.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Inoltre AngularJS permette di definire nuove directive agli sviluppatori con le funzionalità desiderate e di unire diverse directive attraverso un processo chiamato composizione.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Per creare una nuova directive bisogna definirla come segue:</span></p>
+<blockquote lang="zxx"><p>angular.module('myApp', []) .directive('myDirective', function() {</p></blockquote>
+<blockquote lang="zxx"><p>return {</p></blockquote>
+<blockquote lang="zxx"><p>restrict: 'E',</p></blockquote>
+<blockquote lang="zxx"><p>template: '&lt;a href="http://google.com"&gt; Click me to go to Google&lt;/a&gt;'</p></blockquote>
+<blockquote lang="zxx"><p>} });</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Nell'esempio sono state utilizzate solo la proprietà <i>restrict</i> e <i>template</i> per semplicità, per l'elenco esaustivo si rimanda alla documentazione di AngularJS su come creare <a href="https://docs.angularjs.org/guide/directive">directives custom</a>.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Avendo definito questa directive, ogni qual volta nell'HTML verrà incontrata la directive AngularJS invocherà la funzione associata. Possiamo quindi scrivere nella nostra view</span></p>
+<blockquote lang="zxx"><p>&lt;my-directive&gt;&lt;/my-directive&gt;</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">e AngularJS provvederà a inserire nel DOM un tag &lt;a&gt; con link a google.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Per poter passare dello stato ad una custom directive attraverso gli attributi:</span></p>
+<blockquote lang="zxx"><p>&lt;my-directive my-url="http://google.com" my-link-text="Click me to go to Google"&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;/my-directive&gt;</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">definendo opportunamente la directive:</span></p>
+<blockquote lang="zxx"><p>angular.module('myApp', []) .directive('myDirective', function() {</p></blockquote>
+<blockquote lang="zxx"><p>return {</p></blockquote>
+<blockquote lang="zxx"><p>restrict: 'E',</p></blockquote>
+<blockquote lang="zxx"><p>replace: true,</p></blockquote>
+<blockquote lang="zxx"><p>scope: {</p></blockquote>
+<blockquote lang="zxx"><p>myUrl: '@', // binding strategy</p></blockquote>
+<blockquote lang="zxx"><p>myLinkText: '@' // binding strategy</p></blockquote>
+<blockquote lang="zxx"><p>},</p></blockquote>
+<blockquote lang="zxx"><p>template: '&lt;a href="{{myUrl}}"&gt;' + '{{myLinkText}}&lt;/a&gt;'</p></blockquote>
+<blockquote lang="zxx"><p>} })</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Così facendo la directive avrà uno scope interno contenente l'url e il testo del link. Ci sono diverse strategie di binding tra attributi passati nella view e lo scope interno, nell'esempio è stata utilizzata la strategia <i>@</i> che copia il valore dell'attributo nella corrispondente proprietà dello scope.<i> </i></span></p>
+<h2 class="western">Views</h2>
+<p class="western"><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">I</span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">n applicazioni </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>“single page”</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> la navigazione da una view ad un altra è un aspetto critico, vogliamo mostrare del nuovo contenuto all'utente senza forzarlo ad aspettare l'apertura di un altra pagina HTML. AngularJS </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">per ottenere questo risultato </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">permette di scrivere diversi templates, per poi mostrare il contenuto di interesse in base allo </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>“stato”</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> dell'applicazione.</span></span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">AngularJS fornisce il modulo </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>ngRoute</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> (da scaricare ed includere manualmente) che realizza la direttiva </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>ng-view </i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">utilizzata come placeholder per il contenuto della view dinamico, ad esempio:</span></span></p>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;header&gt; </span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;"> &lt;h1&gt;Header&lt;/h1&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;/header&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;div class="content"&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;"> &lt;ng-view&gt;&lt;/ng-view&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;/div&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;footer&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;"> &lt;h5&gt;Footer&lt;/h5&gt;</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">&lt;/footer&gt;</span></p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Così facendo l'header e il footer della pagina rimarranno sempre gli stessi, mentre il contenuto verrà aggiornato (senza ricaricare l'intera pagina) in base al valore corrente dell'URL.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Per configurare quali template caricare e in che circostanza occorre configurare routeProvider come segue:</span></p>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">angular.module('myApp', []). config(['$routeProvider', function($routeProvider) {</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">$routeProvider</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">.when('/', {</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">templateUrl: 'views/home.html',</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">controller: 'HomeController'</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">});</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">}]);</span></p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">Si specifica l'url (</span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>“/”</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> nell'esempio) e che template e controller verranno utilizzati. Per semplicità sono stati riportati solamente alcune proprietà esprimibili, per un elenco esaustivo si rimanda alla <a href="https://docs.angularjs.org/api/ngRoute/service/$route">documentazione </a></span></span><a href="https://docs.angularjs.org/api/ngRoute/service/$route"><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">di ngRoute</span></span></a><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">.</span></span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT">Passando degli argomenti (con </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>“:”</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> ) attraverso l'URL, AngularJS provvederà ad effettuare il parsing e a creare un array chiamato </span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"><i>routeParams</i></span></span><span style="font-family: Helvetica, sans-serif;"><span lang="it-IT"> utilizzabile dal controller che gestisce la view. E poiché l'utente deve solamente scrivere la funzione costruttore del controllore basterà inserirlo tra gli argomenti e AngularJS si preoccuperà di iniettarlo:</span></span></p>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">$routeProvider</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">.when('/inbox/:name', {</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">controller: 'InboxController',</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">templateUrl: 'views/inbox.html'</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">})</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">app.controller('InboxController', function($scope, $routeParams) { </span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">// Qui è abbiamo accesso all'array $routeParams</span></p></blockquote>
+<blockquote lang="zxx"><p><span style="font-family: Helvetica, sans-serif;">});</span></p></blockquote>
+<h3 lang="zxx">UI-Router</h3>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">UI-Router è una libreria che ci permette di organizzare l'interfaccia in stati invece che semplici url, questo ci da la possibilità di avere view innestate usando la directive <i>ui-view</i> invece che <i>ng-view</i>.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Infatti come accade usando <i>ngRoute,</i> il template definito per lo stato corrente verrà utilizzato per visualizzare il contenuto all'utente, ma usando <i>ui-route</i> i template possono a loro volta includere altre <i>ui-view</i>. </span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">La configurazione è leggermente diversa, poiché si usa la keyword <i>“state”</i> invece di <i>“when”</i>.</span></p>
+<blockquote lang="zxx"><p>$stateProvider</p></blockquote>
+<blockquote lang="zxx"><p>.state('inbox', {</p></blockquote>
+<blockquote lang="zxx"><p>url: '/inbox/:inboxId',</p></blockquote>
+<blockquote lang="zxx"><p>template: '&lt;div&gt;&lt;h1&gt;Welcome to your inbox&lt;/h1&gt;\</p></blockquote>
+<blockquote lang="zxx"><p>&lt;a ui-sref="inbox.priority"&gt;Show priority&lt;/a&gt;\</p></blockquote>
+<blockquote lang="zxx"><p>&lt;div ui-view&gt;&lt;/div&gt;\</p></blockquote>
+<blockquote lang="zxx"><p>&lt;/div&gt;',</p></blockquote>
+<blockquote lang="zxx"><p>controller: function($scope, $stateParams) { $scope.inboxId = $stateParams.inboxId;</p></blockquote>
+<blockquote lang="zxx"><p>} })</p></blockquote>
+<blockquote lang="zxx"><p>.state('inbox.priority', {</p></blockquote>
+<blockquote lang="zxx"><p>url: '/priority',</p></blockquote>
+<blockquote lang="zxx"><p>template: '&lt;h2&gt;Your priority inbox&lt;/h2&gt;'</p></blockquote>
+<blockquote lang="zxx"><p>});</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Abbiamo uno stato figlio (specificato usando il <i>“.”</i>) chiamato <i>inbox.priority</i>. La ui-view dentro la view padre verrà quindi popolata con il template di <i>inbox.priority</i>.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Quando abbiamo più ui-view innestate possiamo dare un nome ad ognuna e collegare ad ognuna di esse un template diverso. Ad esempio:</span></p>
+<blockquote lang="zxx"><p>&lt;div&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;div ui-view="filters"&gt;&lt;/div&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;div ui-view="mailbox"&gt;&lt;/div&gt;</p></blockquote>
+<blockquote lang="zxx"><p>&lt;/div&gt;</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">E ogni sub-view può avere il suo template e controller:</span></p>
+<blockquote lang="zxx"><p>$stateProvider</p></blockquote>
+<blockquote lang="zxx"><p>.state('inbox', {</p></blockquote>
+<blockquote lang="zxx"><p>views: {</p></blockquote>
+<blockquote lang="zxx"><p>'filters': {</p></blockquote>
+<blockquote lang="zxx"><p>template: '&lt;h4&gt;Filter inbox&lt;/h4&gt;',</p></blockquote>
+<blockquote lang="zxx"><p>controller: function($scope) {} },</p></blockquote>
+<blockquote lang="zxx"><p>'mailbox': {</p></blockquote>
+<blockquote lang="zxx"><p>templateUrl: 'partials/mailbox.html'</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<blockquote lang="zxx"><p>});</p></blockquote>
+<h2 lang="zxx"></h2>
+<h2 lang="zxx">Dependency Injection</h2>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">AngularJS permette agli sviluppatori di utilizzare il pattern <i>dependency injection</i> e specificare le dipendenze di ogni componente senza preoccuparsi di come reperire quest'ultime. A runtime l'<i>injector</i> di AngularJS si occuperà di reperire le dipendenze specificate e se necessario instanziare i componenti richiesti. Possiamo ad esempio definire un servizio e poi specificare ad AngularJS che un controller ne avrà bisogno a runtime:</span></p>
+<blockquote lang="zxx"><p>angular.module('myApp', [])</p></blockquote>
+<blockquote lang="zxx"><p>.factory('greeter', function() {</p></blockquote>
+<blockquote lang="zxx"><p>return {</p></blockquote>
+<blockquote lang="zxx"><p>greet: function(msg) { alert(msg); }</p></blockquote>
+<blockquote lang="zxx"><p>} })</p></blockquote>
+<blockquote lang="zxx"><p>.controller('MyController', function($scope, greeter) {</p></blockquote>
+<blockquote lang="zxx"><p>$scope.sayHello = function() { greeter.greet("Hello!");</p></blockquote>
+<blockquote lang="zxx"><p>};</p></blockquote>
+<blockquote lang="zxx"><p>});</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Nel costruttore del controller <i>“MyController”</i> è specificata la dipendenza dal servizio <i>“greeter”</i>.</span></p>
+<h3 class="western">Annotazione Con Inferenza</h3>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">AngularJS assume che i nomi degli argomenti siano i nomi delle risorse da reperire o instanziare a runtime, e <span lang="it-IT">per questo motivo questo approccio può funzionare solo con codice Javascript non minimizzato e non offuscato, poiché AngularJS ha bisogno di effettuare il parsing degli argomenti immutati.</span></span></p>
+<h3 class="western">Annotazione Esplicita</h3>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Si possono comunque indicare manualmente i nomi delle dipendenze, per poter minimizzare il codice e non avere problemi specificando la proprietà <i>$inject</i> di una funzione (che corrisponde ad un controller o un servizio).</span></p>
+<blockquote lang="zxx"><p>var aControllerFactory =</p></blockquote>
+<blockquote lang="zxx"><p>function aController($scope, greeter) {</p></blockquote>
+<blockquote lang="zxx"><p>console.log("LOADED controller", greeter);</p></blockquote>
+<blockquote lang="zxx"><p>// ... Controller</p></blockquote>
+<blockquote lang="zxx"><p>};</p></blockquote>
+<blockquote lang="zxx"><p>aControllerFactory.$inject = ['$scope', 'greeter'];</p></blockquote>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">In questo approccio diventa però importante l'ordine con il quale vengono specificati i parametri della funzione, che deve coincidere con l'ordine delle dipendenze specificate nell'array <i>$i</i><i>nject.</i></span></p>
+<h3 class="western">Annotazione Inline</h3>
+<p class="western">Questo tipo di annotazione è equivalente alla precedente ma permette di definire l'array di dipendenze inline alla definizione della funzione:</p>
+<blockquote lang="zxx"><p>angular.module('myApp')</p></blockquote>
+<blockquote lang="zxx"><p>.controller('MyController',</p></blockquote>
+<blockquote lang="zxx"><p>['$scope', 'greeter', function($scope, greeter) {</p></blockquote>
+<blockquote lang="zxx"><p>}]);</p></blockquote>
+<h3 lang="zxx">NgMin</h3>
+<p class="western">NgMin è un tool che sgrava lo sviluppatore dal definire le dipendenze in maniera esplicita e poter comunque minimizzare il codice, trasforma il seguente codice:</p>
+<blockquote lang="zxx"><p>angular.module('myApp', [])</p></blockquote>
+<blockquote lang="zxx"><p>.controller('IndexController', function($scope, $q) {</p></blockquote>
+<blockquote lang="zxx"><p>});</p></blockquote>
+<p class="western">automaticamente in questo:</p>
+<blockquote lang="zxx"><p>angular.module('myApp', [])</p></blockquote>
+<blockquote lang="zxx"><p>.controller('IndexController', [ $scope', '$q',</p></blockquote>
+<blockquote lang="zxx"><p>function ($scope, $q) {</p></blockquote>
+<blockquote lang="zxx"><p>} ]);</p></blockquote>
+<h2 lang="zxx"></h2>
+<h2 lang="zxx">Services</h2>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Prima di introdurre i <i>services </i>vale la pena ricordare che i controllers sono volativi (e lo sviluppatore non ne controlla il ciclo di vita), quindi non idonei a contenere lo stato dell'applicazione. Per questo motivo, e per fornire una modalità di scambio di dati in maniera consistente esistono i <i>services</i>.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">I <i>services</i> sono oggetti singleton instanziati dall'injector di AngularJS e lazy-loaded. Come per le <i>directives</i> AngularJS fornisce molti services built-in (ad esempio <i>$http</i>) e permette agli sviluppatori di crearne di personalizzati.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Per usare un <i>service</i> è sufficiente elencarlo nelle dipendenze del <i>controller</i>, <i>directive</i> o altro <i>service</i> che vuole invocarlo.</span></p>
+<h3 class="western">Factory</h3>
+<p class="western">Il modo più semplice per creare e registrare (per essere trovato dall'injector) un nuovo <i>service</i> è utilizzare l'API .<i>factory</i> di <i>angular.module</i>.</p>
+<blockquote lang="zxx"><p>angular.module('myApp', []) .</p></blockquote>
+<blockquote lang="zxx"><p>factory('UserService', function($http) {</p></blockquote>
+<blockquote lang="zxx"><p>var current_user;</p></blockquote>
+<blockquote lang="zxx"><p>return {</p></blockquote>
+<blockquote lang="zxx"><p>getCurrentUser: function() {</p></blockquote>
+<blockquote lang="zxx"><p>return current_user; },</p></blockquote>
+<blockquote lang="zxx"><p>setCurrentUser: function(user) {</p></blockquote>
+<blockquote lang="zxx"><p>current_user = user;</p></blockquote>
+<blockquote lang="zxx"><p>} }</p></blockquote>
+<p class="western">La funzione <i>factory</i> ha due argomenti: il primo specifica il nome del servizio, il secondo è una funzione che verrà eseguita da AngularJS una volta soltanto per instanziare il service</p>
+<h3 class="western">Service</h3>
+<p class="western">La funzione <i>service</i> di <i>angular.module</i> è simile alla funzione factory, ed ha come quest'ultima due argomenti, dei quali il primo indica il nome mentre il secondo è una funzione costruttore, che verrà invocata da AngularJS usando la keyword <i>new</i>.</p>
+<h3 class="western">Provider</h3>
+<p class="western">Tecnicamente le funzioni <i>factory</i> e <i>service</i> sono solo delle <i>“scorciatoie”</i> per la funzione <i>provider</i> che è la vera responsabile per la creazione e registrazione dei vari <i>“services”</i>.</p>
+<p class="western">Utilizzando però direttamente <i>provider</i> è possibile configurare dall'esterno il servizio che si sta definendo attraverso la funzione <i>config</i>, iniettando alcuni valori.</p>
+<h2 class="western">Eventi</h2>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Per ottenere un accoppiamento più debole tra i diversi componenti dell'applicazione AngularJS mette a disposizione un meccanismo di creazione e propagazione di eventi.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Rispecchiando la gerarchia degli scope, le due operazioni basilari di propagazione degli eventi sono <i>$emit</i> per risalire la catena di scope dai figli al <i>rootScope</i> e <i>$broadcas</i>t con funzionamento opposto, da uno scope ai suoi scope figli.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Quando si scatena un evento è possibile specificare oltre al nome anche degli argomenti.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Per registrarsi ad un evento si utilizza la funzione <i>$on</i> specificando il nome dell'evento di interesse e una funzione di gestione. Un gestore di un evento può anche decidere di interrompere la propagazione dell'evento.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Anche in questo caso AngularJS ha diversi eventi built-in, degno di nota è l'evento <i>$destroy</i> che viene emesso sullo scope prima che venga distrutto e permette di pulire l'ambiente (ad esempio distruggendo un timeout che si era registrato). Per un elenco dettagliato degli eventi built-in si rimanda alla <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on">documentazione</a>.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Attraverso questo meccanismo è inoltre possibile emettere eventi <i>“globali”</i> poiché ogni componente dell'applicazione AngularJS può richiedere di farsi iniettare il <i>rootScope</i> e poi utilizzarlo con la funzione di <i>$broadcas</i>t.</span></p>
+<h2 class="western">Moduli</h2>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">In Javascript non è mai una buona idea utilizzare l'ambiente globale e per questo motivo AngularJS permette di dividere l'applicazione in moduli, nei quali racchiudere le funzionalità.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Quando vogliamo definire un nuovo modulo dobbiamo usare la funzione <i>angular.module</i> a due argomenti, il primo specifica il nome del modulo, mentre il secondo è una lista di dipendenze da iniettare.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Per ottenere invece il riferimento ad un modulo utilizziamo la funzione <i>angular.module</i> ad un solo parametro, il nome del modulo. Ottenuto il modulo possiamo definire i nostri componenti per quel modulo (controller/service/directive).</span></p>
+<h2 class="western">Promises</h2>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Una promise è un oggetto che rappresenta il valore di ritorno o un eccezione di di una funzione, può essere vista come un proxy per un oggetto.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Storicamente in Javascript sono state utilizzate funzioni di <i>callback</i> per poter lavorare con dati non disponibili in maniera sincrona, come i dati ottenuti da una richiesta XHR, con le <i>promises</i> possiamo invece interagire con i dati, supponendo che siano già stati restituiti.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Le <i>promises</i> permettono di far sembrare funzioni asincrone come se fossero sincrone, permettendoci di catturare sia i valori di ritorno che le eventuali eccezioni, ma sono sempre eseguite in maniera asincrona, per cui possono essere usate senza preoccuparsi del fatto che possano bloccare l'esecuzione.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">AngularJS fornisce il <i>service</i> <i>$q</i> per semplificare la gestione delle <i>promises</i>, una volta creata un <i>promise</i> con il metodo <i>$q.defer()</i> possiamo utilizzare il metodo <i>resolve(value)</i> nel caso l'esecuzione sia andata come previsto e il metodo <i>reject(reason) </i>per notificare invece l'errore. Un ulteriore metodo è <i>notify(value)</i> che permette di mandare una notifica (ad esempio se l'esecuzione richiede un tempo lungo potremmo notificare il progresso attraverso questo metodo). Sia nel caso di successo che nel caso di errore la funzione ritornerà la promise creata al chiamante che può interagire con il risultato attraverso la funzione <i>then</i>().</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">La funzione <i>then</i>() accetta tre parametri, le funzioni che saranno eseguite in caso di successo, errore e ricezione di notifica. <span style="font-family: Helvetica, sans-serif;">È</span> importante notare che le funzioni di successo o fallimento saranno invocate in maniera asincrona appena la <i>promise</i> è risolta, (solamente una delle due) e con un singolo parametro che indica il risultato in un caso o il motivo del fallimento nell'altro. Mentre la funzione di notifica può essere invocata anche più volte.</span></p>
+<p class="western"><span style="font-family: Helvetica, sans-serif;">Le <i>promises</i> sono profondamente integrate in AngularJS, infatti anche i services built-in come <i>$http</i> le utilizzano per restituire i risultati ai chiamanti.</span></p>

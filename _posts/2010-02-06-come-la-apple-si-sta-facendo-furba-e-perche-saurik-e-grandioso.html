@@ -1,0 +1,49 @@
+---
+layout: post
+title: Come la Apple si sta facendo furba, e perchè Saurik è grandioso!
+date: 2010-02-06 15:24:46.000000000 +01:00
+categories:
+- apple
+- hack
+- iPhone/iTouch
+- Riflessioni
+tags:
+- 3gs
+- apple
+- Cydia
+- firmware
+- hack
+- iphone
+- ipod touch
+- iTunes
+- jailbreak
+- riflessione
+- saurik
+status: publish
+type: post
+published: true
+---
+<h6 style="text-align: right;">e perchè<strong> attualmente non comprerei</strong> un iPhone<strong> 3GS</strong> o iPod touch <strong>3G</strong>.</h6>
+<p>A volte ripenso a quando presi in mano per la prima volta un iPod Touch, montava su il <strong>firmware 1.4</strong> e grazie a <strong>Zibri</strong> da quando lo presi in mano a quando fu jailbroken passarono 2 orette (condite da<strong> panico da brik</strong> con scritte stile terminale che non andavano via dallo schermo).</p>
+<p>La Apple per diverso tempo <strong>non si è curata</strong> particolarmente alla questione, e questa è una tra le più pesanti critiche fatte alla Società, ma si sà, come la Sony ha incominciato a guadagnare forte sulla Play Station 1 dopo che si diffusero i viodeogiochi masterizzati, in egual modo la Apple <strong>traeva profitto dalla situazione</strong>.</p>
+<p>Che il Jailbreak non sia semplicemente installare ipa lo so bene, è ben di più, è <strong>il completo accesso al dispositivo</strong>, la possibilita di "giocare" in SSH, di utilizzare applicazioni che <strong>alla Apple non piacciono</strong> (vedi Winterboard, Backrounder, iMobileCinema e simili).</p>
+<p><!--more--></p>
+<p>Ma diciamo la verità, senza dati alla mano, sono convinto che buona parte degli utenti che "sbloccano" il proprio device è attratta (se non motivata) dall'<strong>Installous</strong>.</p>
+<p>Dicevo sopra che la Apple per diverso tempo non si è preoccupata eccessivamente della questione, ma ora qualcosa sembra cambiare, ed ha rilasciato un nuovo firmware a prima vista <strong>inutile</strong>.</p>
+<p>In realtà questo firmware ha uno <strong>scopo preciso, ostacolare il jailbreak</strong> dei nuovi dispositivi (iPhone 3GS e iPod touch 3G).</p>
+<p>Questi nuovi dispositivi (che hanno una nuova versione di iBoot) infatti, necessitano di<strong> una connessione con il server della Apple</strong> ogni volta che si vuole aggiornare o ripristinare un firmware, nel server viene trovata una<strong> firma digitale</strong> che permette l'operazione di aggiornamento/ripristino.</p>
+<p>Dopo il rilascio del <strong>firmware 3.1.3</strong> la Apple ha deciso di <strong>rimuovere la firma per il 3.1.2</strong> e quindi tutti gli i possessori di questi nuovi dispositivi una volta fatto l'upgrade al <strong>3.1.3 non potranno più tornare indietro al 3.1.2</strong>.</p>
+<p>Ecco quindi la situazione: un utente con 3GS ha il firmware 3.1.2 con jailbreak, poi per vari motivi (rallentamenti, problemi con applicazioni da cydia,casini vari) decide ti ripristinare il firmware per risolvere tutto.</p>
+<p><span style="text-decoration: line-through;">Se decide di ripristinare il 3.1.2 tutto bene, ma <strong>se aggiorna al 3.1.3 cosa succede?</strong></span></p>
+<p>Non potendo ripristinare il 3.1.2 è <strong>costretto ad aggiornare al 3.1.3 e cosa succede?</strong></p>
+<p>Si ritrova un iPhone che <strong>non potrà essere jailbroken</strong>. Attualmente <strong>il jailbreak per 3.1.3 non esiste</strong> per questi dispositivi, e <strong>non può</strong> più tornare al 3.1.2 per sbloccarlo.</p>
+<p><strong>E brava Apple! Ci sei riuscita!</strong></p>
+<p>Ed è qui che entra in gioco <a href="http://www.saurik.com/"><strong>Saurik</strong></a>!</p>
+<p>Prima ho semplicemente detto che questi dispositivi per poter aggiornare/ripristinare il firmware si collegano con il Server Apple, il quale da il via libera all'operazione desiderata. A grandi linee è cosi, ma <strong>vediamo di approfondire</strong>:</p>
+<p>Durante la certificazione entrano in gioco <strong>3 file: il iBSS, il iBEC ed l' ECID</strong>, i primi due sono file temporanei e quindi non influiscono sull'operazione,<strong> l' ECID</strong> viene invece <strong>generato durante il collegamento</strong> con il Sever della Apple.</p>
+<p>Come detto sopra la Apple <strong>non fornisce più</strong> il file ECID per i firmware precedenti al 3.1.3, quindi l'unica operazione permessa è l'upgrade al nuovo firmware.</p>
+<p>Ma Saurik è davvero uno con un cervello fine, ha difatti costruito <strong>un server che si sostituisce a quello della Apple</strong>.</p>
+<p>Aprendo Cydia si ha la possibilità di <strong>salvare il proprio ECID sul server di Saurik</strong>, successivamente sarà presente su cydia il messaggio "ECID SHSH on file" che conferma il salvataggio.</p>
+<p>Ora dopo le opportune modifiche ad iTunes (che non riporto nell'articolo, ma potete trovare <a href="http://www.ispazio.net/87054/facciamo-chiarezza-sulliphone-3gs-il-firmware-3-1-3-lecid-e-la-guida-per-il-downgrade-ispazio">qui</a>), quest'ultimo interrogherà<strong> il server di Saurik invece di quello originale</strong>, e trovando la firma digitale <strong>permetterà anche di tornare a firmware precedenti</strong>.</p>
+<p>E' dunque questa la situazione, almeno finchè il <strong><a href="http://twitter.com/geohot">geniaccio</a></strong> non smuoverà un pò le acque!</p>
+<p>Un consiglio? <strong>Non aggiornate.</strong></p>

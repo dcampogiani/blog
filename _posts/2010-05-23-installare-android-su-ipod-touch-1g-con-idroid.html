@@ -1,0 +1,84 @@
+---
+layout: post
+title: Installare Android su iPod Touch 1G con iDroid
+date: 2010-05-23 15:07:50.000000000 +02:00
+categories:
+- apple
+- cellulari
+- Guide
+- hack
+- iPhone/iTouch
+- Sistemi Operativi
+tags:
+- android
+- google
+- hack
+- idroid
+- iPhone e iPod
+- ipod
+- openiboot
+status: publish
+type: post
+published: true
+---
+<p><a href="http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010580.jpg"><img class="aligncenter size-medium wp-image-1524" title="iDroid iPod Touch" src="/assets/22052010580-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p>Mi ha sempre incuriosito Android, l'OS made by Google per dispositivi mobile, e recentemente un gruppo di programmatori ha effettuato il <strong>porting di Android</strong> per iPhone.</p>
+<p><!--more-->Ho quindi cercato di installarlo anche sul mio iPod Touch 1G (prossimo alla pensione) anche se tuttora non esiste una release ufficiale per questo dispositivo.</p>
+<p>Ci sono riuscito ed ora ho un iPod touch con<strong> dual boot tra iPhone OS e Android</strong>, ecco come ho fatto:</p>
+<h2>Occorrente</h2>
+<ul>
+<li>iPod Touch Jailbroken con firmware 3.1.2 (il jailbreak con Spirit non funziona, usate BlackRain)</li>
+<li>Ubuntu (io l'ho virtualizzato sul mio macbook)</li>
+<li>Release di iDroid</li>
+<li>Pazienza</li>
+</ul>
+<h2>Bene Iniziamo</h2>
+<p>Come primo step dobbiamo scaricare la release di iDorid,che trovate nel <strong>link sottostante</strong></p>
+<p><a href="http://www.mediafire.com/?iyzmjgtijmq">iDroid per iPod Touch 1G</a></p>
+<h2>Ottenere i Driver per Wi-Fi e Touchscreen</h2>
+<p>Per questione di licenza non è possibile scaricare i driver per  il touchscreen quindi dobbiamo ottenerli estraendoli dal nostro iPod.</p>
+<p>Da <a href="http://extranet.marvell.com/drivers/driverDisplay.do?driverId=203">qui</a> è possibile invece scaricare i driver per il wi-fi, estraete il file <strong>SD-8686-LINUX26-SYSKT-9.70.3.p24-26409.P45-GPL.zip</strong> e ne otterrete un altro con estensione con estensione .tar.</p>
+<p>Cliccate ancora una volta sul file .tar appena ottenuto ed estraete i due file FwImage/helper_sd.bin e FwImage/sd8686.bin, copiate questi file in una nuova cartella sul vostro desktop che avrete precedentemente chiamato firmware.</p>
+<p>Rinominate helper_sd.bin in sd8686_helper.bin. Avremo così ottenuto il Firmware per la WLAN, adesso passiamo al Touchscreen.</p>
+<p>Collegate il vostro iPod al mac ed avviate <a href="http://www.idroidproject.org/wiki/Dripwn#Usage_.282.x.29">Dripwn</a> un programma che<strong> estrarrà i driver per il touchscreen</strong> del vostro iPod. Salvate il file così ottenuto sempre nella stessa cartella (firmware).</p>
+<h2>Caricare i file su iPod</h2>
+<p>Ora abbiamo tutti i file necessari, dobbiamo caricarli in SSH dentro il nostro iPod all'indirizzo<strong> private/var.</strong></p>
+<p>Per chiarezza i file sono:</p>
+<ul>
+<li>android.img.gz</li>
+<li>cache.img</li>
+<li>ramdisk.img</li>
+<li>system.img</li>
+<li>userdata.img</li>
+<li>zlmage</li>
+</ul>
+<p>Ora create una nuova cartella dal nome <strong>firmware </strong>sempre in <strong>private/var </strong>e copiateci dentro tutti i file presenti nella vostra cartella firmware sul desktop.</p>
+<h2>Installare OpeniBoot</h2>
+<p>Create una nuova cartella di nome idroid all'interno della cartella principale di Ubuntu e copiateci dentro i file che trovate nella cartella openiboot presente nella release che avete scaricato all'inizio.</p>
+<p>A me non ha funzionato il file openiboot.img3 già presente quindi vi consiglio di scaricare <a href="http://files.neonkoala.co.uk/idroid/IPT1G-46ebc21-openiboot.img3">quest'altra versione</a> rinominatela in <strong>openiboot.img3</strong> e sovrascrivere il file precedente.</p>
+<p>Ora mettere <strong>in recovery mode</strong> il vostro iPod e collegatelo ad Ubuntu.</p>
+<p>Scaricate la libreria <strong>libusb-0.1.4</strong>, aprite il terminale e date i seguenti comandi:</p>
+<blockquote><p>cd ~/idroid</p>
+<p>sudo ./loadibec openiboot.img3</p></blockquote>
+<p>Così facendo si avvierà OpenIBoot sul vostro iPod e potete scegliere (scorrendo col tasto power) che OS avviare (selezionandolo con tasto Home).</p>
+<p>Provate ad <strong>avviare Android</strong> (ci vorranno diversi minuti) per testare se avete fatto tutto bene.</p>
+<p>Così facendo però sarà possibile avviare Android solo da terminale, vediamo come installare OpenIBoot per fare in modo che ad ogni accensione dell'iPod venga chiesto che OS avviare.</p>
+<p>Rimettete l'iPod in recovery e collegatelo ad Ubuntu, riavviare OpenIBoot con i soliti comandi da terminale</p>
+<blockquote><p>cd ~/idroid</p>
+<p>sudo ./loadibec openiboot.img3</p></blockquote>
+<p>ma questa volta avviate la console (disegno centrale).</p>
+<p>Date i seguenti comandi da terminale:</p>
+<blockquote><p><strong>sudo ./oibc</strong> (e vedrete il menù di openiboot sul terminale)</p>
+<p>scrivete <strong>install </strong>per avviare l'installazione</p>
+<p>terminata l'installazione (Done with installation) scrivete <strong>reboot </strong>per riavviare il dispositivo.</p></blockquote>
+<p>Finito, godetevi il vostro nuovo iPod Touch.</p>
+<h2>Alcune Note</h2>
+<p>Essendo una delle prime release è normale che Android non giri alla perfezione ma sinceramente sono rimasto positivamente colpito, pensavo peggio.</p>
+<p>Inoltre alcune piccole note negative:</p>
+<ul>
+<li>alcune volte l'iPod trova le reti wireless ma non riesce a connettersi</li>
+<li>l'iPod si surriscalda parecchio mentre è in esecuzione Android</li>
+<li>il touch è leggermente spostato (ossia rileva leggermente più a sinistra)</li>
+</ul>
+<p>Vi lascio con una foto</p>
+<p><a href="http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010582.jpg"><img class="aligncenter size-medium wp-image-1531" title="android ipod touch" src="/assets/22052010582-300x225.jpg" alt="" width="300" height="225" /></a></p>

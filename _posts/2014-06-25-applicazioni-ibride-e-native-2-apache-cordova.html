@@ -1,0 +1,134 @@
+---
+layout: post
+title: 'Applicazioni Ibride e Native #2 - Apache Cordova'
+date: 2014-06-25 10:30:17.000000000 +02:00
+categories:
+- Applicazioni Ibride e Native
+- Programmazione
+tags:
+- apache cordova
+- applicazioni ibride
+- java
+- javascript
+status: publish
+type: post
+published: true
+---
+<h2>Introduzione</h2>
+<p class="western">Apache Cordova è un framework open source per la realizzazione di applicazioni cross-platform usando HTML5. L'approccio usato da Cordova è però unico nel suo genere, perché fonde le capacità native di un dispositivo con la possibilità di realizzare applicazioni usando gli standard web, dando così vita alle applicazioni chiamate <i>ibride</i>.</p>
+<p class="western"><!--more--></p>
+<p class="western">Il punto di debolezza delle applicazioni web su dispositivi mobili è sempre stato la mancanza della possibilità di usare funzionalità fornite dal produttore per interfacciarsi con i vari componenti hardware, e mentre si spera che in un futuro questa limitatezza possa essere superata attraverso sforzi di standardizzazione, Cordova fornisce una serie di API alle applicazioni che vengono eseguite all'interno del suo container per poter accedere a tali funzionalità, ad esempio sarà possibile utilizzare la fotocamera, l'accelerometro ed il gps.</p>
+<p class="western">Cordova si occupa anche di realizzare il pacchetto applicativo (ad esempio file .apk per Android ed .ipa per iOS) per ogni piattaforma supportata a partire dai file della web application.</p>
+<p>[caption id="attachment_1992" align="aligncenter" width="953"]<img class="size-full wp-image-1992" src="/assets/Packaging.png" alt="Packaging Cordova" width="953" height="560" /> Packaging Cordova[/caption]</p>
+<p class="western">L'applicazione nativa consisterà in una webview (un browser integrato) che mostrerà il contenuto utilizzando tutto lo schermo disponibile. Questo browser embedded potrà utilizzare l'interprete di Javascript fornito dal sistema operativo che ospita l'applicazione ed in più le API esposte da Cordova.</p>
+<p class="western">Attualmente Cordova supporta le <a href="http://cordova.apache.org/docs/en/3.5.0/guide_support_index.md.html#Platform%20Support">seguenti piattaforme</a> :</p>
+<p>[caption id="attachment_1993" align="aligncenter" width="833"]<img class="size-full wp-image-1993" src="/assets/Piattaforme.png" alt="Piattaforme Cordova" width="833" height="646" /> Piattaforme Cordova[/caption]</p>
+<h2>Architettura</h2>
+<p class="western">A partire dalla versione 3.0 (al momento della scrittura siamo alla versione 3.5.0-0.24) le API sono state separate in diversi plugin, per poter includere nel progetto solamente quelli necessari, e per avere un'architettura più facilmente estensibile anche con plugin di terze parti.</p>
+<p>[caption id="attachment_1994" align="aligncenter" width="633"]<img class="size-full wp-image-1994" src="/assets/Architettura.png" alt="Architettura Cordova" width="633" height="790" /> Architettura Cordova[/caption]</p>
+<p class="western">Dalla figura (tratta dal libro <a href="http://www.cordovaprogramming.com/">Apache Cordova 3 Programming</a>) si può notare come ogni singolo plugin sia composto da una parte in Javascript e una parte invece scritta nel linguaggio supportato dalla specifica piattaforma.</p>
+<p class="western">Attualmente Cordova fornisce questi plugin:</p>
+<ul>
+<li>Battery Status</li>
+<li>Camera</li>
+<li>Console</li>
+<li>Contacts</li>
+<li>Device</li>
+<li>Device Motion</li>
+<li>Device Orientation</li>
+<li>Dialogs</li>
+<li>File</li>
+<li>File Transfer</li>
+</ul>
+<h2>Command Line Interface</h2>
+<p class="western">Cordova fornisce un tool, chiamato <i>Command Line Interface</i> (CLI) per aiutare lo sviluppatore nella creazione, gestione e deploy di un progetto. Il CLI utilizza i vari sdk delle singole piattaforme che vanno installati manualmente.</p>
+<h3 class="western">Installazione</h3>
+<p class="western">Per installare cli di cordova è prima necessario scaricare ed installare <i>node.js</i> e poi eseguire:</p>
+<blockquote lang="zxx"><p>sudo npm install -g cordova</p></blockquote>
+<p class="western">npm è il package manager di node, l'opzione -g specifica di installare il pacchetto globalmente e cordova è il nome del pacchetto da installare.</p>
+<h3 class="western">Creazione di una applicazione</h3>
+<p class="western">Con il comando</p>
+<blockquote lang="zxx"><p>cordova create hello com.example.hello HelloWorld</p></blockquote>
+<p class="western">cordova creerà la cartella <i>hello</i> contenente il progetto per l'applicazione con l'identificatore <i>com.example.hello</i>. La sottocartella www contiene i file <i>html/css/javascript</i> scritti dallo sviluppatore, e il file <i>config.xml</i> specifica i metadati necessari per la generazione e la distribuzione dell'applicazione. Il terzo parametro sarà il nome user-friendly dell'applicazione, se omesso viene utilizzato il nome <i>HelloCordova</i>.</p>
+<h3 class="western">Gestione delle piattaforme</h3>
+<p class="western">Una volta nella cartella dell'applicazione è possibile gestire le piattaforme per le quali si intende fare il deploy attraverso il comando</p>
+<blockquote lang="zxx"><p>cordova platform</p></blockquote>
+<p class="western">seguito da un'opzione (<i>add/rm</i>) ed il nome della piattaforma. Per ottenere una lista delle piattaforme correntemente attive per il progetto basterà utilizzare l'opzione <i>ls</i> dopo il comando platform.</p>
+<p class="western">Per ogni piattaforma attiva verrà utilizzata una cartella nel path <i>nomeProgetto/platforms/nome</i><i>P</i><i>iattaforma</i>.</p>
+<h3 class="western">Build</h3>
+<p class="western">Attraverso il comando</p>
+<blockquote lang="zxx"><p>cordova build (nomePiattaforma)</p></blockquote>
+<p class="western">verrà generato il codice specifico per ogni piattaforma attualmente attiva. Si può limitare il build ad una singola piattaforma, specificandone il nome dopo il comando build.</p>
+<h3 class="western">Test e Run</h3>
+<p class="western">Laddove il produttore della piattaforma fornisca anche un emulatore/simulatore per desktop quest'ultimo può essere lanciato per testare l'applicazione attraverso il comando</p>
+<blockquote><p>cordova emulate nomePiattaforma</p></blockquote>
+<p class="western">mentre per testare l'applicazione direttamente sul dispositivo fisico si utilizza</p>
+<blockquote><p>cordova run nomePiattaforma</p></blockquote>
+<h3>Gestione Plugins</h3>
+<p class="western">Come precedentemente spiegato, Cordova utilizza una architettura fortemente basata su plugin. Fino ad ora non è stato aggiunto nessuno, e quello che otteniamo è la possibilità di avere una normale applicazione web con il vantaggio di avere tutti i file in locale (potendo quindi funzionare anche in assenza di connettività) e resa disponibile come pacchetto per la piattaforma specifica.</p>
+<p class="western">Ma per poter sfruttare a pieno le potenzialità di Cordova e quindi poter accedere ad <i>API native</i> vediamo come aggiungere un plugin.</p>
+<p class="western">Apache ha creato un repository web nel quale cercare i plugin, per poter leggere una breve descrizione e la documentazione. Questo repository è disponibile al seguente indirizzo:</p>
+<blockquote>
+<blockquote lang="zxx"><p><a href="http://plugins.cordova.io/">http://plugins.cordova.io/</a></p></blockquote>
+</blockquote>
+<p class="western">Oltre ai plugin resi disponibili direttamente da Apache, è possibile trovare anche plugin di terze parti resi disponibili da sviluppatori. Il repository è nuovo, quindi non sono ancora presenti tutti i plugin sviluppati, per cui consiglio di fare una ricerca anche su github.com.</p>
+<p class="western">Una volta ottenuto l'identificativo di un plugin (ad esempio org.apache.cordova.camera) l'installazione è semplice, basterà utilizzare il comando</p>
+<blockquote><p>cordova plugin add “identificatore plugin”</p></blockquote>
+<p class="western">Per rimuovere un plugin basta sostituire <i>add</i> con <i>rm</i> al comando qui sopra, è possibile ottenere una lista dei plugin correntemente attivi attraverso:</p>
+<blockquote><p>cordova plugin ls</p></blockquote>
+<p>&nbsp;</p>
+<h2>Realizzazione di un Plugin</h2>
+<p class="western">Un plugin è composto da un opportuno file contenente metadati chiamato <i>plugin.xml,</i> del codice Javascript, che esporrà le API utilizzabili dall'applicazione e opzionalmente del codice nativo. Il codice nativo è opzionale e nel caso sia assente il plugin è completamente realizzato in Javascript, e non potrà quindi utilizzare le API native fornite dal produttore della piattaforma.</p>
+<p class="western">Per comprendere meglio la anatomia di un plugin cordova riporterò come esempio (tratta dal libro <a href="http://www.cordovaprogramming.com/">Apache Cordova 3 Programming</a>) un plugin che permette di ottenere il nome dell'operatore e il codice del paese in cui è il dispositivo.</p>
+<h3 class="western">Javascript</h3>
+<p class="western">Attraverso la chiamata al metodo <i>cordova.exec</i> avviene il passaggio di controllo al codice nativo di ogni piattaforma, per cui il codice Javascript del plugin andrà ad invocare questo metodo.</p>
+<p class="western">Una volta che il codice nativo ha terminalo l'esecuzione invocherà una funzione di callback e restituisce il valore di ritorno all'oggetto Javascript. La signature completa del metodo <i>exec</i> è la seguente:</p>
+<blockquote lang="zxx"><p>cordova.exec(successCallback, errorCallback, 'PluginObject', 'pluginMethod', [arguments])</p></blockquote>
+<p class="western">I primi due parametri specificano che funzioni eseguire in caso di successo o errore lato codice Javascript, il parametro <i>PluginObject</i> è una stringa che identifica l'oggetto nativo che contiene il metodo richiesto specificato dal parametro <i>pluginMethod</i>. L'ultimo argomento opzionale è un array che contiene gli argomenti da passare al metodo nativo.</p>
+<p class="western">Il codice Javascript del plugin sarà:</p>
+<blockquote lang="zxx"><p>var cordova = require('cordova');</p></blockquote>
+<blockquote lang="zxx"><p>var carrier = {</p></blockquote>
+<blockquote lang="zxx"><p>getCarrierName : function(successCallback, errorCallback) {</p></blockquote>
+<blockquote lang="zxx"><p>cordova.exec(successCallback, errorCallback, 'CarrierPlugin', 'getCarrierName', []);</p></blockquote>
+<blockquote lang="zxx"><p>},</p></blockquote>
+<blockquote lang="zxx"><p>getCountryCode : function(successCallback, errorCallback{</p></blockquote>
+<blockquote lang="zxx"><p>cordova.exec(successCallback, errorCallback, 'CarrierPlugin', 'getCountryCode', []);</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<blockquote lang="zxx"><p>};</p></blockquote>
+<blockquote lang="zxx"><p>module.exports = carrier;</p></blockquote>
+<p class="western">L'ultima riga serve a rendere visibile l'oggetto carrier all'intero delle applicazioni che sono in esecuzione all'interno del container Cordova.</p>
+<h3 class="western">Java</h3>
+<p class="western">Per implementare il plugin lato codice nativo su piattaforma Android occorre estendere la classe <i>CordovaPlugin</i> fornita da Cordova, e realizzare i metodi <i>initialize()</i> e <i>execute()</i>.</p>
+<p class="western">Il primo serve a rendere il codice Java <i>“aware”</i> del container Cordova, mentre il secondo realizza il dispatch dei metodi e fornisce l'implementazione dei metodi richiedibili da Javascript.</p>
+<p class="western">Utilizzando quindi le API native fornite da Android, il plugin sarà realizzato come segue:</p>
+<blockquote lang="zxx"><p>public class CarrierPlugin extends <b>CordovaPlugin</b> {</p></blockquote>
+<blockquote lang="zxx"><p>public static final String ACTION_GET_CARRIER_NAME = "getCarrierName";</p></blockquote>
+<blockquote lang="zxx"><p>public static final String ACTION_GET_COUNTRY_CODE = "getCountryCode";</p></blockquote>
+<blockquote lang="zxx"><p>public TelephonyManager tm;</p></blockquote>
+<blockquote lang="zxx"><p>public void <b>initialize</b>(CordovaInterface cordova, CordovaWebView webView){</p></blockquote>
+<blockquote lang="zxx"><p>super.initialize(cordova, webView);</p></blockquote>
+<blockquote lang="zxx"><p>Context context = this.cordova.getActivity().getApplicationContext();</p></blockquote>
+<blockquote lang="zxx"><p>tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<blockquote lang="zxx"><p>public boolean <b>execute</b>(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {</p></blockquote>
+<blockquote lang="zxx"><p>try {</p></blockquote>
+<blockquote lang="zxx"><p>if (ACTION_GET_CARRIER_NAME.equals(action)) {</p></blockquote>
+<blockquote lang="zxx"><p>callbackContext.success(tm.getSimOperatorName());</p></blockquote>
+<blockquote lang="zxx"><p>return true;</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<blockquote lang="zxx"><p>else {</p></blockquote>
+<blockquote lang="zxx"><p>if (ACTION_GET_COUNTRY_CODE.equals(action)) {</p></blockquote>
+<blockquote lang="zxx"><p>callbackContext.success(tm.getSimCountryIso());</p></blockquote>
+<blockquote lang="zxx"><p>return true;</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<blockquote lang="zxx"><p>callbackContext.error("Invalid Action");</p></blockquote>
+<blockquote lang="zxx"><p>return false;</p></blockquote>
+<blockquote lang="zxx"><p>} catch (Exception e) {</p></blockquote>
+<blockquote lang="zxx"><p>System.err.println("Exception: " + e.getMessage());</p></blockquote>
+<blockquote lang="zxx"><p>callbackContext.error(e.getMessage());</p></blockquote>
+<blockquote lang="zxx"><p>return false;</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<blockquote lang="zxx"><p>}</p></blockquote>
+<p lang="zxx">
