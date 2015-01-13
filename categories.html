@@ -1,51 +1,526 @@
----
-layout: page
-title: Categories
-header: Posts By Category
-group: navigation
----
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Categories</title>
+	
+	<meta name="author" content="Daniele Campogiani">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<!-- Update these with your own images
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	-->
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/dcampogiani">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://twitter.com/dcampogiani">
+				<i class="fa fa-twitter"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="mailto:daniele.campogiani@gmail.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="/assets/avatar.jpg" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3 sidebar hidden-xs">
+		<! -- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/avatar.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	Software Engineer
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/dcampogiani">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://twitter.com/dcampogiani">
+				<i class="fa fa-twitter fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="mailto:daniele.campogiani@gmail.com">
+				<i class="fa fa-envelope fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://pinterest.com/dcampogiani">
+				<i class="fa fa-pinterest fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/pub/danielecampogiani">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+<! -- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>Categories </h1>
+</div>
 
 <div class="col-sm-3 col-xs-6">
     <ul class="nav nav-tabs-vertical">
-      {% assign categories_list = site.categories %}
-      {% if categories_list.first[0] == null %}
-        {% for category in categories_list %}
+      
+      
+        
             <li>
-                <a href="{{ site.BASE_PATH }}/{{ site.categories_path }}#{{ category | replace:' ','-' }}-ref" data-toggle="tab">
-                  {{ category | capitalize }} <span class="badge pull-right">{{ site.categories[category].size }}</span>
-               </a>
-            </li>
-        {% endfor %}
-      {% else %}
-        {% for category in categories_list %}
-            <li>
-                <a href="{{ site.BASE_PATH }}/{{ site.categories_path }}#{{ category[0] | replace:' ','-' }}-ref" data-toggle="tab">
-                    {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
+                <a href="/categories.html#riflessioni-ref" data-toggle="tab">
+                    Riflessioni <span class="badge pull-right">4</span>
                 </a>
             </li>
-        {% endfor %}
-      {% endif %}
-      {% assign categories_list = nil %}
+        
+            <li>
+                <a href="/categories.html#università-ref" data-toggle="tab">
+                    Università <span class="badge pull-right">2</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#apple-ref" data-toggle="tab">
+                    Apple <span class="badge pull-right">2</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#hack-ref" data-toggle="tab">
+                    Hack <span class="badge pull-right">2</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#iphone/itouch-ref" data-toggle="tab">
+                    Iphone/itouch <span class="badge pull-right">2</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#cellulari-ref" data-toggle="tab">
+                    Cellulari <span class="badge pull-right">1</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#guide-ref" data-toggle="tab">
+                    Guide <span class="badge pull-right">1</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#sistemi-operativi-ref" data-toggle="tab">
+                    Sistemi operativi <span class="badge pull-right">1</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#personale-ref" data-toggle="tab">
+                    Personale <span class="badge pull-right">1</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#applicazioni-ibride-e-native-ref" data-toggle="tab">
+                    Applicazioni ibride e native <span class="badge pull-right">6</span>
+                </a>
+            </li>
+        
+            <li>
+                <a href="/categories.html#programmazione-ref" data-toggle="tab">
+                    Programmazione <span class="badge pull-right">6</span>
+                </a>
+            </li>
+        
+      
+      
     </ul>
 </div>
 <!-- Tab panes -->
 <div class="tab-content col-sm-9 col-xs-6">
-  {% for category in site.categories %}
-    <div class="tab-pane" id="{{ category[0] | replace:' ','-' }}-ref">
-      <h2 style="margin-top: 0px">Posts in {{ category[0] | capitalize }}</h2>
+  
+    <div class="tab-pane" id="riflessioni-ref">
+      <h2 style="margin-top: 0px">Posts in Riflessioni</h2>
       <ul class="list-unstyled">
-        {% assign pages_list = category[1] %}
-        {% for node in pages_list %}
-          {% if node.title != null %}
-            {% if group == null or group == node.group %}
-              <li style="line-height: 35px;"><a href="{{ site.BASE_PATH }}{{node.url}}">{{node.title}}</a> <span class="text-muted">- {{ node.date | date: "%B %d, %Y" }}</span></li>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-        {% assign pages_list = nil %}
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/">Cosa ho imparato da un anno di Ingegneria Informatica</a> <span class="text-muted">- July 16, 2010</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/07/alla-fine-i-buoni-vincono-sempre/">Alla fine i buoni vincono sempre</a> <span class="text-muted">- July 12, 2010</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/02/come-la-apple-si-sta-facendo-furba-e-perche-saurik-e-grandioso/">Come la Apple si sta facendo furba, e perchè Saurik è grandioso!</a> <span class="text-muted">- February 06, 2010</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2009/09/liceali-vs-periti/">Liceali Vs Periti</a> <span class="text-muted">- September 27, 2009</span></li>
+            
+          
+        
+        
       </ul>
     </div>
-  {% endfor %}
+  
+    <div class="tab-pane" id="università-ref">
+      <h2 style="margin-top: 0px">Posts in Università</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/">Cosa ho imparato da un anno di Ingegneria Informatica</a> <span class="text-muted">- July 16, 2010</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2009/09/liceali-vs-periti/">Liceali Vs Periti</a> <span class="text-muted">- September 27, 2009</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="apple-ref">
+      <h2 style="margin-top: 0px">Posts in Apple</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/05/installare-android-su-ipod-touch-1g-con-idroid/">Installare Android su iPod Touch 1G con iDroid</a> <span class="text-muted">- May 23, 2010</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/02/come-la-apple-si-sta-facendo-furba-e-perche-saurik-e-grandioso/">Come la Apple si sta facendo furba, e perchè Saurik è grandioso!</a> <span class="text-muted">- February 06, 2010</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="hack-ref">
+      <h2 style="margin-top: 0px">Posts in Hack</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/05/installare-android-su-ipod-touch-1g-con-idroid/">Installare Android su iPod Touch 1G con iDroid</a> <span class="text-muted">- May 23, 2010</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/02/come-la-apple-si-sta-facendo-furba-e-perche-saurik-e-grandioso/">Come la Apple si sta facendo furba, e perchè Saurik è grandioso!</a> <span class="text-muted">- February 06, 2010</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="iphone/itouch-ref">
+      <h2 style="margin-top: 0px">Posts in Iphone/itouch</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/05/installare-android-su-ipod-touch-1g-con-idroid/">Installare Android su iPod Touch 1G con iDroid</a> <span class="text-muted">- May 23, 2010</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/02/come-la-apple-si-sta-facendo-furba-e-perche-saurik-e-grandioso/">Come la Apple si sta facendo furba, e perchè Saurik è grandioso!</a> <span class="text-muted">- February 06, 2010</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="cellulari-ref">
+      <h2 style="margin-top: 0px">Posts in Cellulari</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/05/installare-android-su-ipod-touch-1g-con-idroid/">Installare Android su iPod Touch 1G con iDroid</a> <span class="text-muted">- May 23, 2010</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="guide-ref">
+      <h2 style="margin-top: 0px">Posts in Guide</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/05/installare-android-su-ipod-touch-1g-con-idroid/">Installare Android su iPod Touch 1G con iDroid</a> <span class="text-muted">- May 23, 2010</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="sistemi-operativi-ref">
+      <h2 style="margin-top: 0px">Posts in Sistemi operativi</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2010/05/installare-android-su-ipod-touch-1g-con-idroid/">Installare Android su iPod Touch 1G con iDroid</a> <span class="text-muted">- May 23, 2010</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="personale-ref">
+      <h2 style="margin-top: 0px">Posts in Personale</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2012/10/deformazione-professionale/">Deformazione professionale</a> <span class="text-muted">- October 11, 2012</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="applicazioni-ibride-e-native-ref">
+      <h2 style="margin-top: 0px">Posts in Applicazioni ibride e native</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/08/applicazioni-ibride-e-native-6-confronto/">Applicazioni Ibride e Native #6 – Confronto</a> <span class="text-muted">- August 01, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/">Applicazioni Ibride e Native #5 – Realizzazione di una Applicazione Nativa</a> <span class="text-muted">- July 16, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/">Applicazioni Ibride e Native #4 – Realizzazione di una Applicazione Ibrida</a> <span class="text-muted">- July 09, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/07/applicazioni-ibride-e-native-3-angularjs/">Applicazioni Ibride e Native #3 – AngularJS</a> <span class="text-muted">- July 02, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/06/applicazioni-ibride-e-native-2-apache-cordova/">Applicazioni Ibride e Native #2 - Apache Cordova</a> <span class="text-muted">- June 25, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/06/applicazioni-ibride-e-native-1-introduzione/">Applicazioni Ibride e Native #1 - Introduzione</a> <span class="text-muted">- June 25, 2014</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
+    <div class="tab-pane" id="programmazione-ref">
+      <h2 style="margin-top: 0px">Posts in Programmazione</h2>
+      <ul class="list-unstyled">
+        
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/08/applicazioni-ibride-e-native-6-confronto/">Applicazioni Ibride e Native #6 – Confronto</a> <span class="text-muted">- August 01, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/">Applicazioni Ibride e Native #5 – Realizzazione di una Applicazione Nativa</a> <span class="text-muted">- July 16, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/">Applicazioni Ibride e Native #4 – Realizzazione di una Applicazione Ibrida</a> <span class="text-muted">- July 09, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/07/applicazioni-ibride-e-native-3-angularjs/">Applicazioni Ibride e Native #3 – AngularJS</a> <span class="text-muted">- July 02, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/06/applicazioni-ibride-e-native-2-apache-cordova/">Applicazioni Ibride e Native #2 - Apache Cordova</a> <span class="text-muted">- June 25, 2014</span></li>
+            
+          
+        
+          
+            
+              <li style="line-height: 35px;"><a href="/2014/06/applicazioni-ibride-e-native-1-introduzione/">Applicazioni Ibride e Native #1 - Introduzione</a> <span class="text-muted">- June 25, 2014</span></li>
+            
+          
+        
+        
+      </ul>
+    </div>
+  
 </div>
 
 <div class="clearfix"></div>
+
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				&copy; 2015 Daniele Campogiani with Jekyll. Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+

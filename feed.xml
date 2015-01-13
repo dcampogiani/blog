@@ -1,21 +1,829 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>{{ site.title }}</title>
-		<description>{{ site.description }}</description>
-		<link>{{ site.BASE_PATH }}/</link>
-		<atom:link href="{{ site.BASE_PATH }}/{{ site.rss_path }}" rel="self" type="application/rss+xml" />
-		{% for post in site.posts limit:10 %}
+		<title></title>
+		<description>Daniele Campogiani</description>
+		<link>/</link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		
 			<item>
-				<title>{{ post.title }}</title>
-				<description>{{ post.content | xml_escape }}</description>
-				<pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-				<link>{{ site.BASE_PATH }}{{ post.url }}</link>
-				<guid isPermaLink="true">{{ site.BASE_PATH }}{{ post.url }}</guid>
+				<title>Applicazioni Ibride e Native #6 – Confronto</title>
+				<description>&lt;h2&gt;Dimensione Apk&lt;/h2&gt;
+&lt;h3&gt;Applicazione Ibrida&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Per quanto riguarda l&#39;applicazione ibrida il file &lt;i&gt;apk&lt;/i&gt; è stato generato due volte, una volta senza minimizzare il codice e una volta minimizzandolo ottenendo dei risultati non aspettati, come mostrato in tabella:&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;img title=&quot;tabella codice&quot; src=&quot;/assets/tabella-codice.png&quot;/&gt;
+&lt;p class=&quot;western&quot;&gt;Come si può notare, semplicemente minimizzando il codice otteniamo un file circa cinque volte più piccolo. Una volta installata sul dispositivo l&#39;applicazione occupa 1,2 MB.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Applicazione Nativa&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Il file apk generato dal codice dell&#39;applicazione nativa è di 2,1 MB. Nel codice utilizzo una libreria esterna per la gestione delle animazioni, senza usare questa libreria il file apk è di 2 MB.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Una volta installata l&#39;applicazione occupa nel dispositivo 6,4 MB.&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Linee di Codice&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Trattandosi di applicazioni scritte in linguaggi diversi il confronto è da considerarsi puramente indicativo, inoltre non viene preso in considerazione il codice di librerie utilizzate ma solo il codice effettivamente scritto per l&#39;applicazione.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Applicazione Ibrida&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Sono stati scritti 10 file in Javascript per un totale di 649 righe di codice, un file CSS di 5 righe e 6 file HTML per un totale di 164 righe. Sommando tutti i file otteniamo 818 righe di codice.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Applicazione Nativa&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Per quanto riguarda l&#39;applicazione nativa sono stati scritti 6 file Java per un totale di 828 righe di codice e 8 file XML per un totale di 180 righe di codice. Nel complesso sono state scritte 1008 righe di codice.&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Tempo necessario per scattare e memorizzare un&#39;immagine&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;I seguenti risultati sono stati ottenuti utilizzando un Nexus 7 2013 con Android in versione 4.4.2 ( custom rom ParanoidAndroid 4.3-Beta7) dotato di CPU quad core a 1.5 GHz e 2GB di RAM.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Le foto in esame sono state scattate con la fotocamera frontale.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Ho calcolato due intervalli di tempo: il primo (chiamato &lt;i&gt;acquisizione&lt;/i&gt; nelle successive tabelle) è il lasso di tempo che trascorre tra la pressione del tasto per scattare una fotografia e la restituzione del controllo all&#39;applicazione (sia nativa che ibrida) con la foto appena scattata, e il secondo (chiamato &lt;i&gt;salvataggio&lt;/i&gt; nelle tabelle) è il tempo necessario per memorizzare l&#39;immagine nel filesystem e nel database dell&#39;applicazione.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Ho eseguito questo test sia con le due applicazione &lt;i&gt;“pulite”&lt;/i&gt; (ossia senza nessuna foto ancora memorizzata) sia con cinque foto memorizzate senza riscontrare però cambiamenti degni di essere considerati.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Inoltre ho eseguito il test considerando il fatto che la foto che stessi scattando fosse la prima (dall&#39;apertura dell&#39;applicazione) oppure se fosse una foto successiva, e anche in questo caso non ci sono stati cambiamenti degni di nota.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Applicazione Ibrida&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;In tabella sono riportati in millisecondi i due intervalli sopra descritti nel caso di applicazione con zero foto memorizzate e prima foto scattata dall&#39;apertura dell&#39;applicazione&lt;/p&gt;
+&lt;img title=&quot;tabella tempo foto ibrida&quot; src=&quot;/assets/tabella-tempo-foto-ibrida.png&quot;/&gt;
+&lt;p class=&quot;western&quot;&gt;In media sono necessari 3602 millisecondi per acquisire un immagine e 197 secondi per memorizzarla.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Non sono riportati i test con applicazione con cinque foto memorizzate oppure il caso in cui la foto scattata non fosse la prima dall&#39;apertura dell&#39;applicazione perché hanno differenze non significative rispetto al caso riportato.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Applicazione Nativa&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Analogamente all&#39;applicazione Ibrida riporto in tabella i valori dei due intervalli ottenuti in cinque test&lt;/p&gt;
+&lt;img title=&quot;tabella tempo foto nativa&quot; src=&quot;/assets/tabella-tempo-foto-nativa.png&quot;/&gt;
+&lt;p class=&quot;western&quot;&gt;Anche in questo caso non ho riscontrato cambiamenti degni di nota effettuando test con applicazione con cinque foto memorizzate, o scattando una foto che non fosse la prima dall&#39;apertura dell&#39;applicazione, per cui riporto solo il caso di applicazione &lt;i&gt;“pulita”&lt;/i&gt; e prima foto scattata.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;In media sono necessari 3254,6 millisecondi per scattare una fotografia e 50,4 millisecondi per memorizzarla nel filesystem e nel database.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Analisi dei risultati&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Per quanto riguarda l&#39;acquisizione dell&#39;immagine l&#39;applicazione ibrida è leggermente più lenta, invece per quanto riguarda la memorizzazione impiega circa quattro volte il tempo impiegato dall&#39;applicazione nativa.&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Utilizzo di memoria&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Ho misurato l&#39;utilizzo di RAM delle due applicazioni, e come si può notare in tabella l&#39;applicazione ibrida richiede una quantità di memoria decisamente maggiore.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Apertura&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;È&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; qui di seguito riportata la RAM occupata all&#39;apertura, al variare del numero di immagini memorizzare nell&#39;applicazione:&lt;/span&gt;&lt;/p&gt;
+&lt;img title=&quot;tabella ram apertura&quot; src=&quot;/assets/tabella-ram-apertura.png&quot;/&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;L&#39;applicazione ibrida richiede sempre almeno 106 MB di memoria, mentre l&#39;applicazione nativa ne usa quasi un sesto.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Scorrimento nella timeline&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Riporto in tabella l&#39;utilizzo di RAM delle due applicazioni dopo aver visualizzato tutte le foto nella timeline (scorrendo la view fino in fondo e poi tornando in cima), anche in questo caso al variare di foto memorizzate:&lt;/span&gt;&lt;/p&gt;
+&lt;img title=&quot;tabella ram timeline&quot; src=&quot;/assets/tabella-ram-timeline.png&quot;/&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;L&#39;applicazione nativa utilizza quindi circa un quarto della memoria richiesta dall&#39;applicazione ibrida.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Mappa&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Spostandosi nella view che mostra le foto sulla mappa abbiamo questi dati:&lt;/span&gt;&lt;/p&gt;
+&lt;img title=&quot;tabella ram mappa&quot; src=&quot;/assets/tabella-ram-mappa.png&quot;/&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Anche in questo caso l&#39;applicazione ibrida risulta molto più &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;“pesante”&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;, richiedendo circa tre volte la memoria necessaria all&#39;applicazione nativa.&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Considerazioni finali&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Il modello applicativo utilizzato per realizzare l&#39;applicazione ibrida (utilizzando il framework AngularJS) è molto più semplice del modello usato da Android per la realizzazione di applicazioni native. In AngularJS oltre alle view HTML, &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;le directive&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; e &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;i &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;controller esistono i servizi, componenti software singleton che si occupano di tutto il resto. In Android invece esistono molto più componenti.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Risulta quindi più facile all&#39;inizio sviluppare un&#39;applicazione ibrida, ma una volta capiti i diversi componenti che Android fornisce, si riesce ad avere un&#39;applicazione con una miglior &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;struttura&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;, e a scrivere meno codice perché Android realizza già molte funzionalità di base.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per quanto riguarda i tools forniti agli sviluppatori non c&#39;è paragone, il supporto fornito a sviluppatori Cordova è praticamente inesistente e limitato all&#39;uso del terminale attraverso lo strumento chiamato &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;Cordova Command-line Interface&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;. Per questo motivo mi sono trovato costretto ad utilizzare una serie di tool esterni per migliorare il workflow &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;come &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;Grunt&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;Bower&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; e &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;Yeoman&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;. &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Anche il debug è più complicato trattandosi di codice interpretato.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per lo sviluppo dell&#39;applicazione nativa ho invece utilizzato &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;Android Studio&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; una soluzione completa fornita da google per lo sviluppo, il test e il deploy delle applicazioni.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Confrontando le performances delle due applicazioni risulta nettamente vincitrice l&#39;applicazione nativa, sia per il consumo di memoria che per la fluidità ottenuta. L&#39;applicazione ibrida in particolare ha uno scroll molto più lento nelle liste.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Punto a favore dell&#39;applicazione ibrida invece è la possibilità di riutilizzo del codice scritto, infatti i componenti scritti possono essere utilizzati sia in una applicazione mobile/ibrida che un normale sito web. Ovviamente in un normale sito web non si hanno a disposizione le API fornite da Cordova, ma i componenti che non l&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;e&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; usano possono essere &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;“&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;portati”&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; anche su desktop, mi sono infatti spesso trovato a provare l&#39;applicazione su browser desktop prima di effettuare il deploy su dispositivo per controllare velocemente le modifiche apportate. Nello specifico l&#39;unica API che non &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;ho potuto&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; utilizzare da desktop è quella di accesso alla fotocamera, &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;mentre per la persistenza e la geo-localizzazione non ho avuto problemi poiché Chrome fornisce le stesse API che Cordova implementa su dispositivi mobili. &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Vale la pena ricordare inoltre ricordare che una applicazione scritta utilizzando Cordova può essere utilizzata su più piattaforme mobile, mentre nel caso di applicazione nativa si è limitati ad una sola piattaforma.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Android pur utilizzando codice Java forza lo sviluppatore a realizzare componenti estendendo quelli forniti dalla piattaforma, per cui questi componenti non possono essere &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;“portati”&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; su una normale &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;JVM&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; desktop.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Inoltre per la scrittura di una applicazione nativa, il produttore della piattaforma fornisce uno stack completo di supporto (dall&#39;interfaccia grafica all&#39;accesso all&#39;hardware) mentre Cordova fornisce solo un set di API per l&#39;accesso al dispositivo e nessun supporto per la realizzazione di UI, e ho dovuto quindi utilizzare un framework esterno.&lt;/span&gt;&lt;/p&gt;
+</description>
+				<pubDate>Fri, 01 Aug 2014 15:16:38 +0200</pubDate>
+				<link>/2014/08/applicazioni-ibride-e-native-6-confronto/</link>
+				<guid isPermaLink="true">/2014/08/applicazioni-ibride-e-native-6-confronto/</guid>
 			</item>
-		{% endfor %}
+		
+			<item>
+				<title>Applicazioni Ibride e Native #5 – Realizzazione di una Applicazione Nativa</title>
+				<description>&lt;h2&gt;Content Provider&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;In Android i &lt;i&gt;Content Provider&lt;/i&gt; sono utilizzati per disaccoppiare il layer di persistenza dal layer applicativo. Ogni applicazione ha accesso ad un database privato, usando i C&lt;i&gt;ontent Provider&lt;/i&gt; è possibile invece condividere i dati con altre applicazioni, ed è inoltre possibile eseguire query asincrone su di essi per ottenere un&#39;applicazione &lt;i&gt;responsive&lt;/i&gt;. Android ha diversi &lt;i&gt;Content Provider built-in &lt;/i&gt;utilizzabili dagli sviluppatori, ad esempio &lt;i&gt;Media Store&lt;/i&gt;, &lt;i&gt;Contacts&lt;/i&gt;, &lt;i&gt;Calendar&lt;/i&gt; e &lt;i&gt;Call Log&lt;/i&gt;. &lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;È&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; inoltre possibile definire nuovi content provider.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/java/com/danielecampogiani/mynativephotodiary/persistence/PicturesProvider.java&quot;&gt;PicturesProvider&lt;/a&gt;&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per l&#39;applicazione ho realizzato un provider per memorizzare e ottenere i dati relativi alle foto scattate dall&#39;utente. Il provider al suo interno utilizza un database &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;SQLite&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; gestito estendendo la classe di &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;SQLiteOpenHelper&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; fornita da Android.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Il database ha una singola tabella che memorizza il path su filesystem dell&#39;immagine, la descrizione inserita dall&#39;utente, le coordinate geografiche ed un id univoco.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;È&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; possibile interrogare il provider per ottenere tutte le immagini attualmente memorizzate attraverso l&#39;url &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;content://com.danielecampogiani.picturesprovider/pictures&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;, mentre se si desidera ottenere informazioni su una specifica foto è sufficiente inserire in fondo all&#39;url &#39;id della foto : &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;content://com.danielecampogiani.picturesprovider/pictures/id&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Dopo aver fatto un match sull&#39;url richiesto al provider (per discriminare se sono richieste tutte le immagini, o una specifica) il content provider delega il reperimento dei dati al database, e nel caso di modifiche notifica i &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;Content Resolver &lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;permettendo così di ottenere delle callback lato applicativo senza dover rieseguire query (come spiegato più avanti).&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Activity&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Una &lt;i&gt;Activity&lt;/i&gt; rappresenta una schermata mostrata ad un utente solitamente occupando tutto lo schermo del dispositivo, per creare un&#39;attività è sufficiente estendere la classe &lt;i&gt;Activity&lt;/i&gt; e definire i metodi di callback richiamati dal sistema Android per gestire il ciclo di vita dell&#39;attività.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/java/com/danielecampogiani/mynativephotodiary/activities/MainActivity.java&quot;&gt;MainActivity&lt;/a&gt;&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Per l&#39;applicazione ho creato una sola &lt;i&gt;Activity&lt;/i&gt;, poiché utilizzo all&#39;intero di essa diversi &lt;i&gt;Fragment&lt;/i&gt; che vengono automaticamente mostrati/nascosti utilizzando un&#39; &lt;i&gt;actionBar&lt;/i&gt; a &lt;i&gt;tabs&lt;/i&gt;.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Per gestire le transazioni di &lt;i&gt;Fragment&lt;/i&gt; ho creato la classe &lt;i&gt;TabListener&lt;/i&gt; che si occupa di instanziare quando necessario il &lt;i&gt;fragment&lt;/i&gt; che gestisce e di aggiungerlo e rimuoverlo dallo schermo utilizzando &lt;i&gt;FragmentTransaction&lt;/i&gt; quando l&#39;utente seleziona il tab relativo.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Ho inoltre aggiunto un menu alla actionBar con un pulsante che quando selezionato crea &lt;i&gt;l&#39;intent&lt;/i&gt; &lt;i&gt;Mediastore.Action_Image_Capture&lt;/i&gt; specificando un uri negli &lt;i&gt;extra&lt;/i&gt; dell&#39;&lt;i&gt;intent&lt;/i&gt; poi &lt;i&gt;“lancia”&lt;/i&gt; questo intent aspettando la restituzione del controllo con il metodo &lt;i&gt;startActivityForResult&lt;/i&gt;. Così facendo verrà lanciata l&#39;applicazione scelta dall&#39;utente per scattare fotografie, e una volta che la foto è stata fatta sarà memorizzata nell&#39;uri specificato negli extra dell&#39;&lt;i&gt;intent &lt;/i&gt; e il controllo tornerà all&#39;attività &lt;i&gt;MainActivity&lt;/i&gt;.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Ogni qual volta possibile ho eseguito le operazioni all&#39;interno di &lt;i&gt;AsyncTask&lt;/i&gt;, questo permette di eseguire codice in background, senza quindi utilizzare il thread dedicato alla UI, e sincronizzare l&#39;interfaccia grafica al termine della loro esecuzione.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;La classe &lt;i&gt;AsyncTask&lt;/i&gt; si occupa della creazione, gestione e sincronizzazione di thread, per cui lo sviluppatore si deve preoccupare solamente di scrivere la logica applicativa.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Nello specifico ho utilizzato &lt;i&gt;SavePictureAsyncTask&lt;/i&gt; per leggere le coordinate geografiche dall&#39;immagine restituita dall&#39;applicazione fotocamera e per memorizzare l&#39;immagine nel content provider, e &lt;i&gt;NewPictureAsyncTask&lt;/i&gt; per le operazioni di I/O necessarie per creare il nuovo file sul filesystem.&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Fragments&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;I &lt;i&gt;fragment&lt;/i&gt; vengono utilizzati per creare UI dinamiche e flessibili che si adattano a diversi schermi. Ogni &lt;i&gt;fragment&lt;/i&gt; è un componente a se stante (con un suo ciclo di vita) utilizzabile da diverse activity. Per creare un nuovo &lt;i&gt;fragment&lt;/i&gt; è sufficiente estendere la classe &lt;i&gt;Fragment&lt;/i&gt;.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/java/com/danielecampogiani/mynativephotodiary/fragments/TimelineFragment.java&quot;&gt;TimelineFragment&lt;/a&gt;&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;È&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; il fragment collegato al tab &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;“Timeline”&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; e mostra in una lista (estende la classe &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;ListFragment)&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; le foto scattate in ordine cronologico. Sotto ogni foto è presente la descrizione e due pulsanti, uno per cancellare la foto e uno per condivide&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;rla.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per ottenere le foto da mostrare utilizz&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;o&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; un &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;loader&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; di &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;cursor&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; poiché le operazioni su database possono essere &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;time-consuming&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;I &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;loaders&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; sono un meccanismo per caricare dati in maniera asincrona e per monitorare le sorgenti di dati. Possono essere utilizzati per qualunque tipo di dato, nell&#39;applicazione li ho utilizzati per caricare dei &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;cursor&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; ossia il risultato di query su database in Android.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per ottenere un comportamento asincrono all&#39;interno del fragment ho implementato l&#39;interfaccia &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;LoaderManager.LoaderCallbacks&amp;lt;Cursor&amp;gt;&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; realizzando i metodi:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;onCreateLoader: responsabile di creare il loader (usando la classe &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;CursorLoader&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; di Android) specificando i parametri della query desiderata.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;onLoadFinished: richiamato quando la query asincrona restituisce dei risultati che vengono passati come parametro in questo metodo. Il metodo è invocato anche ogni qual volta cambiano i dati di interesse per la query specificata nel metodo onCreateLoader.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;onLoaderReset: &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;per resettare il loader.&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;er lo specifico fragment, il loader creato interroga il &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;PicturesProvider&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; richiedendo l&#39;id, la descrizione e il path su filesystem di ogni foto.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Nel metodo &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;onLoadFinished&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; aggiorno la grafica mostrando i risultati utilizzando come &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;adapter&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; della lista la classe &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;TimelinePicturesAdapter&lt;/i&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/java/com/danielecampogiani/mynativephotodiary/fragments/PlacesFragment.java&quot;&gt;PlacesFragment&lt;/a&gt;&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Il fragment collegato al tab &lt;i&gt;“Places”&lt;/i&gt; mostra sullo schermo una google map centrata sulla posizione attuale dell&#39;utente e ogni foto nelle coordinate geografiche nelle quali è stata scattata.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Anche in questo &lt;i&gt;fragment&lt;/i&gt; ottengo dati in maniera asincrona implementando l&#39;interfaccia &lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;LoaderManager.LoaderCallbacks&amp;lt;Cursor&amp;gt;&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;richiedendo a &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;PicturesProvider&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; la latitudine, la longitudine e il path su filesystem per ogni foto.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Una volta ottenuti i dati provvedo ad aggiornare l&#39;interfaccia grafica utilizzando l&#39;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;AsyncTask&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;AddMarkersAsyncTask&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; che elabora le foto restituite dal loader creando dei &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;marker&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; da mostrare sulla mappa.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per ottenere la posizione attuale dell&#39;utente utilizzo la classe &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;LocationClient&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; e implemento le interfacce di Android &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;GooglePlayServicesClient.OnConnectionFailedListener e GooglePlayServicesClient.ConnectionCallbacks&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; e aggiornando l&#39;interfaccia nella callback che restituisce la posizione dell&#39;utente.&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Adapter&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Gli &lt;i&gt;adapter&lt;/i&gt; sono usati per effettuare il binding tra i dati e le view che estendono &lt;i&gt;AdapterView&lt;/i&gt;, come ad esempio &lt;i&gt;ListFragment&lt;/i&gt; (che ho esteso per realizzare &lt;i&gt;TimelineFragment&lt;/i&gt;). Gli adapter sono responsabili di creare le view figlie per mostrare i dati.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/java/com/danielecampogiani/mynativephotodiary/adapters/TimelinePicturesAdapter.java&quot;&gt;TimelinePicturesAdapter&lt;/a&gt;&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Classe che estende &lt;i&gt;CursorAdapter&lt;/i&gt; e per ogni cursor (una foto) utilizza una &lt;i&gt;ImageView&lt;/i&gt; per visualizzare su schermo la foto, una &lt;i&gt;TextView&lt;/i&gt; per mostrare la descrizione e due pulsanti, uno per condividere la foto e uno per cancellarla. Il pulsante per la cancellazione mostra inoltre un &lt;i&gt;AlertDialog&lt;/i&gt; per chiedere conferma all&#39;utente una volta selezionato. Il pulsante per la condivisione invece lancia l&#39;&lt;i&gt;intent&lt;/i&gt; &lt;i&gt;Intent.Action_Send&lt;/i&gt; specificando come tipo di dato &lt;i&gt;image/jpeg&lt;/i&gt;, così facendo l&#39;utente può scegliere con quale applicazione condividere il file.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Anche in questo caso ho utilizzato un &lt;i&gt;AsyncTask&lt;/i&gt; per non svolgere operazioni potenzialmente lunghe nel thread della UI. &lt;i&gt;DeletePicturesAsyncTask&lt;/i&gt; rimuove l&#39;immagine dal content provider e dal filesystem.&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Layouts&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;I &lt;i&gt;Layouts&lt;/i&gt; permettono di separare il layer di presentazione dalla logica di business, specificando l&#39;interfaccia grafica in file XML invece che crearla via codice.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Una volta definiti i file XML, questi possono essere &lt;i&gt;“inflated”&lt;/i&gt; nei rispettivi componenti (&lt;i&gt;Activity&lt;/i&gt; e &lt;i&gt;Fragment&lt;/i&gt;) usando il metodo &lt;i&gt;setContentView&lt;/i&gt; per le &lt;i&gt;Activity&lt;/i&gt; e il metodo &lt;i&gt;Inflator.inflate &lt;/i&gt;per i Fragment (l&#39;oggetto &lt;i&gt;Inflator&lt;/i&gt; è passato al &lt;i&gt;fragment&lt;/i&gt; nel metodo &lt;i&gt;onCreateView&lt;/i&gt;).&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;L&#39;utilizzo di &lt;i&gt;layouts&lt;/i&gt; è considerato una &lt;i&gt;best practice&lt;/i&gt; in Android, perché è un meccanismo che permette di creare interfacce ottimizzate per diversi tipi di hardware, ad esempio diverse dimensioni di schermo, o la presenza o meno di una tastiera o touchscreen.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Per l&#39;applicazione ho realizzato i seguenti layout:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/res/layout/activity_main.xml&quot;&gt;activity_main.xml&lt;/a&gt; : contiene un holder in cui collocare i fragment selezionati scegliendo un tab dell&#39;actionBar.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/res/layout/dialog_description_layout.xml&quot;&gt;dialog_description_layout.xml&lt;/a&gt; : utilizzato per creare un &lt;i&gt;AlertDialog&lt;/i&gt; in cui richiedere all&#39;utente una descrizione testuale della foto appena scattata.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/res/layout/fragment_places.xml&quot;&gt;fragment_places.xml&lt;/a&gt; : usato dal &lt;i&gt;fragment&lt;/i&gt; &lt;i&gt;PlacesFragment&lt;/i&gt; contiene al suo interno un &lt;i&gt;MapFragment&lt;/i&gt; per mostrare la google map sullo schermo.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/res/layout/fragment_timeline.xml&quot;&gt;fragment_timeline.xml &lt;/a&gt;: usato dal &lt;i&gt;fragment&lt;/i&gt; &lt;i&gt;TimelineFragment&lt;/i&gt; contiene al suo interno una &lt;i&gt;ListView&lt;/i&gt; per mostrare tutte le fotografie.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary/blob/master/MyNativePhotoDiary/src/main/res/layout/timeline_picture_layout.xml&quot;&gt;timeline_picture_layout&lt;/a&gt; : usato da TimelinePicturesAdapter responsabile di mostrare ogni singola fotografia nella lista sopra descritta. Per ogni foto mostra l&#39;immagine vera e propria, la descrizione e due pulsanti, uno per cancellare la foto e uno per condividerla.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Wed, 16 Jul 2014 22:46:39 +0200</pubDate>
+				<link>/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</link>
+				<guid isPermaLink="true">/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</guid>
+			</item>
+		
+			<item>
+				<title>Applicazioni Ibride e Native #4 – Realizzazione di una Applicazione Ibrida</title>
+				<description>&lt;h2&gt;Strumenti Utilizzati&lt;/h2&gt;
+&lt;h3&gt;Cordova e plugins&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Per realizzare l&#39;applicazione è stato utilizzato Cordova 3.4.1 ed i seguenti plugin:&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin&quot;&gt;SocialSharing-PhoneGap-Plugin&lt;/a&gt;: per permettere all&#39;utente di condividere le foto scattate. Documentazione ed ulteriori informazioni sono presenti presso la repository github: &lt;span lang=&quot;zxx&quot;&gt;&lt;a href=&quot;https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin&quot;&gt;https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.camera&quot;&gt;Cordova Camera Plugin:&lt;/a&gt; per avere accesso alla fotocamera del dispositivo. Documentazione e ulteriori informazioni nella pagina del plugin: &lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.camera&quot;&gt;http://plugins.cordova.io/#/package/org.apache.cordova.camera&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.device&quot;&gt;Cordova Device Plugin&lt;/a&gt;: fornisce una descrizione dell&#39;hardware e del software del dispositivo. &lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;Documentazione e ulteriori informazioni nella pagina del plugin: &lt;/span&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.device&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;http://plugins.cordova.io/#/package/org.apache.cordova.device&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.file&quot;&gt;Cordova File Plugin&lt;/a&gt;: per memorizzare nel filesystem locale le fo&lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;t&lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;o scatta&lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;t&lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;e. &lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;Documentazione e ulteriori informazioni nella pagina del plugin: &lt;/span&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.file&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;http://plugins.cordova.io/#/package/org.apache.cordova.file&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.geolocation&quot;&gt;Cordova Geolocation Plugin&lt;/a&gt;: utilizzato per determinare la posizione dell&#39;utente. &lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;Documentazione e ulteriori informazioni nella pagina del plugin: &lt;/span&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.geolocation&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;http://plugins.cordova.io/#/package/org.apache.cordova.geolocation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.statusbar&quot;&gt;Cordova StatusBar Plugin&lt;/a&gt;: permette di avere un&#39;integrazione con la status bar di iOS 7, in modo tale da avere stesso look and feel di una applicazione nativa. &lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;Documentazione e ulteriori informazioni nella pagina del plugin: &lt;/span&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;a href=&quot;http://plugins.cordova.io/#/package/org.apache.cordova.statusbar&quot;&gt;http://plugins.cordova.io/#/package/org.apache.cordova.statusbar&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;h3&gt;Ionic&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Per realizzare l&#39;interfaccia grafica dell&#39;applicazione è stato utilizzato &lt;a href=&quot;http://ionicframework.com/&quot;&gt;Ionic&lt;/a&gt; un framework open source che utilizza AngularJS e fornisce agli sviluppatori componenti (HTML/CSS/Javascript) ed alcuni plugin per Cordova.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;I componenti forniti hanno &lt;i&gt;directive&lt;/i&gt; da utilizzare nelle view HTML ed &lt;i&gt;API&lt;/i&gt; da utilizzare nei corrispondenti controller.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Ionic è un framework molto giovane e nella fase iniziale di realizzazione e diffusione. All&#39;inizio della scrittura dell&#39;applicazione era stata da poco pubblicata la prima beta pubblica, ad oggi è stata rilasciata l&#39;ottava beta.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Per l&#39;applicazione sono stati utilizzati i seguenti componenti:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;http://ionicframework.com/docs/api/directive/ionNavView/&quot;&gt;ion-nav-view&lt;/a&gt;: componente che tiene traccia della storia di navigazione dell&#39;utente all&#39;interno dell&#39;applicazione fornendo animazioni tra una view ed un altra. Utilizza UI-Router per gestire i vari stati dell&#39;applicazione&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;http://ionicframework.com/docs/api/directive/ionNavBar/&quot;&gt;ion-nav-bar&lt;/a&gt;: per gestire l&#39;header di ogni view inserendo titoli e pulsanti personalizzati&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;http://ionicframework.com/docs/api/directive/ionTabs/&quot;&gt;ion-tabs&lt;/a&gt;: permette di utilizzare il layout &lt;i&gt;a tabs&lt;/i&gt; ed associare ad ogni &lt;i&gt;tab&lt;/i&gt; una diversa view&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;http://ionicframework.com/docs/api/service/$ionicModal/&quot;&gt;i&lt;/a&gt;&lt;a href=&quot;http://ionicframework.com/docs/api/service/$ionicModal/&quot;&gt;onicModal&lt;/a&gt;: per la gestione di view modali&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;http://ionicframework.com/docs/api/service/$ionicPopup/&quot;&gt;ionicPopup&lt;/a&gt;: per notificare l&#39;utente&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Estensioni AngularJS&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Sono state utilizzate anche le seguenti estensioni per AngularJS:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/nlaplante/angular-google-maps&quot;&gt;Angular-google-maps :&lt;/a&gt; fornisce &lt;i&gt;directives&lt;/i&gt; per utilizzare google maps all&#39;interno di applicazioni AngularJS&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/Pasvaz/bindonce&quot;&gt;Bindonce&lt;/a&gt;: utilizzato quando possibile per aumentare le performances&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&quot;western&quot;&gt;A causa del two-way data binding di AngularJS la directive &lt;i&gt;ng-repeat&lt;/i&gt; causa dei deterioramenti di performances poiché AngularJS utilizza un meccanismo di &lt;i&gt;dirty checking&lt;/i&gt; per controllare se sono state effettuate modifiche negli elementi. Utilizzando bindonce viene “rotto” questo two-way data binding per gli elementi specificati, e dopo aver fatto il rendering degli elementi nella view AngularJS non controllerà eventuali modifiche. Ho utilizzato bindonce nella lista di fotografie visualizzate nella timeline.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Le future versioni di AngularJS dovrebbero utilizzare il metodo Object.observe() (non ancora supportato da tutti i browser) per velocizzare queste operazioni ed il team di AngularJS ha dichiarato di avere già ottenuto un &lt;a href=&quot;https://mail.mozilla.org/pipermail/es-discuss/2012-September/024978.html&quot;&gt;incremento delle prestazioni del 20-40%&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Struttura dell&#39;Applicazione&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Per la scrittura dell&#39;applicazione ho realizzato tre moduli AngularJS, ed ho organizzato i file in modo da avere un componente in ogni file separato, definendo tutti i moduli nel file &lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/app.js&quot;&gt;&lt;i&gt;app.js&lt;/i&gt;&lt;/a&gt; e utilizzando il metodo &lt;i&gt;getter&lt;/i&gt; &lt;i&gt;angular.module&lt;/i&gt; per ottenere in ogni file il modulo desiderato per poterci definire e registrare il componente.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Services&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Il modulo MyPhotoDiary.services è così definito:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;angular.module(&#39;MyPhotoDiary.services&#39;,[]);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;ed è richiamato in ogni file dentro la cartella scripts/services per poter definire un servizio in ogni file separato (ho fatto questa scelta perché preferisco avere più file piccoli ognuno con limitate responsabilità, poi in fase di deploy i fari file &lt;i&gt;.js&lt;/i&gt; vengono concatenati e il file risultante viene minimizzato).&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Ho realizzato i seguenti &lt;i&gt;services&lt;/i&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/services/CameraService.js&quot;&gt;CameraService&lt;/a&gt;: utilizza le API fornite dal plugin Cordova Camera per scattare fotografie e restituisce una &lt;i&gt;promise&lt;/i&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/services/GeolocationService.js&quot;&gt;GeolocationService&lt;/a&gt;: utilizza le API fornite dal plugin Cordova Geolocation plugin per ottenere le coordinate gps e restituisce una &lt;i&gt;promise&lt;/i&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/services/PicturesService.js&quot;&gt;PicturesService&lt;/a&gt;: gestisce le fotografie dell&#39;applicazione, utilizza il &lt;i&gt;local storage&lt;/i&gt; per memorizzare la descrizione, il path su filesystem locale e le coordinate di ogni fotografia. Per l&#39;operazione di rimozione di fotografie dal filesystem utilizza StorageSettings e restituisce una &lt;i&gt;promise &lt;/i&gt;(le operazioni su filesystem in Javascript sono asincrone). Emette l&#39;evento &lt;i&gt;NewPicture &lt;/i&gt;nel&lt;i&gt; &lt;/i&gt;&lt;i&gt;rootScope&lt;/i&gt; ogni volta viene realizzata una nuova fotografia, in modo tale che qualunque controller possa gestire questo evento una volta sottoscritto. (AngularJS rilascia un controller se l&#39;utente non è nella view correlata, quindi ho scelto di avere un evento globale in modo tale da poterlo gestire indipendentemente dalla view corrente dell&#39;utente)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/services/SettingsService.js&quot;&gt;SettingsService&lt;/a&gt;: memorizza le preferenze dell&#39;utente utilizzando il &lt;i&gt;local&lt;/i&gt; &lt;i&gt;storage&lt;/i&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/services/StorageService.js&quot;&gt;StorageService&lt;/a&gt;: utilizza le API fornite dal plugin Cordova File e permette di memorizzare e cancellare le foto dal filesystem. Per le operazioni restituisce una &lt;i&gt;promise&lt;/i&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Controllers&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Il modulo MyPhotoDiary.controllers è così definito:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;angular.module(&#39;MyPhotoDiary.controllers&#39;,[&#39;MyPhotoDiary.services&#39;]);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;e come già spiegato per il modulo relativo ai services è richiamato all&#39;interno di ogni file dentro la cartella scripts/controllers.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Sono stati realizzati i seguenti controllers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/controllers/MainNavBarController.js&quot;&gt;MainNavBarController&lt;/a&gt;: gestisce la navigation bar presente in ogni view dove è situato un pulsante per scattare una nuova fotografia. Utilizza i services &lt;i&gt;CameraService&lt;/i&gt;, &lt;i&gt;GeolocationService&lt;/i&gt;, &lt;i&gt;PicturesService&lt;/i&gt; e &lt;i&gt;StorageService&lt;/i&gt; per catturare e memorizzare la nuova foto. Usa anche &lt;i&gt;ionicModal&lt;/i&gt; per mostrare all&#39;utente una view modale per confermare o scartare la nuova fotografia, e &lt;i&gt;ionicPopup&lt;/i&gt; per visualizzare eventuali errori.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/controllers/PlacesController.js&quot;&gt;PlacesController&lt;/a&gt;: responsabile della creazione dei marker da visualizzare sulla mappa. Utilizza &lt;i&gt;GeolocationService&lt;/i&gt; per centrare la mappa nella posizione corrente dell&#39;utente e &lt;i&gt;PicturesService&lt;/i&gt; per recuperare le foto da mostrare. Gestisce l&#39;evento &lt;i&gt;NewPicture&lt;/i&gt; reindirizzando l&#39;utente alla view timeline.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/controllers/SettingsController.js&quot;&gt;SettingsController&lt;/a&gt;: permette di scegliere di quante foto effettuare il prefetch per essere visualizzate nella timeline e di eliminare tutte le foto dell&#39;applicazione. Usa &lt;i&gt;PicturesService&lt;/i&gt; per calcolare quante fotografie sono attualmente memorizzate e &lt;i&gt;SettingsService&lt;/i&gt; per memorizzare le preferenze utente. Anche questo controller gestisce l&#39;evento &lt;i&gt;NewPicture&lt;/i&gt; reindirizzando l&#39;utente alla view timeline.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/controllers/TimelineController.js&quot;&gt;TimelineController&lt;/a&gt;: gestisce la condivisione e l&#39;eliminazione della foto selezionata nella corrispettiva view. Inoltre carica ulteriori foto e le aggiunge alla view non appena l&#39;utente raggiunge il limite inferiore dello scroll della view, infatti per motivi di performances non vengono immediatamente caricate tutte le foto nella view. Utilizza &lt;i&gt;PicturesService&lt;/i&gt; per richiedere le foto memorizzate mano a mano che l&#39;utente scorre la view e &lt;i&gt;SettingsService&lt;/i&gt; per sapere di quante foto effettuare il prefetch. Gestisce l&#39;evento &lt;i&gt;NewPicture&lt;/i&gt; aggiungendo la nuova foto in cima alla view e tornando all&#39;inizio della lista di fotografie.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Modulo Principale&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Il modulo MyPhotoDiary è così definito:&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;angular.module(&#39;MyPhotoDiary&#39;, [&#39;ionic&#39;, &#39;MyPhotoDiary.controllers&#39;, &#39;MyPhotoDiary.services&#39;, &#39;google-maps&#39;, &#39;pasvaz.bindonce&#39;])&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;Ed è configurato nel file &lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/scripts/app.js&quot;&gt;&lt;i&gt;app.js&lt;/i&gt;&lt;/a&gt; specificando per ogni stato dell&#39;applicazione (usando UI-router) il rispettivo nome, url, template e controller.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Gli stati sono:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;tabs: stato astratto con template &lt;i&gt;tabs.html&lt;/i&gt;. Uno stato astratto non può mai essere direttamente attivato, sarà attivato uno dei suoi stati figli.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;tabs.places: mappato su url &lt;i&gt;/places&lt;/i&gt; utilizza il template &lt;i&gt;places.html&lt;/i&gt; ed il controller &lt;i&gt;PlacesController.&lt;/i&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;tabs.timeline: mappato su url &lt;i&gt;/timeline&lt;/i&gt; utilizza il template &lt;i&gt;timeline.html&lt;/i&gt; ed il controller &lt;i&gt;TimelineController&lt;/i&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;tabs.settings: mappato su url &lt;i&gt;/settings&lt;/i&gt; utilizza il template &lt;i&gt;settings.html&lt;/i&gt; ed il controller &lt;i&gt;SettingsController&lt;/i&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&quot;western&quot;&gt;All&#39;avvio dell&#39;applicazione viene impostato lo stato tabs.timeline.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Views&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;I template di ogni view sono salvati all&#39;interno della cartella &lt;i&gt;templates&lt;/i&gt; e sono:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/templates/confirmPhoto.html&quot;&gt;confirmPhoto&lt;/a&gt;: una view modale che visualizza la foto appena scattata e permette di confermarne il salvataggio oppure di scartarla. E&#39; gestita da &lt;i&gt;MainNavController&lt;/i&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/templates/places.html&quot;&gt;places&lt;/a&gt;: contiene una google map e un marker per ogni foto nella posizione in cui è stata scattata. Utilizza la direttiva &amp;lt;google-map&amp;gt; fornita da &lt;i&gt;Angular-google-maps&lt;/i&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/templates/settings.html&quot;&gt;settings&lt;/a&gt;: attraverso uno slider permette all&#39;utente di scegliere il numero di fotografie di cui fare il prefetch nella timeline ed ha un pulsante per eliminare tutte le foto memorizzate.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/templates/tabs.html&quot;&gt;tabs&lt;/a&gt;: visualizza tre tab, uno per lo stato tabs.timeline, uno per lo stato tabs.places e uno per lo stato tabs.settings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary/blob/master/app/templates/timeline.html&quot;&gt;timeline&lt;/a&gt;: mostra in una lista in ordine cronologico le fotografie memorizzate e sotto ognuna di essa due pulsanti, uno per eliminare ed uno per condividere la foto.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tools&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Per velocizzare il workflow sono stati utilizzati alcuni tool open source, ne riporto in seguito una breve descrizione per ognuno.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Grunt&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;http://gruntjs.com/&quot;&gt;Grunt&lt;/a&gt; è un task runner scritto in Javascript con molti tool e plugin resi disponibili dalla comunità, tra i plugin che ho utilizzato segnalo &lt;i&gt;bower-install &lt;/i&gt;che inietta le dipendenze gestite con &lt;i&gt;bower&lt;/i&gt; nell&#39;HTML, &lt;i&gt;concat&lt;/i&gt; che concatena diversi fine in uno unico, &lt;i&gt;ngmin&lt;/i&gt;, &lt;i&gt;cssmin&lt;/i&gt; che comprime i file CSS, &lt;i&gt;uglify&lt;/i&gt; per minimizzare il codice Javascript e &lt;i&gt;htmlmin&lt;/i&gt; che minimizza il codice HTML.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;È installabile attraverso &lt;a href=&quot;https://www.npmjs.org/&quot;&gt;npm&lt;/a&gt; (package manager di &lt;a href=&quot;http://nodejs.org/&quot;&gt;node.js&lt;/a&gt;).&lt;/span&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Bower&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;http://bower.io/&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;B&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;ower&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; è &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;un package manager per componenti web. Per l&#39;applicazione ho specificato come dipendenze &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;AngularJS&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;Ionic&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;angular-google-maps&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; e &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;angular-bindonce.&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; Bower provvede a scaricare in locale l&#39;ultima versione (o la versione specificata) delle dipendenze, in modo tale che facendone il deploy sul dispositivo non sia necessaria alcuna connettività di rete.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;nche bower è reperibile attraverso npm.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Yeoman&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;a href=&quot;http://yeoman.io/&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Yeoman&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; è &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;un tool che automatizza il setup degli &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;strumenti&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; precedentemente descritti &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;grazie a &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;generator&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; resi disponibili dalla comunità (attualmente ci sono più di 700 &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;generators&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;).&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;er lo sviluppo di questa applicazione ho utilizzato il &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;generator&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; chiamato &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;generator-ionic&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; disponibile in maniera open source all&#39;indirizzo &lt;a href=&quot;https://github.com/diegonetto/generator-ionic&quot;&gt;https://github.com/diegonetto/generator-&lt;/a&gt;&lt;a href=&quot;https://github.com/diegonetto/generator-ionic&quot;&gt;ionic&lt;/a&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Anche yeoman è reperibile con npm.&lt;/span&gt;&lt;/p&gt;
+</description>
+				<pubDate>Wed, 09 Jul 2014 14:00:39 +0200</pubDate>
+				<link>/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</link>
+				<guid isPermaLink="true">/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</guid>
+			</item>
+		
+			<item>
+				<title>Applicazioni Ibride e Native #3 – AngularJS</title>
+				<description>&lt;p&gt;I hereby declare AngularJS to be MVW framework – Model-View-Whatever. Where Whatever stands for &quot;whatever works for you&lt;/p&gt;
+&lt;p style=&quot;text-align: right;&quot;&gt;&lt;a href=&quot;https://plus.google.com/+IgorMinar/posts/DRUAkZmXjNV&quot;&gt;Igor Minar&lt;/a&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;ngularJS è un framework per applicazioni web &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;“single page” &lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;sviluppato da Google.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;i differenzia da&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; framework precedenti come &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;jQuery&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; nei quali lo sviluppatore doveva avere una conoscenza completa del DOM per poi manipolarlo scrivendo la logica in javascript, ad esempio:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;var btn = $(&quot;&amp;lt;button&amp;gt;Hi&amp;lt;/button&amp;gt;&quot;);&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;btn.on(&#39;click&#39;, function(evt) { console.log(&quot;Clicked button&quot;) }); &lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;$(&quot;#checkoutHolder&quot;).append(btn);&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;AngularJS invece aumenta il potere espressivo dell&#39;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;HTML&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; fornendo agli sviluppatori nuovi tag &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;built-in &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;e la possibilità di crearne degli altri.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Inoltre la libreria è di dimensioni veramente ridotte, appena 9KB (la versione minimizzata) ed è disponibile open source.&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;Data Binding&lt;/h2&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; framework web classici come Rails a partire da dati del modello &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;producono&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; una view per l&#39;utente, &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;generando&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; una view &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;“single-way”&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;che riflette i dati del modello solo al momento al momento &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;dell&#39;istanziazione&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;AngularJS invece adotta un approccio unico, creando dei &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;live templates &lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;come view che sono sempre aggiornati rispetto ai dati del modello. Questo ci permette di scrivere nell&#39;HTML&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;input ng-model=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;Your name&quot;&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;h1&amp;gt;Hello &amp;lt;/h1&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Le doppie parentesi graffe indicano un&#39;espressione AngularJS, il framework valuterà l&#39;espressione &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;per &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;effettuare il rendering del contenuto.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;enza scrivere nessuna riga di codice in Javascript abbiamo ottenuto un &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;i&gt;two-way data binding&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; direttamente nella view.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;In questo esempio, ogni volta che cambierà il valore del tag &amp;lt;input&amp;gt; verrà &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;aggiornato&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; anche il contenuto del tag &amp;lt;h1&amp;gt; sottostante.&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;Scopes&lt;/h2&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;G&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;li &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;sc&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;opes&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; sono componenti core di ogni applicazione AngularJS, vengono utilizzati come &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;glue&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; tra i controller e le view. Grazie al &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;live binding&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; di AngularJS &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;uno&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;scope&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; è immediatamente aggiornato se l&#39;utente interagisce con la view, e viceversa la view è immediatamente aggiornata se &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;modifichiamo&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; lo &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;scope&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; eseguendo qualche operazione nel codice Javascript.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;AngularJS gestisce i diversi &lt;i&gt;scope&lt;/i&gt; di una applicazione attraverso una relazione gerarchica che rispetta la composizione del DOM, all&#39;avvio dell&#39;applicazione viene infatti creato un &lt;i&gt;rootScope&lt;/i&gt; e tutti gli altri &lt;i&gt;scope&lt;/i&gt; discendono da questo.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot; align=&quot;JUSTIFY&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;L&#39;oggetto &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;scope&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; è un &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;plain old Javascript object&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;, possiamo quindi aggiunge&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;re&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; tutte le &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;proprietà&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; di cui necessitiamo. Esso funge da &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;data model&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; e tutte le &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;sue &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;proprietà sono automaticamente accessibili dalla view:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;div ng-app=&quot;myApp&quot;&amp;gt; &amp;lt;h1&amp;gt;Hello &amp;lt;/h1&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;angular.module(&#39;myApp&#39;, []) .run(function($rootScope) {&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;$rootScope.name = &quot;World&quot;;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;});&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 lang=&quot;zxx&quot;&gt;&lt;/h2&gt;
+&lt;h2 lang=&quot;zxx&quot;&gt;Controllers&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;I &lt;i&gt;controllers&lt;/i&gt; in AngularJS sono funzioni definite dallo sviluppatore per aggiungere funzionalità allo scope della view. Attraverso la Dependency Injection AngularJS passa automaticamente lo scope associato ad ogni &lt;i&gt;controller&lt;/i&gt; al relativo costruttore. Nel costruttore può essere configurato lo stato iniziale dello scope, lo sviluppatore si deve preoccupare solamente di scrivere la funzione costruttore, poiché l&#39;instanziazione dei controller è a carico del framework.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Ad esempio:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;function FirstController($scope) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;$scope.message = &quot;hello&quot;;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per creare delle azioni invocabili dalle view basterà creare delle funzioni sullo scope associato e poi effettuare il binding, ad esempio sfruttano la built-in directive ng-click che gestisce l&#39;evento click del browser. Quindi volendo fare un esempio leggermente più complesso avremo nella view:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;div ng-controller=&quot;FirstController&quot;&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;h4&amp;gt;Il mio contatore&amp;lt;/h4&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;button ng-click=&quot;add(1)&quot;&amp;gt;Add&amp;lt;/button&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;a ng-click=&quot;subtract(1)&quot;&amp;gt;Subtract&amp;lt;/a&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;h4&amp;gt;Valore : &amp;lt;/h4&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;E nel relativo controller:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;app.controller(&#39;FirstController&#39;, function($scope) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;$scope.counter = 0;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;$scope.add = function(amount) { $scope.counter += amount; };&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;$scope.subtract = function(amount) { $scope.counter -= amount; };&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;});&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Sia il bottone che il link sono collegati ad una azione definita nello scope, per cui quando verranno premuti/selezionati AngularJS chiamerà i rispettivi metodi.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Come si può notare nei &lt;i&gt;controll&lt;/i&gt;&lt;i&gt;ers&lt;/i&gt; scritti dal programmatore non c&#39;è una modifica &lt;i&gt;manuale&lt;/i&gt; del DOM, il tutto viene gestito automaticamente da AngularJS.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Tutti gli scope che sono creati con ereditarietà prototipale, hanno cioè accesso agli scope &lt;i&gt;“avi”&lt;/i&gt;. Quindi ogni qual volta AngularJS non riesce a trovare una proprietà richiesta nello scope corrente risalirà questa catena di ereditarietà fino al &lt;i&gt;rootScope&lt;/i&gt; associato all&#39;applicazione.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;È&lt;/span&gt; importante sapere che per motivi di gestione ottimale della memoria e di performances i controllers sono instanziati solo quando sono necessari, e deallocati quando non lo sono più. Per cui ogni volta che cambia lo stato di una applicazione o ricarichiamo una view, i controller correnti vengono deallocati e instanziati i nuovi controller.&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Directives&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;AngularJS fornisce molte built-in directives che servono ad aumentare l&#39;espressività dell&#39;HTML.Le &lt;i&gt;directives&lt;/i&gt;&lt;i&gt; &lt;/i&gt;&lt;i&gt;built-in&lt;/i&gt; sono tag che iniziano con il prefisso ng, per un elenco dettagliato si rimanda alla &lt;a href=&quot;https://docs.angularjs.org/api/ng/directive&quot;&gt;documentazione di AngularJS&lt;/a&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Inoltre AngularJS permette di definire nuove directive agli sviluppatori con le funzionalità desiderate e di unire diverse directive attraverso un processo chiamato composizione.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per creare una nuova directive bisogna definirla come segue:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;angular.module(&#39;myApp&#39;, []) .directive(&#39;myDirective&#39;, function() {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;restrict: &#39;E&#39;,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;template: &#39;&amp;lt;a href=&quot;http://google.com&quot;&amp;gt; Click me to go to Google&amp;lt;/a&amp;gt;&#39;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;} });&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Nell&#39;esempio sono state utilizzate solo la proprietà &lt;i&gt;restrict&lt;/i&gt; e &lt;i&gt;template&lt;/i&gt; per semplicità, per l&#39;elenco esaustivo si rimanda alla documentazione di AngularJS su come creare &lt;a href=&quot;https://docs.angularjs.org/guide/directive&quot;&gt;directives custom&lt;/a&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Avendo definito questa directive, ogni qual volta nell&#39;HTML verrà incontrata la directive AngularJS invocherà la funzione associata. Possiamo quindi scrivere nella nostra view&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;my-directive&amp;gt;&amp;lt;/my-directive&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;e AngularJS provvederà a inserire nel DOM un tag &amp;lt;a&amp;gt; con link a google.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per poter passare dello stato ad una custom directive attraverso gli attributi:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;my-directive my-url=&quot;http://google.com&quot; my-link-text=&quot;Click me to go to Google&quot;&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;/my-directive&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;definendo opportunamente la directive:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;angular.module(&#39;myApp&#39;, []) .directive(&#39;myDirective&#39;, function() {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;restrict: &#39;E&#39;,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;replace: true,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;scope: {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;myUrl: &#39;@&#39;, // binding strategy&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;myLinkText: &#39;@&#39; // binding strategy&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;},&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;template: &#39;&amp;lt;a href=&quot;&quot;&amp;gt;&#39; + &#39;&amp;lt;/a&amp;gt;&#39;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;} })&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Così facendo la directive avrà uno scope interno contenente l&#39;url e il testo del link. Ci sono diverse strategie di binding tra attributi passati nella view e lo scope interno, nell&#39;esempio è stata utilizzata la strategia &lt;i&gt;@&lt;/i&gt; che copia il valore dell&#39;attributo nella corrispondente proprietà dello scope.&lt;i&gt; &lt;/i&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Views&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;I&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;n applicazioni &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;“single page”&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; la navigazione da una view ad un altra è un aspetto critico, vogliamo mostrare del nuovo contenuto all&#39;utente senza forzarlo ad aspettare l&#39;apertura di un altra pagina HTML. AngularJS &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;per ottenere questo risultato &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;permette di scrivere diversi templates, per poi mostrare il contenuto di interesse in base allo &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;“stato”&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; dell&#39;applicazione.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;AngularJS fornisce il modulo &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;ngRoute&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; (da scaricare ed includere manualmente) che realizza la direttiva &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;ng-view &lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;utilizzata come placeholder per il contenuto della view dinamico, ad esempio:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;header&amp;gt; &lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; &amp;lt;h1&amp;gt;Header&amp;lt;/h1&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;div class=&quot;content&quot;&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; &amp;lt;ng-view&amp;gt;&amp;lt;/ng-view&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;footer&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt; &amp;lt;h5&amp;gt;Footer&amp;lt;/h5&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Così facendo l&#39;header e il footer della pagina rimarranno sempre gli stessi, mentre il contenuto verrà aggiornato (senza ricaricare l&#39;intera pagina) in base al valore corrente dell&#39;URL.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per configurare quali template caricare e in che circostanza occorre configurare routeProvider come segue:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;angular.module(&#39;myApp&#39;, []). config([&#39;$routeProvider&#39;, function($routeProvider) {&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;$routeProvider&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;.when(&#39;/&#39;, {&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;templateUrl: &#39;views/home.html&#39;,&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;controller: &#39;HomeController&#39;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;});&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;}]);&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;Si specifica l&#39;url (&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;“/”&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; nell&#39;esempio) e che template e controller verranno utilizzati. Per semplicità sono stati riportati solamente alcune proprietà esprimibili, per un elenco esaustivo si rimanda alla &lt;a href=&quot;https://docs.angularjs.org/api/ngRoute/service/$route&quot;&gt;documentazione &lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;a href=&quot;https://docs.angularjs.org/api/ngRoute/service/$route&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;di ngRoute&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;Passando degli argomenti (con &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;“:”&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; ) attraverso l&#39;URL, AngularJS provvederà ad effettuare il parsing e a creare un array chiamato &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt;&lt;i&gt;routeParams&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;&lt;span lang=&quot;it-IT&quot;&gt; utilizzabile dal controller che gestisce la view. E poiché l&#39;utente deve solamente scrivere la funzione costruttore del controllore basterà inserirlo tra gli argomenti e AngularJS si preoccuperà di iniettarlo:&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;$routeProvider&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;.when(&#39;/inbox/:name&#39;, {&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;controller: &#39;InboxController&#39;,&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;templateUrl: &#39;views/inbox.html&#39;&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;})&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;app.controller(&#39;InboxController&#39;, function($scope, $routeParams) { &lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;// Qui è abbiamo accesso all&#39;array $routeParams&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;});&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 lang=&quot;zxx&quot;&gt;UI-Router&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;UI-Router è una libreria che ci permette di organizzare l&#39;interfaccia in stati invece che semplici url, questo ci da la possibilità di avere view innestate usando la directive &lt;i&gt;ui-view&lt;/i&gt; invece che &lt;i&gt;ng-view&lt;/i&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Infatti come accade usando &lt;i&gt;ngRoute,&lt;/i&gt; il template definito per lo stato corrente verrà utilizzato per visualizzare il contenuto all&#39;utente, ma usando &lt;i&gt;ui-route&lt;/i&gt; i template possono a loro volta includere altre &lt;i&gt;ui-view&lt;/i&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;La configurazione è leggermente diversa, poiché si usa la keyword &lt;i&gt;“state”&lt;/i&gt; invece di &lt;i&gt;“when”&lt;/i&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;$stateProvider&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;.state(&#39;inbox&#39;, {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;url: &#39;/inbox/:inboxId&#39;,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;template: &#39;&amp;lt;div&amp;gt;&amp;lt;h1&amp;gt;Welcome to your inbox&amp;lt;/h1&amp;gt;\&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;a ui-sref=&quot;inbox.priority&quot;&amp;gt;Show priority&amp;lt;/a&amp;gt;\&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;div ui-view&amp;gt;&amp;lt;/div&amp;gt;\&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;/div&amp;gt;&#39;,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;controller: function($scope, $stateParams) { $scope.inboxId = $stateParams.inboxId;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;} })&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;.state(&#39;inbox.priority&#39;, {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;url: &#39;/priority&#39;,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;template: &#39;&amp;lt;h2&amp;gt;Your priority inbox&amp;lt;/h2&amp;gt;&#39;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;});&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Abbiamo uno stato figlio (specificato usando il &lt;i&gt;“.”&lt;/i&gt;) chiamato &lt;i&gt;inbox.priority&lt;/i&gt;. La ui-view dentro la view padre verrà quindi popolata con il template di &lt;i&gt;inbox.priority&lt;/i&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Quando abbiamo più ui-view innestate possiamo dare un nome ad ognuna e collegare ad ognuna di esse un template diverso. Ad esempio:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;div&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;div ui-view=&quot;filters&quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;div ui-view=&quot;mailbox&quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;E ogni sub-view può avere il suo template e controller:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;$stateProvider&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;.state(&#39;inbox&#39;, {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;views: {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&#39;filters&#39;: {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;template: &#39;&amp;lt;h4&amp;gt;Filter inbox&amp;lt;/h4&amp;gt;&#39;,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;controller: function($scope) {} },&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&#39;mailbox&#39;: {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;templateUrl: &#39;partials/mailbox.html&#39;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;});&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 lang=&quot;zxx&quot;&gt;&lt;/h2&gt;
+&lt;h2 lang=&quot;zxx&quot;&gt;Dependency Injection&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;AngularJS permette agli sviluppatori di utilizzare il pattern &lt;i&gt;dependency injection&lt;/i&gt; e specificare le dipendenze di ogni componente senza preoccuparsi di come reperire quest&#39;ultime. A runtime l&#39;&lt;i&gt;injector&lt;/i&gt; di AngularJS si occuperà di reperire le dipendenze specificate e se necessario instanziare i componenti richiesti. Possiamo ad esempio definire un servizio e poi specificare ad AngularJS che un controller ne avrà bisogno a runtime:&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;angular.module(&#39;myApp&#39;, [])&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;.factory(&#39;greeter&#39;, function() {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;greet: function(msg) { alert(msg); }&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;} })&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;.controller(&#39;MyController&#39;, function($scope, greeter) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;$scope.sayHello = function() { greeter.greet(&quot;Hello!&quot;);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;};&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;});&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Nel costruttore del controller &lt;i&gt;“MyController”&lt;/i&gt; è specificata la dipendenza dal servizio &lt;i&gt;“greeter”&lt;/i&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Annotazione Con Inferenza&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;AngularJS assume che i nomi degli argomenti siano i nomi delle risorse da reperire o instanziare a runtime, e &lt;span lang=&quot;it-IT&quot;&gt;per questo motivo questo approccio può funzionare solo con codice Javascript non minimizzato e non offuscato, poiché AngularJS ha bisogno di effettuare il parsing degli argomenti immutati.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Annotazione Esplicita&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Si possono comunque indicare manualmente i nomi delle dipendenze, per poter minimizzare il codice e non avere problemi specificando la proprietà &lt;i&gt;$inject&lt;/i&gt; di una funzione (che corrisponde ad un controller o un servizio).&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;var aControllerFactory =&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;function aController($scope, greeter) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;console.log(&quot;LOADED controller&quot;, greeter);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;// ... Controller&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;};&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;aControllerFactory.$inject = [&#39;$scope&#39;, &#39;greeter&#39;];&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;In questo approccio diventa però importante l&#39;ordine con il quale vengono specificati i parametri della funzione, che deve coincidere con l&#39;ordine delle dipendenze specificate nell&#39;array &lt;i&gt;$i&lt;/i&gt;&lt;i&gt;nject.&lt;/i&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Annotazione Inline&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Questo tipo di annotazione è equivalente alla precedente ma permette di definire l&#39;array di dipendenze inline alla definizione della funzione:&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;angular.module(&#39;myApp&#39;)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;.controller(&#39;MyController&#39;,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;[&#39;$scope&#39;, &#39;greeter&#39;, function($scope, greeter) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}]);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 lang=&quot;zxx&quot;&gt;NgMin&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;NgMin è un tool che sgrava lo sviluppatore dal definire le dipendenze in maniera esplicita e poter comunque minimizzare il codice, trasforma il seguente codice:&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;angular.module(&#39;myApp&#39;, [])&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;.controller(&#39;IndexController&#39;, function($scope, $q) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;});&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;automaticamente in questo:&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;angular.module(&#39;myApp&#39;, [])&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;.controller(&#39;IndexController&#39;, [ $scope&#39;, &#39;$q&#39;,&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;function ($scope, $q) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;} ]);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 lang=&quot;zxx&quot;&gt;&lt;/h2&gt;
+&lt;h2 lang=&quot;zxx&quot;&gt;Services&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Prima di introdurre i &lt;i&gt;services &lt;/i&gt;vale la pena ricordare che i controllers sono volativi (e lo sviluppatore non ne controlla il ciclo di vita), quindi non idonei a contenere lo stato dell&#39;applicazione. Per questo motivo, e per fornire una modalità di scambio di dati in maniera consistente esistono i &lt;i&gt;services&lt;/i&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;I &lt;i&gt;services&lt;/i&gt; sono oggetti singleton instanziati dall&#39;injector di AngularJS e lazy-loaded. Come per le &lt;i&gt;directives&lt;/i&gt; AngularJS fornisce molti services built-in (ad esempio &lt;i&gt;$http&lt;/i&gt;) e permette agli sviluppatori di crearne di personalizzati.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per usare un &lt;i&gt;service&lt;/i&gt; è sufficiente elencarlo nelle dipendenze del &lt;i&gt;controller&lt;/i&gt;, &lt;i&gt;directive&lt;/i&gt; o altro &lt;i&gt;service&lt;/i&gt; che vuole invocarlo.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Factory&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Il modo più semplice per creare e registrare (per essere trovato dall&#39;injector) un nuovo &lt;i&gt;service&lt;/i&gt; è utilizzare l&#39;API .&lt;i&gt;factory&lt;/i&gt; di &lt;i&gt;angular.module&lt;/i&gt;.&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;angular.module(&#39;myApp&#39;, []) .&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;factory(&#39;UserService&#39;, function($http) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;var current_user;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;getCurrentUser: function() {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return current_user; },&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;setCurrentUser: function(user) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;current_user = user;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;} }&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;La funzione &lt;i&gt;factory&lt;/i&gt; ha due argomenti: il primo specifica il nome del servizio, il secondo è una funzione che verrà eseguita da AngularJS una volta soltanto per instanziare il service&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Service&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;La funzione &lt;i&gt;service&lt;/i&gt; di &lt;i&gt;angular.module&lt;/i&gt; è simile alla funzione factory, ed ha come quest&#39;ultima due argomenti, dei quali il primo indica il nome mentre il secondo è una funzione costruttore, che verrà invocata da AngularJS usando la keyword &lt;i&gt;new&lt;/i&gt;.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Provider&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Tecnicamente le funzioni &lt;i&gt;factory&lt;/i&gt; e &lt;i&gt;service&lt;/i&gt; sono solo delle &lt;i&gt;“scorciatoie”&lt;/i&gt; per la funzione &lt;i&gt;provider&lt;/i&gt; che è la vera responsabile per la creazione e registrazione dei vari &lt;i&gt;“services”&lt;/i&gt;.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Utilizzando però direttamente &lt;i&gt;provider&lt;/i&gt; è possibile configurare dall&#39;esterno il servizio che si sta definendo attraverso la funzione &lt;i&gt;config&lt;/i&gt;, iniettando alcuni valori.&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Eventi&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per ottenere un accoppiamento più debole tra i diversi componenti dell&#39;applicazione AngularJS mette a disposizione un meccanismo di creazione e propagazione di eventi.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Rispecchiando la gerarchia degli scope, le due operazioni basilari di propagazione degli eventi sono &lt;i&gt;$emit&lt;/i&gt; per risalire la catena di scope dai figli al &lt;i&gt;rootScope&lt;/i&gt; e &lt;i&gt;$broadcas&lt;/i&gt;t con funzionamento opposto, da uno scope ai suoi scope figli.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Quando si scatena un evento è possibile specificare oltre al nome anche degli argomenti.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per registrarsi ad un evento si utilizza la funzione &lt;i&gt;$on&lt;/i&gt; specificando il nome dell&#39;evento di interesse e una funzione di gestione. Un gestore di un evento può anche decidere di interrompere la propagazione dell&#39;evento.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Anche in questo caso AngularJS ha diversi eventi built-in, degno di nota è l&#39;evento &lt;i&gt;$destroy&lt;/i&gt; che viene emesso sullo scope prima che venga distrutto e permette di pulire l&#39;ambiente (ad esempio distruggendo un timeout che si era registrato). Per un elenco dettagliato degli eventi built-in si rimanda alla &lt;a href=&quot;https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on&quot;&gt;documentazione&lt;/a&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Attraverso questo meccanismo è inoltre possibile emettere eventi &lt;i&gt;“globali”&lt;/i&gt; poiché ogni componente dell&#39;applicazione AngularJS può richiedere di farsi iniettare il &lt;i&gt;rootScope&lt;/i&gt; e poi utilizzarlo con la funzione di &lt;i&gt;$broadcas&lt;/i&gt;t.&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Moduli&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;In Javascript non è mai una buona idea utilizzare l&#39;ambiente globale e per questo motivo AngularJS permette di dividere l&#39;applicazione in moduli, nei quali racchiudere le funzionalità.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Quando vogliamo definire un nuovo modulo dobbiamo usare la funzione &lt;i&gt;angular.module&lt;/i&gt; a due argomenti, il primo specifica il nome del modulo, mentre il secondo è una lista di dipendenze da iniettare.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Per ottenere invece il riferimento ad un modulo utilizziamo la funzione &lt;i&gt;angular.module&lt;/i&gt; ad un solo parametro, il nome del modulo. Ottenuto il modulo possiamo definire i nostri componenti per quel modulo (controller/service/directive).&lt;/span&gt;&lt;/p&gt;
+&lt;h2 class=&quot;western&quot;&gt;Promises&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Una promise è un oggetto che rappresenta il valore di ritorno o un eccezione di di una funzione, può essere vista come un proxy per un oggetto.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Storicamente in Javascript sono state utilizzate funzioni di &lt;i&gt;callback&lt;/i&gt; per poter lavorare con dati non disponibili in maniera sincrona, come i dati ottenuti da una richiesta XHR, con le &lt;i&gt;promises&lt;/i&gt; possiamo invece interagire con i dati, supponendo che siano già stati restituiti.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Le &lt;i&gt;promises&lt;/i&gt; permettono di far sembrare funzioni asincrone come se fossero sincrone, permettendoci di catturare sia i valori di ritorno che le eventuali eccezioni, ma sono sempre eseguite in maniera asincrona, per cui possono essere usate senza preoccuparsi del fatto che possano bloccare l&#39;esecuzione.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;AngularJS fornisce il &lt;i&gt;service&lt;/i&gt; &lt;i&gt;$q&lt;/i&gt; per semplificare la gestione delle &lt;i&gt;promises&lt;/i&gt;, una volta creata un &lt;i&gt;promise&lt;/i&gt; con il metodo &lt;i&gt;$q.defer()&lt;/i&gt; possiamo utilizzare il metodo &lt;i&gt;resolve(value)&lt;/i&gt; nel caso l&#39;esecuzione sia andata come previsto e il metodo &lt;i&gt;reject(reason) &lt;/i&gt;per notificare invece l&#39;errore. Un ulteriore metodo è &lt;i&gt;notify(value)&lt;/i&gt; che permette di mandare una notifica (ad esempio se l&#39;esecuzione richiede un tempo lungo potremmo notificare il progresso attraverso questo metodo). Sia nel caso di successo che nel caso di errore la funzione ritornerà la promise creata al chiamante che può interagire con il risultato attraverso la funzione &lt;i&gt;then&lt;/i&gt;().&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;La funzione &lt;i&gt;then&lt;/i&gt;() accetta tre parametri, le funzioni che saranno eseguite in caso di successo, errore e ricezione di notifica. &lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;È&lt;/span&gt; importante notare che le funzioni di successo o fallimento saranno invocate in maniera asincrona appena la &lt;i&gt;promise&lt;/i&gt; è risolta, (solamente una delle due) e con un singolo parametro che indica il risultato in un caso o il motivo del fallimento nell&#39;altro. Mentre la funzione di notifica può essere invocata anche più volte.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Le &lt;i&gt;promises&lt;/i&gt; sono profondamente integrate in AngularJS, infatti anche i services built-in come &lt;i&gt;$http&lt;/i&gt; le utilizzano per restituire i risultati ai chiamanti.&lt;/span&gt;&lt;/p&gt;
+</description>
+				<pubDate>Wed, 02 Jul 2014 14:00:58 +0200</pubDate>
+				<link>/2014/07/applicazioni-ibride-e-native-3-angularjs/</link>
+				<guid isPermaLink="true">/2014/07/applicazioni-ibride-e-native-3-angularjs/</guid>
+			</item>
+		
+			<item>
+				<title>Applicazioni Ibride e Native #2 - Apache Cordova</title>
+				<description>&lt;h2&gt;Introduzione&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Apache Cordova è un framework open source per la realizzazione di applicazioni cross-platform usando HTML5. L&#39;approccio usato da Cordova è però unico nel suo genere, perché fonde le capacità native di un dispositivo con la possibilità di realizzare applicazioni usando gli standard web, dando così vita alle applicazioni chiamate &lt;i&gt;ibride&lt;/i&gt;.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Il punto di debolezza delle applicazioni web su dispositivi mobili è sempre stato la mancanza della possibilità di usare funzionalità fornite dal produttore per interfacciarsi con i vari componenti hardware, e mentre si spera che in un futuro questa limitatezza possa essere superata attraverso sforzi di standardizzazione, Cordova fornisce una serie di API alle applicazioni che vengono eseguite all&#39;interno del suo container per poter accedere a tali funzionalità, ad esempio sarà possibile utilizzare la fotocamera, l&#39;accelerometro ed il gps.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Cordova si occupa anche di realizzare il pacchetto applicativo (ad esempio file .apk per Android ed .ipa per iOS) per ogni piattaforma supportata a partire dai file della web application.&lt;/p&gt;
+&lt;p&gt;[caption id=&quot;attachment_1992&quot; align=&quot;aligncenter&quot; width=&quot;953&quot;]&lt;img class=&quot;size-full wp-image-1992&quot; src=&quot;/assets/Packaging.png&quot; alt=&quot;Packaging Cordova&quot; width=&quot;953&quot; height=&quot;560&quot; /&gt; Packaging Cordova[/caption]&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;L&#39;applicazione nativa consisterà in una webview (un browser integrato) che mostrerà il contenuto utilizzando tutto lo schermo disponibile. Questo browser embedded potrà utilizzare l&#39;interprete di Javascript fornito dal sistema operativo che ospita l&#39;applicazione ed in più le API esposte da Cordova.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Attualmente Cordova supporta le &lt;a href=&quot;http://cordova.apache.org/docs/en/3.5.0/guide_support_index.md.html#Platform%20Support&quot;&gt;seguenti piattaforme&lt;/a&gt; :&lt;/p&gt;
+&lt;p&gt;[caption id=&quot;attachment_1993&quot; align=&quot;aligncenter&quot; width=&quot;833&quot;]&lt;img class=&quot;size-full wp-image-1993&quot; src=&quot;/assets/Piattaforme.png&quot; alt=&quot;Piattaforme Cordova&quot; width=&quot;833&quot; height=&quot;646&quot; /&gt; Piattaforme Cordova[/caption]&lt;/p&gt;
+&lt;h2&gt;Architettura&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;A partire dalla versione 3.0 (al momento della scrittura siamo alla versione 3.5.0-0.24) le API sono state separate in diversi plugin, per poter includere nel progetto solamente quelli necessari, e per avere un&#39;architettura più facilmente estensibile anche con plugin di terze parti.&lt;/p&gt;
+&lt;p&gt;[caption id=&quot;attachment_1994&quot; align=&quot;aligncenter&quot; width=&quot;633&quot;]&lt;img class=&quot;size-full wp-image-1994&quot; src=&quot;/assets/Architettura.png&quot; alt=&quot;Architettura Cordova&quot; width=&quot;633&quot; height=&quot;790&quot; /&gt; Architettura Cordova[/caption]&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Dalla figura (tratta dal libro &lt;a href=&quot;http://www.cordovaprogramming.com/&quot;&gt;Apache Cordova 3 Programming&lt;/a&gt;) si può notare come ogni singolo plugin sia composto da una parte in Javascript e una parte invece scritta nel linguaggio supportato dalla specifica piattaforma.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Attualmente Cordova fornisce questi plugin:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Battery Status&lt;/li&gt;
+&lt;li&gt;Camera&lt;/li&gt;
+&lt;li&gt;Console&lt;/li&gt;
+&lt;li&gt;Contacts&lt;/li&gt;
+&lt;li&gt;Device&lt;/li&gt;
+&lt;li&gt;Device Motion&lt;/li&gt;
+&lt;li&gt;Device Orientation&lt;/li&gt;
+&lt;li&gt;Dialogs&lt;/li&gt;
+&lt;li&gt;File&lt;/li&gt;
+&lt;li&gt;File Transfer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Command Line Interface&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Cordova fornisce un tool, chiamato &lt;i&gt;Command Line Interface&lt;/i&gt; (CLI) per aiutare lo sviluppatore nella creazione, gestione e deploy di un progetto. Il CLI utilizza i vari sdk delle singole piattaforme che vanno installati manualmente.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Installazione&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Per installare cli di cordova è prima necessario scaricare ed installare &lt;i&gt;node.js&lt;/i&gt; e poi eseguire:&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;sudo npm install -g cordova&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;npm è il package manager di node, l&#39;opzione -g specifica di installare il pacchetto globalmente e cordova è il nome del pacchetto da installare.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Creazione di una applicazione&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Con il comando&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova create hello com.example.hello HelloWorld&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;cordova creerà la cartella &lt;i&gt;hello&lt;/i&gt; contenente il progetto per l&#39;applicazione con l&#39;identificatore &lt;i&gt;com.example.hello&lt;/i&gt;. La sottocartella www contiene i file &lt;i&gt;html/css/javascript&lt;/i&gt; scritti dallo sviluppatore, e il file &lt;i&gt;config.xml&lt;/i&gt; specifica i metadati necessari per la generazione e la distribuzione dell&#39;applicazione. Il terzo parametro sarà il nome user-friendly dell&#39;applicazione, se omesso viene utilizzato il nome &lt;i&gt;HelloCordova&lt;/i&gt;.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Gestione delle piattaforme&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Una volta nella cartella dell&#39;applicazione è possibile gestire le piattaforme per le quali si intende fare il deploy attraverso il comando&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova platform&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;seguito da un&#39;opzione (&lt;i&gt;add/rm&lt;/i&gt;) ed il nome della piattaforma. Per ottenere una lista delle piattaforme correntemente attive per il progetto basterà utilizzare l&#39;opzione &lt;i&gt;ls&lt;/i&gt; dopo il comando platform.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Per ogni piattaforma attiva verrà utilizzata una cartella nel path &lt;i&gt;nomeProgetto/platforms/nome&lt;/i&gt;&lt;i&gt;P&lt;/i&gt;&lt;i&gt;iattaforma&lt;/i&gt;.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Build&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Attraverso il comando&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova build (nomePiattaforma)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;verrà generato il codice specifico per ogni piattaforma attualmente attiva. Si può limitare il build ad una singola piattaforma, specificandone il nome dopo il comando build.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Test e Run&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Laddove il produttore della piattaforma fornisca anche un emulatore/simulatore per desktop quest&#39;ultimo può essere lanciato per testare l&#39;applicazione attraverso il comando&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;cordova emulate nomePiattaforma&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;mentre per testare l&#39;applicazione direttamente sul dispositivo fisico si utilizza&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;cordova run nomePiattaforma&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3&gt;Gestione Plugins&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Come precedentemente spiegato, Cordova utilizza una architettura fortemente basata su plugin. Fino ad ora non è stato aggiunto nessuno, e quello che otteniamo è la possibilità di avere una normale applicazione web con il vantaggio di avere tutti i file in locale (potendo quindi funzionare anche in assenza di connettività) e resa disponibile come pacchetto per la piattaforma specifica.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Ma per poter sfruttare a pieno le potenzialità di Cordova e quindi poter accedere ad &lt;i&gt;API native&lt;/i&gt; vediamo come aggiungere un plugin.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Apache ha creato un repository web nel quale cercare i plugin, per poter leggere una breve descrizione e la documentazione. Questo repository è disponibile al seguente indirizzo:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;a href=&quot;http://plugins.cordova.io/&quot;&gt;http://plugins.cordova.io/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;Oltre ai plugin resi disponibili direttamente da Apache, è possibile trovare anche plugin di terze parti resi disponibili da sviluppatori. Il repository è nuovo, quindi non sono ancora presenti tutti i plugin sviluppati, per cui consiglio di fare una ricerca anche su github.com.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Una volta ottenuto l&#39;identificativo di un plugin (ad esempio org.apache.cordova.camera) l&#39;installazione è semplice, basterà utilizzare il comando&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;cordova plugin add “identificatore plugin”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;Per rimuovere un plugin basta sostituire &lt;i&gt;add&lt;/i&gt; con &lt;i&gt;rm&lt;/i&gt; al comando qui sopra, è possibile ottenere una lista dei plugin correntemente attivi attraverso:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;cordova plugin ls&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h2&gt;Realizzazione di un Plugin&lt;/h2&gt;
+&lt;p class=&quot;western&quot;&gt;Un plugin è composto da un opportuno file contenente metadati chiamato &lt;i&gt;plugin.xml,&lt;/i&gt; del codice Javascript, che esporrà le API utilizzabili dall&#39;applicazione e opzionalmente del codice nativo. Il codice nativo è opzionale e nel caso sia assente il plugin è completamente realizzato in Javascript, e non potrà quindi utilizzare le API native fornite dal produttore della piattaforma.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Per comprendere meglio la anatomia di un plugin cordova riporterò come esempio (tratta dal libro &lt;a href=&quot;http://www.cordovaprogramming.com/&quot;&gt;Apache Cordova 3 Programming&lt;/a&gt;) un plugin che permette di ottenere il nome dell&#39;operatore e il codice del paese in cui è il dispositivo.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Javascript&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Attraverso la chiamata al metodo &lt;i&gt;cordova.exec&lt;/i&gt; avviene il passaggio di controllo al codice nativo di ogni piattaforma, per cui il codice Javascript del plugin andrà ad invocare questo metodo.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Una volta che il codice nativo ha terminalo l&#39;esecuzione invocherà una funzione di callback e restituisce il valore di ritorno all&#39;oggetto Javascript. La signature completa del metodo &lt;i&gt;exec&lt;/i&gt; è la seguente:&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova.exec(successCallback, errorCallback, &#39;PluginObject&#39;, &#39;pluginMethod&#39;, [arguments])&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;I primi due parametri specificano che funzioni eseguire in caso di successo o errore lato codice Javascript, il parametro &lt;i&gt;PluginObject&lt;/i&gt; è una stringa che identifica l&#39;oggetto nativo che contiene il metodo richiesto specificato dal parametro &lt;i&gt;pluginMethod&lt;/i&gt;. L&#39;ultimo argomento opzionale è un array che contiene gli argomenti da passare al metodo nativo.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Il codice Javascript del plugin sarà:&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;var cordova = require(&#39;cordova&#39;);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;var carrier = {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;getCarrierName : function(successCallback, errorCallback) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova.exec(successCallback, errorCallback, &#39;CarrierPlugin&#39;, &#39;getCarrierName&#39;, []);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;},&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;getCountryCode : function(successCallback, errorCallback{&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova.exec(successCallback, errorCallback, &#39;CarrierPlugin&#39;, &#39;getCountryCode&#39;, []);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;};&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;module.exports = carrier;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot;&gt;L&#39;ultima riga serve a rendere visibile l&#39;oggetto carrier all&#39;intero delle applicazioni che sono in esecuzione all&#39;interno del container Cordova.&lt;/p&gt;
+&lt;h3 class=&quot;western&quot;&gt;Java&lt;/h3&gt;
+&lt;p class=&quot;western&quot;&gt;Per implementare il plugin lato codice nativo su piattaforma Android occorre estendere la classe &lt;i&gt;CordovaPlugin&lt;/i&gt; fornita da Cordova, e realizzare i metodi &lt;i&gt;initialize()&lt;/i&gt; e &lt;i&gt;execute()&lt;/i&gt;.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Il primo serve a rendere il codice Java &lt;i&gt;“aware”&lt;/i&gt; del container Cordova, mentre il secondo realizza il dispatch dei metodi e fornisce l&#39;implementazione dei metodi richiedibili da Javascript.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Utilizzando quindi le API native fornite da Android, il plugin sarà realizzato come segue:&lt;/p&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public class CarrierPlugin extends &lt;b&gt;CordovaPlugin&lt;/b&gt; {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public static final String ACTION_GET_CARRIER_NAME = &quot;getCarrierName&quot;;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public static final String ACTION_GET_COUNTRY_CODE = &quot;getCountryCode&quot;;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public TelephonyManager tm;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public void &lt;b&gt;initialize&lt;/b&gt;(CordovaInterface cordova, CordovaWebView webView){&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;super.initialize(cordova, webView);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;Context context = this.cordova.getActivity().getApplicationContext();&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public boolean &lt;b&gt;execute&lt;/b&gt;(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;try {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;if (ACTION_GET_CARRIER_NAME.equals(action)) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;callbackContext.success(tm.getSimOperatorName());&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return true;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;else {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;if (ACTION_GET_COUNTRY_CODE.equals(action)) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;callbackContext.success(tm.getSimCountryIso());&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return true;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;callbackContext.error(&quot;Invalid Action&quot;);&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return false;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;} catch (Exception e) {&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;System.err.println(&quot;Exception: &quot; + e.getMessage());&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;callbackContext.error(e.getMessage());&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return false;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p lang=&quot;zxx&quot;&gt;
+</description>
+				<pubDate>Wed, 25 Jun 2014 10:30:17 +0200</pubDate>
+				<link>/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</link>
+				<guid isPermaLink="true">/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</guid>
+			</item>
+		
+			<item>
+				<title>Applicazioni Ibride e Native #1 - Introduzione</title>
+				<description>&lt;p&gt;Ho deciso di pubblicare sul blog la relazione dell&#39;attività progettuale che ho realizzato per l&#39;università.&lt;/p&gt;
+&lt;p&gt;La relazione è composta di sei capitoli e ne pubblicherò uno a settimana, ad eccezione di questa prima settimana in cui pubblico i primi due capitoli, poiché il primo è di introduzione.&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;h1&gt;Introduzione&lt;/h1&gt;
+&lt;p class=&quot;western&quot;&gt;Lo scopo di questa attività progettuale è studiare le possibilità offerte dalla realizzazione di applicazioni mobili chiamate &lt;i&gt;Ibride&lt;/i&gt;, ossia scritte usando strumenti pensati per il web, ma avendo anche a disposizione API per l&#39;accesso al dispositivo.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;L&#39;argomento è stato scelto per capire se attualmente un approccio di questo tipo può essere utilizzato per la realizzazione di una applicazione completa, permettendo allo sviluppatore di scrivere una sola applicazione e poterla poi distribuire su diverse piattaforme, evitando così di dover scriver un&#39;applicazione per ogni specifica piattaforma.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Per poter utilizzare API native utilizzando tecnologie web è stato utilizzato Apache Cordova, e per strutturare l&#39;applicazione è stato utilizzato il framework javascript scritto da Google chiamato AngularJS.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;L&#39;applicazione realizzata permette all&#39;utente di scattare delle fotografie, aggiungere una descrizione per ognuna di esse e poi visualizzarle in una timeline oppure in una mappa, posizionando ogni foto nelle coordinate in cui è stata scattata. L&#39;utente può anche decidere di condividere ogni foto utilizzando altre applicazioni installate nel dispositivo.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;Al fine di valutare le performances ottenute con una applicazione ibrida, è stata poi realizzata un&#39;applicazione &lt;i&gt;nativa,&lt;/i&gt; utilizzando Java su piattaforma Android, con le stesse funzionalità.&lt;/p&gt;
+&lt;p class=&quot;western&quot;&gt;E&#39; disponibile online il codice sorgente sia per l&#39;applicazione ibrida, al seguente indirizzo:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;https://github.com/dcampogiani/My-Photo-Diary&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p class=&quot;western&quot; lang=&quot;zxx&quot;&gt;sia per l&#39;applicazione nativa, all&#39;indirizzo:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;https://github.com/dcampogiani/My-Native-Photo-Diary&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+				<pubDate>Wed, 25 Jun 2014 10:29:41 +0200</pubDate>
+				<link>/2014/06/applicazioni-ibride-e-native-1-introduzione/</link>
+				<guid isPermaLink="true">/2014/06/applicazioni-ibride-e-native-1-introduzione/</guid>
+			</item>
+		
+			<item>
+				<title>Deformazione professionale</title>
+				<description>&lt;p&gt;Penso di star male.&lt;/p&gt;
+&lt;p&gt;Nel momento in cui ho realizzato di dover scrivere la tesi le mie prime domande sono state:&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Esiste un linguaggio a markup che mi permetta per ora di concentrarmi solo sul contenuto e una volta terminato di pensare alla rappresentazione grafica?&lt;/li&gt;
+&lt;li&gt;Esiste un sistema di gestione alla git per documenti?&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Thu, 11 Oct 2012 17:41:21 +0200</pubDate>
+				<link>/2012/10/deformazione-professionale/</link>
+				<guid isPermaLink="true">/2012/10/deformazione-professionale/</guid>
+			</item>
+		
+			<item>
+				<title>Cosa ho imparato da un anno di Ingegneria Informatica</title>
+				<description>&lt;p&gt;Dopo diverso tempo torno su queste pagine per un&#39;articolo dal &lt;strong&gt;taglio personale ed ironico&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Una semplice lista, nella quale scrivere tutto ciò che ho imparato da questo primo anno di Ingegneria Informatica e &lt;strong&gt;piccoli consigli&lt;/strong&gt; per quei coraggiosi che vorranno intraprendere questo cammino.&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;h2&gt;Bene cominciamo:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Qualche lezione si può anche saltare&lt;/li&gt;
+&lt;li&gt;A giugno ti accorgi che &quot;&lt;em&gt;Qualche lezione si può anche saltare&quot;&lt;/em&gt; è una gran &lt;strong&gt;boiata&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Anche se ancora non lo sai deriviamo tutti da Object&lt;/li&gt;
+&lt;li&gt;Dio programmava in Java&lt;/li&gt;
+&lt;li&gt;La quantità (e qualità) di studio impiegato a preparare l&#39;esame di Geometria è del tutto ininfluente al fine del voto. Poco prima dell&#39;orale prendi un bicchiere di un buon vino rosso e tutto andrà bene&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Quando durante un esercizio di Analisi capisci di trovarti in R﻿﻿^2 farai i salti di gioia.&lt;/li&gt;
+&lt;li&gt;Ci sarà sempre qualcuno più bravo di te&lt;/li&gt;
+&lt;li&gt;Inevitabilmente ci sarà sempre anche qualcuno più scarso di te :D&lt;/li&gt;
+&lt;li&gt;Qualche amico lo perderai per strada, insisti per farlo rimanere ma non troppo, sono scelte di vita personali (grazie &lt;strong&gt;Chicco&lt;/strong&gt;).&lt;/li&gt;
+&lt;li&gt;I tuoi professori di Informatica odieranno il linguaggio C&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Se prima utilizzavi Windows passerai ad Mac o Linux&lt;/li&gt;
+&lt;li&gt;L&#39;appello che decidi di dare sarà sempre il più difficile della sessione&lt;/li&gt;
+&lt;li&gt;Dopo la prima settimana il fatto che i tuoi compagni di corso siano per il 99% di sesso maschile non ti stupirà più&lt;/li&gt;
+&lt;li&gt;L&#39;andamento della frequenza delle lezioni da parte degli studenti segue il grafico di e^-x&lt;/li&gt;
+&lt;li&gt;Write once run anywhere&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Queste sono tutte le cose che mi sono venute in mente, ne hai &lt;strong&gt;altre da suggerirmi?&lt;/strong&gt;&lt;/p&gt;
+</description>
+				<pubDate>Fri, 16 Jul 2010 12:48:23 +0200</pubDate>
+				<link>/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/</link>
+				<guid isPermaLink="true">/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/</guid>
+			</item>
+		
+			<item>
+				<title>Alla fine i buoni vincono sempre</title>
+				<description>&lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/07/login-riccardo-luna.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-full wp-image-1568&quot; title=&quot;login-riccardo-luna&quot; src=&quot;/assets/login-riccardo-luna.jpg&quot; alt=&quot;&quot; width=&quot;466&quot; height=&quot;689&quot; /&gt;&lt;/a&gt;Oggi ho comprato il mio primo numero cartaceo di Wired, prima avevo solo letto qualcosa online e due ore  dopo ero sul loro sito a farmi l&#39;abbonamento biennale.&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Quello che vedete sopra è l&#39;editoriale di Luglio, belle parole che condivido totalmente. Qualcun&#39;altro invece la &lt;a href=&quot;http://blog.tagliaerbe.com/2010/07/login-riccardo-luna-wired.html&quot;&gt;pensa diversamente&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Voi che ne pensate?&lt;/p&gt;
+</description>
+				<pubDate>Mon, 12 Jul 2010 15:38:36 +0200</pubDate>
+				<link>/2010/07/alla-fine-i-buoni-vincono-sempre/</link>
+				<guid isPermaLink="true">/2010/07/alla-fine-i-buoni-vincono-sempre/</guid>
+			</item>
+		
+			<item>
+				<title>Installare Android su iPod Touch 1G con iDroid</title>
+				<description>&lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010580.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1524&quot; title=&quot;iDroid iPod Touch&quot; src=&quot;/assets/22052010580-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mi ha sempre incuriosito Android, l&#39;OS made by Google per dispositivi mobile, e recentemente un gruppo di programmatori ha effettuato il &lt;strong&gt;porting di Android&lt;/strong&gt; per iPhone.&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;Ho quindi cercato di installarlo anche sul mio iPod Touch 1G (prossimo alla pensione) anche se tuttora non esiste una release ufficiale per questo dispositivo.&lt;/p&gt;
+&lt;p&gt;Ci sono riuscito ed ora ho un iPod touch con&lt;strong&gt; dual boot tra iPhone OS e Android&lt;/strong&gt;, ecco come ho fatto:&lt;/p&gt;
+&lt;h2&gt;Occorrente&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;iPod Touch Jailbroken con firmware 3.1.2 (il jailbreak con Spirit non funziona, usate BlackRain)&lt;/li&gt;
+&lt;li&gt;Ubuntu (io l&#39;ho virtualizzato sul mio macbook)&lt;/li&gt;
+&lt;li&gt;Release di iDroid&lt;/li&gt;
+&lt;li&gt;Pazienza&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bene Iniziamo&lt;/h2&gt;
+&lt;p&gt;Come primo step dobbiamo scaricare la release di iDorid,che trovate nel &lt;strong&gt;link sottostante&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.mediafire.com/?iyzmjgtijmq&quot;&gt;iDroid per iPod Touch 1G&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Ottenere i Driver per Wi-Fi e Touchscreen&lt;/h2&gt;
+&lt;p&gt;Per questione di licenza non è possibile scaricare i driver per  il touchscreen quindi dobbiamo ottenerli estraendoli dal nostro iPod.&lt;/p&gt;
+&lt;p&gt;Da &lt;a href=&quot;http://extranet.marvell.com/drivers/driverDisplay.do?driverId=203&quot;&gt;qui&lt;/a&gt; è possibile invece scaricare i driver per il wi-fi, estraete il file &lt;strong&gt;SD-8686-LINUX26-SYSKT-9.70.3.p24-26409.P45-GPL.zip&lt;/strong&gt; e ne otterrete un altro con estensione con estensione .tar.&lt;/p&gt;
+&lt;p&gt;Cliccate ancora una volta sul file .tar appena ottenuto ed estraete i due file FwImage/helper_sd.bin e FwImage/sd8686.bin, copiate questi file in una nuova cartella sul vostro desktop che avrete precedentemente chiamato firmware.&lt;/p&gt;
+&lt;p&gt;Rinominate helper_sd.bin in sd8686_helper.bin. Avremo così ottenuto il Firmware per la WLAN, adesso passiamo al Touchscreen.&lt;/p&gt;
+&lt;p&gt;Collegate il vostro iPod al mac ed avviate &lt;a href=&quot;http://www.idroidproject.org/wiki/Dripwn#Usage_.282.x.29&quot;&gt;Dripwn&lt;/a&gt; un programma che&lt;strong&gt; estrarrà i driver per il touchscreen&lt;/strong&gt; del vostro iPod. Salvate il file così ottenuto sempre nella stessa cartella (firmware).&lt;/p&gt;
+&lt;h2&gt;Caricare i file su iPod&lt;/h2&gt;
+&lt;p&gt;Ora abbiamo tutti i file necessari, dobbiamo caricarli in SSH dentro il nostro iPod all&#39;indirizzo&lt;strong&gt; private/var.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Per chiarezza i file sono:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;android.img.gz&lt;/li&gt;
+&lt;li&gt;cache.img&lt;/li&gt;
+&lt;li&gt;ramdisk.img&lt;/li&gt;
+&lt;li&gt;system.img&lt;/li&gt;
+&lt;li&gt;userdata.img&lt;/li&gt;
+&lt;li&gt;zlmage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ora create una nuova cartella dal nome &lt;strong&gt;firmware &lt;/strong&gt;sempre in &lt;strong&gt;private/var &lt;/strong&gt;e copiateci dentro tutti i file presenti nella vostra cartella firmware sul desktop.&lt;/p&gt;
+&lt;h2&gt;Installare OpeniBoot&lt;/h2&gt;
+&lt;p&gt;Create una nuova cartella di nome idroid all&#39;interno della cartella principale di Ubuntu e copiateci dentro i file che trovate nella cartella openiboot presente nella release che avete scaricato all&#39;inizio.&lt;/p&gt;
+&lt;p&gt;A me non ha funzionato il file openiboot.img3 già presente quindi vi consiglio di scaricare &lt;a href=&quot;http://files.neonkoala.co.uk/idroid/IPT1G-46ebc21-openiboot.img3&quot;&gt;quest&#39;altra versione&lt;/a&gt; rinominatela in &lt;strong&gt;openiboot.img3&lt;/strong&gt; e sovrascrivere il file precedente.&lt;/p&gt;
+&lt;p&gt;Ora mettere &lt;strong&gt;in recovery mode&lt;/strong&gt; il vostro iPod e collegatelo ad Ubuntu.&lt;/p&gt;
+&lt;p&gt;Scaricate la libreria &lt;strong&gt;libusb-0.1.4&lt;/strong&gt;, aprite il terminale e date i seguenti comandi:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;cd ~/idroid&lt;/p&gt;
+&lt;p&gt;sudo ./loadibec openiboot.img3&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Così facendo si avvierà OpenIBoot sul vostro iPod e potete scegliere (scorrendo col tasto power) che OS avviare (selezionandolo con tasto Home).&lt;/p&gt;
+&lt;p&gt;Provate ad &lt;strong&gt;avviare Android&lt;/strong&gt; (ci vorranno diversi minuti) per testare se avete fatto tutto bene.&lt;/p&gt;
+&lt;p&gt;Così facendo però sarà possibile avviare Android solo da terminale, vediamo come installare OpenIBoot per fare in modo che ad ogni accensione dell&#39;iPod venga chiesto che OS avviare.&lt;/p&gt;
+&lt;p&gt;Rimettete l&#39;iPod in recovery e collegatelo ad Ubuntu, riavviare OpenIBoot con i soliti comandi da terminale&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;cd ~/idroid&lt;/p&gt;
+&lt;p&gt;sudo ./loadibec openiboot.img3&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;ma questa volta avviate la console (disegno centrale).&lt;/p&gt;
+&lt;p&gt;Date i seguenti comandi da terminale:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;sudo ./oibc&lt;/strong&gt; (e vedrete il menù di openiboot sul terminale)&lt;/p&gt;
+&lt;p&gt;scrivete &lt;strong&gt;install &lt;/strong&gt;per avviare l&#39;installazione&lt;/p&gt;
+&lt;p&gt;terminata l&#39;installazione (Done with installation) scrivete &lt;strong&gt;reboot &lt;/strong&gt;per riavviare il dispositivo.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Finito, godetevi il vostro nuovo iPod Touch.&lt;/p&gt;
+&lt;h2&gt;Alcune Note&lt;/h2&gt;
+&lt;p&gt;Essendo una delle prime release è normale che Android non giri alla perfezione ma sinceramente sono rimasto positivamente colpito, pensavo peggio.&lt;/p&gt;
+&lt;p&gt;Inoltre alcune piccole note negative:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;alcune volte l&#39;iPod trova le reti wireless ma non riesce a connettersi&lt;/li&gt;
+&lt;li&gt;l&#39;iPod si surriscalda parecchio mentre è in esecuzione Android&lt;/li&gt;
+&lt;li&gt;il touch è leggermente spostato (ossia rileva leggermente più a sinistra)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vi lascio con una foto&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010582.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1531&quot; title=&quot;android ipod touch&quot; src=&quot;/assets/22052010582-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Sun, 23 May 2010 15:07:50 +0200</pubDate>
+				<link>/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</link>
+				<guid isPermaLink="true">/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</guid>
+			</item>
+		
 	</channel>
 </rss>
