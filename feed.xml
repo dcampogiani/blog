@@ -3,8 +3,8 @@
 	<channel>
 		<title></title>
 		<description>Daniele Campogiani</description>
-		<link>/</link>
-		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		<link>/blog/</link>
+		<atom:link href="/blog/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
 				<title>Applicazioni Ibride e Native #6 – Confronto</title>
@@ -66,8 +66,8 @@
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Inoltre per la scrittura di una applicazione nativa, il produttore della piattaforma fornisce uno stack completo di supporto (dall&#39;interfaccia grafica all&#39;accesso all&#39;hardware) mentre Cordova fornisce solo un set di API per l&#39;accesso al dispositivo e nessun supporto per la realizzazione di UI, e ho dovuto quindi utilizzare un framework esterno.&lt;/span&gt;&lt;/p&gt;
 </description>
 				<pubDate>Fri, 01 Aug 2014 15:16:38 +0200</pubDate>
-				<link>/2014/08/applicazioni-ibride-e-native-6-confronto/</link>
-				<guid isPermaLink="true">/2014/08/applicazioni-ibride-e-native-6-confronto/</guid>
+				<link>/blog/2014/08/applicazioni-ibride-e-native-6-confronto/</link>
+				<guid isPermaLink="true">/blog/2014/08/applicazioni-ibride-e-native-6-confronto/</guid>
 			</item>
 		
 			<item>
@@ -144,8 +144,8 @@
 &lt;/ul&gt;
 </description>
 				<pubDate>Wed, 16 Jul 2014 22:46:39 +0200</pubDate>
-				<link>/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</link>
-				<guid isPermaLink="true">/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</guid>
+				<link>/blog/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</link>
+				<guid isPermaLink="true">/blog/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</guid>
 			</item>
 		
 			<item>
@@ -307,8 +307,8 @@
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Anche yeoman è reperibile con npm.&lt;/span&gt;&lt;/p&gt;
 </description>
 				<pubDate>Wed, 09 Jul 2014 14:00:39 +0200</pubDate>
-				<link>/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</link>
-				<guid isPermaLink="true">/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</guid>
+				<link>/blog/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</link>
+				<guid isPermaLink="true">/blog/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</guid>
 			</item>
 		
 			<item>
@@ -539,8 +539,8 @@
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Le &lt;i&gt;promises&lt;/i&gt; sono profondamente integrate in AngularJS, infatti anche i services built-in come &lt;i&gt;$http&lt;/i&gt; le utilizzano per restituire i risultati ai chiamanti.&lt;/span&gt;&lt;/p&gt;
 </description>
 				<pubDate>Wed, 02 Jul 2014 14:00:58 +0200</pubDate>
-				<link>/2014/07/applicazioni-ibride-e-native-3-angularjs/</link>
-				<guid isPermaLink="true">/2014/07/applicazioni-ibride-e-native-3-angularjs/</guid>
+				<link>/blog/2014/07/applicazioni-ibride-e-native-3-angularjs/</link>
+				<guid isPermaLink="true">/blog/2014/07/applicazioni-ibride-e-native-3-angularjs/</guid>
 			</item>
 		
 			<item>
@@ -665,8 +665,8 @@
 &lt;p lang=&quot;zxx&quot;&gt;
 </description>
 				<pubDate>Wed, 25 Jun 2014 10:30:17 +0200</pubDate>
-				<link>/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</link>
-				<guid isPermaLink="true">/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</guid>
+				<link>/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</link>
+				<guid isPermaLink="true">/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</guid>
 			</item>
 		
 			<item>
@@ -691,8 +691,8 @@
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 </description>
 				<pubDate>Wed, 25 Jun 2014 10:29:41 +0200</pubDate>
-				<link>/2014/06/applicazioni-ibride-e-native-1-introduzione/</link>
-				<guid isPermaLink="true">/2014/06/applicazioni-ibride-e-native-1-introduzione/</guid>
+				<link>/blog/2014/06/applicazioni-ibride-e-native-1-introduzione/</link>
+				<guid isPermaLink="true">/blog/2014/06/applicazioni-ibride-e-native-1-introduzione/</guid>
 			</item>
 		
 			<item>
@@ -706,8 +706,8 @@
 &lt;/ul&gt;
 </description>
 				<pubDate>Thu, 11 Oct 2012 17:41:21 +0200</pubDate>
-				<link>/2012/10/deformazione-professionale/</link>
-				<guid isPermaLink="true">/2012/10/deformazione-professionale/</guid>
+				<link>/blog/2012/10/deformazione-professionale/</link>
+				<guid isPermaLink="true">/blog/2012/10/deformazione-professionale/</guid>
 			</item>
 		
 			<item>
@@ -740,8 +740,8 @@
 &lt;p&gt;Queste sono tutte le cose che mi sono venute in mente, ne hai &lt;strong&gt;altre da suggerirmi?&lt;/strong&gt;&lt;/p&gt;
 </description>
 				<pubDate>Fri, 16 Jul 2010 12:48:23 +0200</pubDate>
-				<link>/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/</link>
-				<guid isPermaLink="true">/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/</guid>
+				<link>/blog/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/</link>
+				<guid isPermaLink="true">/blog/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/</guid>
 			</item>
 		
 			<item>
@@ -752,8 +752,8 @@
 &lt;p&gt;Voi che ne pensate?&lt;/p&gt;
 </description>
 				<pubDate>Mon, 12 Jul 2010 15:38:36 +0200</pubDate>
-				<link>/2010/07/alla-fine-i-buoni-vincono-sempre/</link>
-				<guid isPermaLink="true">/2010/07/alla-fine-i-buoni-vincono-sempre/</guid>
+				<link>/blog/2010/07/alla-fine-i-buoni-vincono-sempre/</link>
+				<guid isPermaLink="true">/blog/2010/07/alla-fine-i-buoni-vincono-sempre/</guid>
 			</item>
 		
 			<item>
@@ -821,8 +821,8 @@
 &lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010582.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1531&quot; title=&quot;android ipod touch&quot; src=&quot;/assets/22052010582-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Sun, 23 May 2010 15:07:50 +0200</pubDate>
-				<link>/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</link>
-				<guid isPermaLink="true">/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</guid>
+				<link>/blog/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</link>
+				<guid isPermaLink="true">/blog/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</guid>
 			</item>
 		
 	</channel>
