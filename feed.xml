@@ -7,6 +7,467 @@
 		<atom:link href="/blog/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Android Functional Validation 4 - Validated</title>
+				<description>&lt;p&gt;This is the last post of the &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;Functional Validation&lt;/a&gt; serie and we are going to use Validated, our last data type.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://arrow-kt.io/docs/datatypes/validated/&quot;&gt;Validated&lt;/a&gt; is like Either with some additional power, and using it we can finally aggregate all errors and give proper feedback to our users.&lt;/p&gt;
+
+&lt;h3 id=&quot;lets-use-validated&quot;&gt;Let’s use Validated&lt;/h3&gt;
+
+&lt;p&gt;Like Either, Validated will contain two possible values, one when the data is invalid, and one when the data is valid. But this time we are going to use different types.&lt;/p&gt;
+
+&lt;p&gt;We will use&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;Validated&amp;lt;Nel&amp;lt;ValidationError&amp;gt;, String&amp;gt;&lt;/code&gt; for email&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;Validated&amp;lt;Nel&amp;lt;ValidationError&amp;gt;, String&amp;gt;&lt;/code&gt; for phone numbers&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;Validated&amp;lt;Nel&amp;lt;ValidationError&amp;gt;, Data&amp;gt;&lt;/code&gt; for the whole form&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ValidationError is a sealed class used to define all possible errors:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/24bc1899fe7c16888f18aa9736a3f249.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;And Nel is a &lt;a href=&quot;http://arrow-kt.io/docs/datatypes/nonemptylist/&quot;&gt;NotEmptyList&lt;/a&gt; that will aggregate errors.&lt;/p&gt;
+
+&lt;p&gt;Validated has two possible values: Valid and Invalid and we will use the as following:&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;mail&quot;&gt;Mail&lt;/h4&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Validated1.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Validated2.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;phone-number&quot;&gt;Phone Number&lt;/h4&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Validated3.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Validated4.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once again we will use kotlin extension methods invoking &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;validMail and validNumber functions we have discussed in the first post&lt;/a&gt; to build our instances.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/4f4221b3f149448feddb47234f0edbf2.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;if the validation function returns true we will wrap the value using the .valid() method, otherwise we will create a Nel with the correct error and wrap it using the .invalid() method.&lt;/p&gt;
+
+&lt;h3 id=&quot;map2-them&quot;&gt;Map2 them&lt;/h3&gt;
+
+&lt;p&gt;By now we are experts of map2, let’s use it&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/b1a3213da53deee236b7d058caae5235.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Using Validated our map2 finally has the desired behaviour and we get all input errors in the list:&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Validated5.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;android-ui&quot;&gt;Android UI&lt;/h3&gt;
+
+&lt;p&gt;In our ViewModel we will use the previously discussed code to update a &lt;code&gt;&amp;lt;Validated&amp;lt;Nel&amp;lt;ValidationError&amp;gt;, Data&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/54610009571b9c6628774d35818842ec.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we clear previous errors and then fold it.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/21671e076f123f981053b0034721d469.js&quot;&gt; &lt;/script&gt;
+
+&lt;h4 id=&quot;fold&quot;&gt;Fold&lt;/h4&gt;
+
+&lt;p&gt;Once again we are using method reference with the following methods:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/0c04304d56f6b27252296297a3490096.js&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/f390917f58a77a145d4cadede8c7ec25.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;In the invalid path we using kotlin &lt;code&gt;when&lt;/code&gt; to find the correct error message and TextInputLayout to notify the user, while in the valid path we just show data to user.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation/pull/4&quot;&gt;You can find here the implementation using Either&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Sat, 10 Feb 2018 16:16:01 -0600</pubDate>
+				<link>/blog/2018/02/android-functional-validation-4-validated/</link>
+				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-4-validated/</guid>
+			</item>
+		
+			<item>
+				<title>Android Functional Validation 3 - Either</title>
+				<description>&lt;p&gt;&lt;a href=&quot;/blog/2018/02/android-functional-validation-2-option/&quot;&gt;In the previous post&lt;/a&gt;  we saw the limitations of using Option and in this post we are going to solve them choosing a different data type.&lt;/p&gt;
+
+&lt;p&gt;The issue with option was that when something goes wrong we have no information about the failure. We just know that our expected value is missing.&lt;/p&gt;
+
+&lt;p&gt;So we need a data type that holds some representation of the result of a failed execution. This data type is called &lt;a href=&quot;http://arrow-kt.io/docs/datatypes/either/&quot;&gt;Either&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Option was like a box that could contain a value, Either instead is a magic box that can contains a value of a type or another value of an other type.&lt;/p&gt;
+
+&lt;p&gt;By conventions those two possible values are called Left and Right, and usually we store the error in the left and the correct value in the Right.&lt;/p&gt;
+
+&lt;h3 id=&quot;lets-use-either&quot;&gt;Let’s use Either&lt;/h3&gt;
+
+&lt;p&gt;Like we did for Option, we are going to use one Either to represent the mail, one Either to represent the phone number and then we will &lt;em&gt;merge&lt;/em&gt; them to obtain the output of our validation&lt;/p&gt;
+
+&lt;p&gt;In our representation we will use Right to wrap valid input and Left to wrap invalid input, so for example:&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Either1.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once again to obtain such behaviour we can use kotlin extension methods invoking &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;validMail and validNumber functions we have discussed in the first post&lt;/a&gt;&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/f802341c805f30a1cdb0e3759dfbd695.js&quot;&gt; &lt;/script&gt;
+
+&lt;h3 id=&quot;map2-them&quot;&gt;Map2 them&lt;/h3&gt;
+
+&lt;p&gt;We have already discusse how map2 works in &lt;a href=&quot;/blog/2018/02/android-functional-validation-2-option/&quot;&gt;the previous post&lt;/a&gt;, so let’s use it:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/8876147299beeff1c5d729dd029b087e.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;The &lt;code&gt;&amp;lt;String&amp;gt;&lt;/code&gt; you are reading in the code is needed because we are using Strings to model errors.
+Using valid mail and phone number the output will be:&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Either2.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;But the improvement compared with Option is that now we can also understand what goes wrong, so if we provide and invalid mail:&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Either3.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;or an invalid phone number:&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Either4.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;We finally have something to show to the user when he’s giving us wrong data!&lt;/p&gt;
+
+&lt;p&gt;Cool, but…&lt;/p&gt;
+
+&lt;h3 id=&quot;either-limits&quot;&gt;Either limits&lt;/h3&gt;
+
+&lt;p&gt;What happens when all inputs are wrong?&lt;/p&gt;
+
+&lt;p&gt;Map2 implementation of Either will give us just the first error, we don’t have (yet) a way to accumulate errors.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Either5.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;android-ui&quot;&gt;Android UI&lt;/h3&gt;
+
+&lt;p&gt;Let’s update our android form to use Either.&lt;/p&gt;
+
+&lt;p&gt;In our ViewModel we will use the previously discussed code to update a &lt;code&gt;LiveData&amp;lt;Either&amp;lt;String, Data&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/a91242dd045dec5c06a51a0303886a1f.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we fold it.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/1eb74b2125073ac8a2f6cfcb5c580df4.js&quot;&gt; &lt;/script&gt;
+
+&lt;h4 id=&quot;fold&quot;&gt;Fold&lt;/h4&gt;
+
+&lt;p&gt;Once again we are using method reference with the following methods:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/68962a658ad3ea54b19b4e34f40bfe62.js&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/38f2be2734328f7dc359b0d9dea4d26f.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;This time we are getting an input in each method, in the first one we are getting a String that represents the error, while in the second we are getting the value of the Right, a Data instance in our implementation.&lt;/p&gt;
+
+&lt;p&gt;But, as previously discussed, if the user will give us multiple invalid inputs we will notify him just the first error, so Either is not a great choice for validation.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;a href=&quot;/blog/2018/02/android-functional-validation-4-validated/&quot;&gt;next post&lt;/a&gt; we will use our last data type that will solve all our problems!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation/pull/2&quot;&gt;You can find here the implementation using Either&lt;/a&gt;&lt;/p&gt;
+
+</description>
+				<pubDate>Fri, 09 Feb 2018 16:16:01 -0600</pubDate>
+				<link>/blog/2018/02/android-functional-validation-3-either/</link>
+				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-3-either/</guid>
+			</item>
+		
+			<item>
+				<title>Android Functional Validation 2 - Option</title>
+				<description>&lt;p&gt;In this implementation of &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;Functional Validation&lt;/a&gt; we are going to use Option.&lt;/p&gt;
+
+&lt;p&gt;Quoting Arrow doc:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Option&lt;a&gt; is a container for an optional value of type A. If the value of type A is present, the Option&lt;a&gt; is an instance of Some&lt;a&gt;, containing the present value of type A. If the value is absent, the Option&lt;a&gt; is the object None.&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So basically is a sealed class with two different implementations:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Some&lt;/li&gt;
+  &lt;li&gt;None&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The main idea is to wrap a value that can be present or absent. Wrapping this value in a container such as Option allows us to use this data without worrying to check each time if the value is present or not. We can just use some &lt;em&gt;standard&lt;/em&gt; functions like map and flatmap to manipulate the content and write less boilerplate code.&lt;/p&gt;
+
+&lt;h3 id=&quot;lets-use-option&quot;&gt;Let’s use Option&lt;/h3&gt;
+
+&lt;p&gt;We are going to use one Option to represent the mail, one Option to represent the phone number and then we will &lt;em&gt;merge&lt;/em&gt; them to obtain the output of our validation&lt;/p&gt;
+
+&lt;p&gt;In our representation will use Some to wrap valid input and None for invalid input, so for example:&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Option1.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;To obtain such behaviour we can use kotlin extension methods invoking &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;validMail and validNumber functions we have discussed in previous post&lt;/a&gt;&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/619ee31c4dd3b84cf17f137688a56a8e.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;At this point we have a Option representation for each field, but what we really want is to validate the whole form!&lt;/p&gt;
+
+&lt;h3 id=&quot;map2-to-the-rescue&quot;&gt;Map2 to the rescue&lt;/h3&gt;
+
+&lt;p&gt;Our goal is to obtain an instance of Data when the form is valid:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/2fb34a1b6404190612572d47a21fe095.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;but what we achieved so far are two Option.&lt;/p&gt;
+
+&lt;p&gt;Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map2 and we can use to build our &lt;em&gt;Data&lt;/em&gt; instance&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/ebd2c82d44224c317dfdc9be45fc10c7.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map2 to merge them.&lt;/p&gt;
+
+&lt;p&gt;With map2 we pass as last parameter a lambda that takes as input a Pair with the values of the two Options.
+So in our case the lambda receives as input a Pair with two strings, the mail and the phone number, and returns a Data instance. (it.a is the first value of the pair, and it.b is the second value of the pair).&lt;/p&gt;
+
+&lt;p&gt;If we take a look at the return type of the validateData we discover that we are returning a Option of Data and not a Data directly, but we are not creating an instance of Option&lt;Data&gt; anywhere, so it must be the map2 method that wraps our result in a Option!&lt;/Data&gt;&lt;/p&gt;
+
+&lt;p&gt;The real power of map2 method is that it allows us to write just the happy path in the lambda we pass and it will handle all other scenarios for us. If all arguments are Some (and not None) it will execute our lambda and wrap the result in a Option.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Option2.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cool, but…&lt;/p&gt;
+
+&lt;h3 id=&quot;option-limits&quot;&gt;Option limits&lt;/h3&gt;
+
+&lt;p&gt;What happens when at least one input is None?&lt;/p&gt;
+
+&lt;p&gt;In this case our happy path lambda will be ignored and None is returned.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Option3.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;and exact same result for&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/blog/assets/Option4.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since we are getting None in both cases we can’t know which input is wrong!&lt;/p&gt;
+
+&lt;h3 id=&quot;android-ui&quot;&gt;Android UI&lt;/h3&gt;
+
+&lt;p&gt;Let’s use this code to build an android form.&lt;/p&gt;
+
+&lt;p&gt;I’m using &lt;a href=&quot;https://developer.android.com/topic/libraries/architecture/index.html&quot;&gt;Android Architecture Components&lt;/a&gt;, so the glue code will be in a ViewModel, while the activity will do just UI rendering.&lt;/p&gt;
+
+&lt;p&gt;In our ViewModel we will use the previously discussed code to update a &lt;code&gt;LiveData&amp;lt;Option&amp;lt;Data&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/c511f06239b7a6d53a4cf27aced5a4db.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we fold it.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/2eb139a19b3307044d45c9fd24da1c34.js&quot;&gt; &lt;/script&gt;
+
+&lt;h4 id=&quot;what-is-fold&quot;&gt;What is Fold?&lt;/h4&gt;
+
+&lt;p&gt;Fold is a method defined on Option that takes to functions, the first one will be executed if the Option is empty, while the second one if the Option contains a value.&lt;/p&gt;
+
+&lt;p&gt;In our case we are using method reference with the following methods:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/a0ece7a02d6a2093ae0c08efbd814d7b.js&quot;&gt; &lt;/script&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/4230debf17ef25689c0d6f0cb96512c9.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;As you can see in the second method we receive as input the value of the Option, while in the first method we don’t get any input. So, as previously discussed, using Option we cannot notify our user which field is wrong.&lt;/p&gt;
+
+&lt;p&gt;So, Option is not a great choice for validation, but don’t worry we will fix this issue in the &lt;a href=&quot;/blog/2018/02/android-functional-validation-3-either/&quot;&gt;next post&lt;/a&gt; using a different data type.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation/pull/1&quot;&gt;You can find here the implementation using Option&lt;/a&gt;&lt;/p&gt;
+
+</description>
+				<pubDate>Thu, 08 Feb 2018 16:16:01 -0600</pubDate>
+				<link>/blog/2018/02/android-functional-validation-2-option/</link>
+				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-2-option/</guid>
+			</item>
+		
+			<item>
+				<title>Android Functional Validation 1 - Introduction</title>
+				<description>&lt;p&gt;This year I’ve been at &lt;a href=&quot;http://scaladays.org/archive/copenhagen2017.html&quot;&gt;Scala Days 2017&lt;/a&gt; and because I’m a functional programer noob I attended all beginners’s talks.&lt;/p&gt;
+
+&lt;p&gt;One talk that really got my attention and gave me the the intuition of the power of functional programming was &lt;a href=&quot;http://scaladays.org/archive/copenhagen2017.html#!#schedulePopupExtras-8053&quot;&gt;Easy and Efficient Data Validation with Cats&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href=&quot;https://www.youtube.com/watch?v=P8nGAo3Jp-Q&quot;&gt;her talk&lt;/a&gt; Daniela gave an example of how functional abstractions can help us developer, even if we don’t know (yet) what a Monad is.&lt;/p&gt;
+
+&lt;p&gt;Some months laters I’ve discovered &lt;a href=&quot;http://arrow-kt.io/&quot;&gt;Arrow&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Functional datatypes &amp;amp; abstractions for Kotlin&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;and I started to study it, to grok some functional concepts and play with Android.&lt;/p&gt;
+
+&lt;h3 id=&quot;ok-cool-but-what-has-to-do-all-of-this-with-android&quot;&gt;Ok cool, but what has to do all of this with Android?&lt;/h3&gt;
+
+&lt;p&gt;In this serie of posts I’d like to replicate Daniela’s talk using kotlin and Android.&lt;/p&gt;
+
+&lt;p&gt;We are going to build a simple form with two inputs:
+	- Mail
+	- Phone Number
+and validate it.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation/blob/master/demo/validatedValidationError.gif?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;We are going to achieve this using different data types, improving the current solution in each step choosing a new data type.&lt;/p&gt;
+
+&lt;h3 id=&quot;wait-what-is-a-data-type&quot;&gt;Wait, what is a data type?&lt;/h3&gt;
+&lt;p&gt;Quoting the (excelent) arrow documentation, a data type is:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;A datatype is a class that encapsulates one reusable coding pattern. These solutions have a canonical implementation that is generalised for all possible uses.
+Some common patterns expressed as datatypes are absence handling with &lt;a href=&quot;http://arrow-kt.io/docs/datatypes/option/&quot;&gt;Option&lt;/a&gt;, branching in code with &lt;a href=&quot;http://arrow-kt.io/docs/datatypes/either/&quot;&gt;Either&lt;/a&gt;, catching exceptions with &lt;a href=&quot;http://arrow-kt.io/docs/datatypes/try/&quot;&gt;Try&lt;/a&gt;, or interacting with the platform the program runs in using &lt;a href=&quot;http://arrow-kt.io/docs/effects/io/&quot;&gt;IO&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Don’t worry if you don’t understand the definition right now, we are going to use three of them we will discuss them.&lt;/p&gt;
+
+&lt;h3 id=&quot;demo-application-structure&quot;&gt;Demo application structure&lt;/h3&gt;
+
+&lt;p&gt;We are going to use one activity and one viewmodel for each data type, sharing the same xml view with two different TextInputLayout.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/da0665c4271cf4e2243a40aab6ee6fe6.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;The input of our validation will be a data class with two strings.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/2fb34a1b6404190612572d47a21fe095.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;To validate mail and phone number we are going to use two pure functions in a kotlin file.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/5101541b8415d058d05b56f088bd6113.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Enough for first post, we can start to see some real code in following posts:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/2018/02/android-functional-validation-2-option/&quot;&gt;Option&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/2018/02/android-functional-validation-3-either/&quot;&gt;Either&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/2018/02/android-functional-validation-4-validated/&quot;&gt;Validated&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The source code for this article is available &lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+				<pubDate>Wed, 07 Feb 2018 16:16:01 -0600</pubDate>
+				<link>/blog/2018/02/android-functional-validation-1-intro/</link>
+				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-1-intro/</guid>
+			</item>
+		
+			<item>
 				<title>Applicazioni Ibride e Native #6 – Confronto</title>
 				<description>&lt;h2&gt;Dimensione Apk&lt;/h2&gt;
 &lt;h3&gt;Applicazione Ibrida&lt;/h3&gt;
@@ -693,136 +1154,6 @@
 				<pubDate>Wed, 25 Jun 2014 10:29:41 +0200</pubDate>
 				<link>/blog/2014/06/applicazioni-ibride-e-native-1-introduzione/</link>
 				<guid isPermaLink="true">/blog/2014/06/applicazioni-ibride-e-native-1-introduzione/</guid>
-			</item>
-		
-			<item>
-				<title>Deformazione professionale</title>
-				<description>&lt;p&gt;Penso di star male.&lt;/p&gt;
-&lt;p&gt;Nel momento in cui ho realizzato di dover scrivere la tesi le mie prime domande sono state:&lt;/p&gt;
-&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Esiste un linguaggio a markup che mi permetta per ora di concentrarmi solo sul contenuto e una volta terminato di pensare alla rappresentazione grafica?&lt;/li&gt;
-&lt;li&gt;Esiste un sistema di gestione alla git per documenti?&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-				<pubDate>Thu, 11 Oct 2012 17:41:21 +0200</pubDate>
-				<link>/blog/2012/10/deformazione-professionale/</link>
-				<guid isPermaLink="true">/blog/2012/10/deformazione-professionale/</guid>
-			</item>
-		
-			<item>
-				<title>Cosa ho imparato da un anno di Ingegneria Informatica</title>
-				<description>&lt;p&gt;Dopo diverso tempo torno su queste pagine per un'articolo dal &lt;strong&gt;taglio personale ed ironico&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Una semplice lista, nella quale scrivere tutto ciò che ho imparato da questo primo anno di Ingegneria Informatica e &lt;strong&gt;piccoli consigli&lt;/strong&gt; per quei coraggiosi che vorranno intraprendere questo cammino.&lt;/p&gt;
-&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
-&lt;h2&gt;Bene cominciamo:&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Qualche lezione si può anche saltare&lt;/li&gt;
-&lt;li&gt;A giugno ti accorgi che &quot;&lt;em&gt;Qualche lezione si può anche saltare&quot;&lt;/em&gt; è una gran &lt;strong&gt;boiata&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Anche se ancora non lo sai deriviamo tutti da Object&lt;/li&gt;
-&lt;li&gt;Dio programmava in Java&lt;/li&gt;
-&lt;li&gt;La quantità (e qualità) di studio impiegato a preparare l'esame di Geometria è del tutto ininfluente al fine del voto. Poco prima dell'orale prendi un bicchiere di un buon vino rosso e tutto andrà bene&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;Quando durante un esercizio di Analisi capisci di trovarti in R﻿﻿^2 farai i salti di gioia.&lt;/li&gt;
-&lt;li&gt;Ci sarà sempre qualcuno più bravo di te&lt;/li&gt;
-&lt;li&gt;Inevitabilmente ci sarà sempre anche qualcuno più scarso di te :D&lt;/li&gt;
-&lt;li&gt;Qualche amico lo perderai per strada, insisti per farlo rimanere ma non troppo, sono scelte di vita personali (grazie &lt;strong&gt;Chicco&lt;/strong&gt;).&lt;/li&gt;
-&lt;li&gt;I tuoi professori di Informatica odieranno il linguaggio C&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;Se prima utilizzavi Windows passerai ad Mac o Linux&lt;/li&gt;
-&lt;li&gt;L'appello che decidi di dare sarà sempre il più difficile della sessione&lt;/li&gt;
-&lt;li&gt;Dopo la prima settimana il fatto che i tuoi compagni di corso siano per il 99% di sesso maschile non ti stupirà più&lt;/li&gt;
-&lt;li&gt;L'andamento della frequenza delle lezioni da parte degli studenti segue il grafico di e^-x&lt;/li&gt;
-&lt;li&gt;Write once run anywhere&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Queste sono tutte le cose che mi sono venute in mente, ne hai &lt;strong&gt;altre da suggerirmi?&lt;/strong&gt;&lt;/p&gt;
-</description>
-				<pubDate>Fri, 16 Jul 2010 12:48:23 +0200</pubDate>
-				<link>/blog/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/</link>
-				<guid isPermaLink="true">/blog/2010/07/cosa-ho-imparato-da-un-anno-di-ingegneria-informatica/</guid>
-			</item>
-		
-			<item>
-				<title>Alla fine i buoni vincono sempre</title>
-				<description>&lt;p&gt;&lt;a href=&quot;/blog/assets/login-riccardo-luna.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-full wp-image-1568&quot; title=&quot;login-riccardo-luna&quot; src=&quot;/assets/login-riccardo-luna.jpg&quot; alt=&quot;&quot; width=&quot;466&quot; height=&quot;689&quot; /&gt;&lt;/a&gt;Oggi ho comprato il mio primo numero cartaceo di Wired, prima avevo solo letto qualcosa online e due ore  dopo ero sul loro sito a farmi l'abbonamento biennale.&lt;/p&gt;
-&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
-&lt;p&gt;Quello che vedete sopra è l'editoriale di Luglio, belle parole che condivido totalmente. Qualcun'altro invece la &lt;a href=&quot;http://blog.tagliaerbe.com/2010/07/login-riccardo-luna-wired.html&quot;&gt;pensa diversamente&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Voi che ne pensate?&lt;/p&gt;
-</description>
-				<pubDate>Mon, 12 Jul 2010 15:38:36 +0200</pubDate>
-				<link>/blog/2010/07/alla-fine-i-buoni-vincono-sempre/</link>
-				<guid isPermaLink="true">/blog/2010/07/alla-fine-i-buoni-vincono-sempre/</guid>
-			</item>
-		
-			<item>
-				<title>Installare Android su iPod Touch 1G con iDroid</title>
-				<description>&lt;p&gt;&lt;a href=&quot;http://www.danielecampogiani.com/wp-content/uploads/2010/05/22052010580.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1524&quot; title=&quot;iDroid iPod Touch&quot; src=&quot;/blog/assets/22052010580-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Mi ha sempre incuriosito Android, l'OS made by Google per dispositivi mobile, e recentemente un gruppo di programmatori ha effettuato il &lt;strong&gt;porting di Android&lt;/strong&gt; per iPhone.&lt;/p&gt;
-&lt;p&gt;&lt;!--more--&gt;Ho quindi cercato di installarlo anche sul mio iPod Touch 1G (prossimo alla pensione) anche se tuttora non esiste una release ufficiale per questo dispositivo.&lt;/p&gt;
-&lt;p&gt;Ci sono riuscito ed ora ho un iPod touch con&lt;strong&gt; dual boot tra iPhone OS e Android&lt;/strong&gt;, ecco come ho fatto:&lt;/p&gt;
-&lt;h2&gt;Occorrente&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;iPod Touch Jailbroken con firmware 3.1.2 (il jailbreak con Spirit non funziona, usate BlackRain)&lt;/li&gt;
-&lt;li&gt;Ubuntu (io l'ho virtualizzato sul mio macbook)&lt;/li&gt;
-&lt;li&gt;Release di iDroid&lt;/li&gt;
-&lt;li&gt;Pazienza&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Bene Iniziamo&lt;/h2&gt;
-&lt;p&gt;Come primo step dobbiamo scaricare la release di iDorid,che trovate nel &lt;strong&gt;link sottostante&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.mediafire.com/?iyzmjgtijmq&quot;&gt;iDroid per iPod Touch 1G&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Ottenere i Driver per Wi-Fi e Touchscreen&lt;/h2&gt;
-&lt;p&gt;Per questione di licenza non è possibile scaricare i driver per  il touchscreen quindi dobbiamo ottenerli estraendoli dal nostro iPod.&lt;/p&gt;
-&lt;p&gt;Da &lt;a href=&quot;http://extranet.marvell.com/drivers/driverDisplay.do?driverId=203&quot;&gt;qui&lt;/a&gt; è possibile invece scaricare i driver per il wi-fi, estraete il file &lt;strong&gt;SD-8686-LINUX26-SYSKT-9.70.3.p24-26409.P45-GPL.zip&lt;/strong&gt; e ne otterrete un altro con estensione con estensione .tar.&lt;/p&gt;
-&lt;p&gt;Cliccate ancora una volta sul file .tar appena ottenuto ed estraete i due file FwImage/helper_sd.bin e FwImage/sd8686.bin, copiate questi file in una nuova cartella sul vostro desktop che avrete precedentemente chiamato firmware.&lt;/p&gt;
-&lt;p&gt;Rinominate helper_sd.bin in sd8686_helper.bin. Avremo così ottenuto il Firmware per la WLAN, adesso passiamo al Touchscreen.&lt;/p&gt;
-&lt;p&gt;Collegate il vostro iPod al mac ed avviate &lt;a href=&quot;http://www.idroidproject.org/wiki/Dripwn#Usage_.282.x.29&quot;&gt;Dripwn&lt;/a&gt; un programma che&lt;strong&gt; estrarrà i driver per il touchscreen&lt;/strong&gt; del vostro iPod. Salvate il file così ottenuto sempre nella stessa cartella (firmware).&lt;/p&gt;
-&lt;h2&gt;Caricare i file su iPod&lt;/h2&gt;
-&lt;p&gt;Ora abbiamo tutti i file necessari, dobbiamo caricarli in SSH dentro il nostro iPod all'indirizzo&lt;strong&gt; private/var.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Per chiarezza i file sono:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;android.img.gz&lt;/li&gt;
-&lt;li&gt;cache.img&lt;/li&gt;
-&lt;li&gt;ramdisk.img&lt;/li&gt;
-&lt;li&gt;system.img&lt;/li&gt;
-&lt;li&gt;userdata.img&lt;/li&gt;
-&lt;li&gt;zlmage&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Ora create una nuova cartella dal nome &lt;strong&gt;firmware &lt;/strong&gt;sempre in &lt;strong&gt;private/var &lt;/strong&gt;e copiateci dentro tutti i file presenti nella vostra cartella firmware sul desktop.&lt;/p&gt;
-&lt;h2&gt;Installare OpeniBoot&lt;/h2&gt;
-&lt;p&gt;Create una nuova cartella di nome idroid all'interno della cartella principale di Ubuntu e copiateci dentro i file che trovate nella cartella openiboot presente nella release che avete scaricato all'inizio.&lt;/p&gt;
-&lt;p&gt;A me non ha funzionato il file openiboot.img3 già presente quindi vi consiglio di scaricare &lt;a href=&quot;http://files.neonkoala.co.uk/idroid/IPT1G-46ebc21-openiboot.img3&quot;&gt;quest'altra versione&lt;/a&gt; rinominatela in &lt;strong&gt;openiboot.img3&lt;/strong&gt; e sovrascrivere il file precedente.&lt;/p&gt;
-&lt;p&gt;Ora mettere &lt;strong&gt;in recovery mode&lt;/strong&gt; il vostro iPod e collegatelo ad Ubuntu.&lt;/p&gt;
-&lt;p&gt;Scaricate la libreria &lt;strong&gt;libusb-0.1.4&lt;/strong&gt;, aprite il terminale e date i seguenti comandi:&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;cd ~/idroid&lt;/p&gt;
-&lt;p&gt;sudo ./loadibec openiboot.img3&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;Così facendo si avvierà OpenIBoot sul vostro iPod e potete scegliere (scorrendo col tasto power) che OS avviare (selezionandolo con tasto Home).&lt;/p&gt;
-&lt;p&gt;Provate ad &lt;strong&gt;avviare Android&lt;/strong&gt; (ci vorranno diversi minuti) per testare se avete fatto tutto bene.&lt;/p&gt;
-&lt;p&gt;Così facendo però sarà possibile avviare Android solo da terminale, vediamo come installare OpenIBoot per fare in modo che ad ogni accensione dell'iPod venga chiesto che OS avviare.&lt;/p&gt;
-&lt;p&gt;Rimettete l'iPod in recovery e collegatelo ad Ubuntu, riavviare OpenIBoot con i soliti comandi da terminale&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;cd ~/idroid&lt;/p&gt;
-&lt;p&gt;sudo ./loadibec openiboot.img3&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;ma questa volta avviate la console (disegno centrale).&lt;/p&gt;
-&lt;p&gt;Date i seguenti comandi da terminale:&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;sudo ./oibc&lt;/strong&gt; (e vedrete il menù di openiboot sul terminale)&lt;/p&gt;
-&lt;p&gt;scrivete &lt;strong&gt;install &lt;/strong&gt;per avviare l'installazione&lt;/p&gt;
-&lt;p&gt;terminata l'installazione (Done with installation) scrivete &lt;strong&gt;reboot &lt;/strong&gt;per riavviare il dispositivo.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;Finito, godetevi il vostro nuovo iPod Touch.&lt;/p&gt;
-&lt;h2&gt;Alcune Note&lt;/h2&gt;
-&lt;p&gt;Essendo una delle prime release è normale che Android non giri alla perfezione ma sinceramente sono rimasto positivamente colpito, pensavo peggio.&lt;/p&gt;
-&lt;p&gt;Inoltre alcune piccole note negative:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;alcune volte l'iPod trova le reti wireless ma non riesce a connettersi&lt;/li&gt;
-&lt;li&gt;l'iPod si surriscalda parecchio mentre è in esecuzione Android&lt;/li&gt;
-&lt;li&gt;il touch è leggermente spostato (ossia rileva leggermente più a sinistra)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Vi lascio con una foto&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;/blog/assets/2010/05/22052010582.jpg&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-1531&quot; title=&quot;android ipod touch&quot; src=&quot;/assets/22052010582-300x225.jpg&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-</description>
-				<pubDate>Sun, 23 May 2010 15:07:50 +0200</pubDate>
-				<link>/blog/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</link>
-				<guid isPermaLink="true">/blog/2010/05/installare-android-su-ipod-touch-1g-con-idroid/</guid>
 			</item>
 		
 	</channel>

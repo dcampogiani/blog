@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Android Functional Validation 2 - Option</title>
+	
+	<meta name="author" content="Daniele Campogiani">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/blog/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/blog/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/blog/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/blog/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<!-- Update these with your own images
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	-->
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/blog/feed.xml">
+
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-113556465-1', 'auto');
+	ga('send', 'pageview', { 'page': location.pathname + location.search + location.hash});
+	ga('set', 'anonymizeIp', false);
+    </script>
+    <!-- End Google Analytics -->
+    </head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/dcampogiani">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://twitter.com/dcampogiani">
+				<i class="fa fa-twitter"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="mailto:daniele.campogiani@gmail.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/blog/">
+				<img src="/blog/assets/avatar.jpg" class="img-circle" />
+				Daniele Campogiani
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/blog/">Blog</a></li>
+				<li><a href="http://dcampogiani.github.io/">Website</a></li>
+				<li><a href="/blog/categories">Categories</a></li>
+				<li><a href="/blog/tags">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/blog/"><i class="fa fa-book"></i>Blog</a></li>
+			<li><a href="http://dcampogiani.github.io/"><i class="fa fa-home"></i>Website</a></li>
+			<li><a href="/blog/categories"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/blog/tags"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3 sidebar hidden-xs">
+		<! -- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="/blog/">
+		<img src="/blog/assets/avatar.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/blog/">Daniele Campogiani</a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	Software Engineer
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		<li>
+			<a class="btn btn-default btn-sm" href="http://dcampogiani.github.io/">
+				<i class="fa fa-home fa-lg"></i>
+			</a>
+		</li>
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/dcampogiani">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://twitter.com/dcampogiani">
+				<i class="fa fa-twitter fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="mailto:daniele.campogiani@gmail.com">
+				<i class="fa fa-envelope fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline">
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/pub/danielecampogiani">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="/blog/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+<! -- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>Android Functional Validation 2 - Option </h1>
+</div>
+	
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   February 
+	   8th,
+	   
+	   2018
+	 </span>
+	  <div class="article_body">
+	  <p>In this implementation of <a href="/blog/2018/02/android-functional-validation-1-intro/">Functional Validation</a> we are going to use Option.</p>
+
+<p>Quoting Arrow doc:</p>
+<blockquote>
+  <p>Option<a> is a container for an optional value of type A. If the value of type A is present, the Option<a> is an instance of Some<a>, containing the present value of type A. If the value is absent, the Option<a> is the object None.</a></a></a></a></p>
+</blockquote>
+
+<p>So basically is a sealed class with two different implementations:</p>
+<ul>
+  <li>Some</li>
+  <li>None</li>
+</ul>
+
+<p>The main idea is to wrap a value that can be present or absent. Wrapping this value in a container such as Option allows us to use this data without worrying to check each time if the value is present or not. We can just use some <em>standard</em> functions like map and flatmap to manipulate the content and write less boilerplate code.</p>
+
+<h3 id="lets-use-option">Let’s use Option</h3>
+
+<p>We are going to use one Option to represent the mail, one Option to represent the phone number and then we will <em>merge</em> them to obtain the output of our validation</p>
+
+<p>In our representation will use Some to wrap valid input and None for invalid input, so for example:</p>
+
+<p><br /></p>
+
+<div style="text-align:center"><img src="/blog/assets/Option1.png" />
+</div>
+
+<p><br /></p>
+
+<p>To obtain such behaviour we can use kotlin extension methods invoking <a href="/blog/2018/02/android-functional-validation-1-intro/">validMail and validNumber functions we have discussed in previous post</a></p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/619ee31c4dd3b84cf17f137688a56a8e.js"> </script>
+
+<p>At this point we have a Option representation for each field, but what we really want is to validate the whole form!</p>
+
+<h3 id="map2-to-the-rescue">Map2 to the rescue</h3>
+
+<p>Our goal is to obtain an instance of Data when the form is valid:</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/2fb34a1b6404190612572d47a21fe095.js"> </script>
+
+<p>but what we achieved so far are two Option.</p>
+
+<p>Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map2 and we can use to build our <em>Data</em> instance</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/ebd2c82d44224c317dfdc9be45fc10c7.js"> </script>
+
+<p>In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map2 to merge them.</p>
+
+<p>With map2 we pass as last parameter a lambda that takes as input a Pair with the values of the two Options.
+So in our case the lambda receives as input a Pair with two strings, the mail and the phone number, and returns a Data instance. (it.a is the first value of the pair, and it.b is the second value of the pair).</p>
+
+<p>If we take a look at the return type of the validateData we discover that we are returning a Option of Data and not a Data directly, but we are not creating an instance of Option<Data> anywhere, so it must be the map2 method that wraps our result in a Option!</Data></p>
+
+<p>The real power of map2 method is that it allows us to write just the happy path in the lambda we pass and it will handle all other scenarios for us. If all arguments are Some (and not None) it will execute our lambda and wrap the result in a Option.</p>
+
+<p><br /></p>
+
+<div style="text-align:center"><img src="/blog/assets/Option2.png" />
+</div>
+
+<p><br /></p>
+
+<p>Cool, but…</p>
+
+<h3 id="option-limits">Option limits</h3>
+
+<p>What happens when at least one input is None?</p>
+
+<p>In this case our happy path lambda will be ignored and None is returned.</p>
+
+<p><br /></p>
+
+<div style="text-align:center"><img src="/blog/assets/Option3.png" />
+</div>
+
+<p><br /></p>
+
+<p>and exact same result for</p>
+
+<p><br /></p>
+
+<div style="text-align:center"><img src="/blog/assets/Option4.png" />
+</div>
+
+<p><br /></p>
+
+<p>Since we are getting None in both cases we can’t know which input is wrong!</p>
+
+<h3 id="android-ui">Android UI</h3>
+
+<p>Let’s use this code to build an android form.</p>
+
+<p>I’m using <a href="https://developer.android.com/topic/libraries/architecture/index.html">Android Architecture Components</a>, so the glue code will be in a ViewModel, while the activity will do just UI rendering.</p>
+
+<p>In our ViewModel we will use the previously discussed code to update a <code>LiveData&lt;Option&lt;Data&gt;&gt;</code></p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/c511f06239b7a6d53a4cf27aced5a4db.js"> </script>
+
+<p>In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we fold it.</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/2eb139a19b3307044d45c9fd24da1c34.js"> </script>
+
+<h4 id="what-is-fold">What is Fold?</h4>
+
+<p>Fold is a method defined on Option that takes to functions, the first one will be executed if the Option is empty, while the second one if the Option contains a value.</p>
+
+<p>In our case we are using method reference with the following methods:</p>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/a0ece7a02d6a2093ae0c08efbd814d7b.js"> </script>
+
+<noscript><pre>400: Invalid request
+</pre></noscript>
+<script src="https://gist.github.com/4230debf17ef25689c0d6f0cb96512c9.js"> </script>
+
+<p>As you can see in the second method we receive as input the value of the Option, while in the first method we don’t get any input. So, as previously discussed, using Option we cannot notify our user which field is wrong.</p>
+
+<p>So, Option is not a great choice for validation, but don’t worry we will fix this issue in the <a href="/blog/2018/02/android-functional-validation-3-either/">next post</a> using a different data type.</p>
+
+<p><a href="https://github.com/dcampogiani/AndroidFunctionalValidation/pull/1">You can find here the implementation using Option</a></p>
+
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			 
+				<li><a href="/categories#android-ref">
+					android <span>(4)</span>
+					,
+				</a></li>
+			 
+				<li><a href="/categories#functional-ref">
+					functional <span>(4)</span>
+					,
+				</a></li>
+			 
+				<li><a href="/categories#validation-ref">
+					validation <span>(4)</span>
+					,
+				</a></li>
+			 
+				<li><a href="/categories#kotlin-ref">
+					kotlin <span>(4)</span>
+					,
+				</a></li>
+			 
+				<li><a href="/categories#arrow-ref">
+					arrow <span>(4)</span>
+					,
+				</a></li>
+			 
+				<li><a href="/categories#option-ref">
+					option <span>(1)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		  
+
+		  
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=Android Functional Validation 2 - Option&via=dcampogiani"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="/blog/assets/avatar.jpg" class="img-rounded author-image" />
+        <h4 class="section-title author-name">Daniele Campogiani</h4>
+        <p class="author-bio">Software Engineer</p>
+      </section>
+    </div>
+
+	<hr>
+	
+	    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'danielecampogiani'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/2018/02/android-functional-validation-1-intro/" title="Android Functional Validation 1 - Introduction">&larr; Previous</a></li>
+		  
+		  
+		  <li class="next"><a href="/2018/02/android-functional-validation-3-either/" title="Android Functional Validation 3 - Either">Next &rarr;</a></li>
+		  
+		</ul>
+
+		<hr>
+	</div>
+	
+	<div class="col-sm-2 sidebar-2">
+	
+	</div>
+</article>
+<div class="clearfix"></div>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				&copy; 2018 Daniele Campogiani with Jekyll. Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/blog/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/blog/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/blog/assets/js/app.js"></script>
+</body>
+</html>
+
