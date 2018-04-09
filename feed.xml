@@ -73,15 +73,15 @@
 
 &lt;p&gt;if the validation function returns true we will wrap the value using the .valid() method, otherwise we will create a Nel with the correct error and wrap it using the .invalid() method.&lt;/p&gt;
 
-&lt;h3 id=&quot;map2-them&quot;&gt;Map2 them&lt;/h3&gt;
+&lt;h3 id=&quot;map-them&quot;&gt;Map them&lt;/h3&gt;
 
-&lt;p&gt;By now we are experts of map2, let’s use it&lt;/p&gt;
+&lt;p&gt;By now we are experts of map, let’s use it&lt;/p&gt;
 
 &lt;noscript&gt;&lt;pre&gt;400: Invalid request
 &lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/b1a3213da53deee236b7d058caae5235.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;Using Validated our map2 finally has the desired behaviour and we get all input errors in the list:&lt;/p&gt;
+&lt;p&gt;Using Validated our map finally has the desired behaviour and we get all input errors in the list:&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -156,9 +156,9 @@
 &lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/f802341c805f30a1cdb0e3759dfbd695.js&quot;&gt; &lt;/script&gt;
 
-&lt;h3 id=&quot;map2-them&quot;&gt;Map2 them&lt;/h3&gt;
+&lt;h3 id=&quot;map-them&quot;&gt;Map them&lt;/h3&gt;
 
-&lt;p&gt;We have already discusse how map2 works in &lt;a href=&quot;/blog/2018/02/android-functional-validation-2-option/&quot;&gt;the previous post&lt;/a&gt;, so let’s use it:&lt;/p&gt;
+&lt;p&gt;We have already discusse how map works in &lt;a href=&quot;/blog/2018/02/android-functional-validation-2-option/&quot;&gt;the previous post&lt;/a&gt;, so let’s use it:&lt;/p&gt;
 
 &lt;noscript&gt;&lt;pre&gt;400: Invalid request
 &lt;/pre&gt;&lt;/noscript&gt;
@@ -200,7 +200,7 @@ Using valid mail and phone number the output will be:&lt;/p&gt;
 
 &lt;p&gt;What happens when all inputs are wrong?&lt;/p&gt;
 
-&lt;p&gt;Map2 implementation of Either will give us just the first error, we don’t have (yet) a way to accumulate errors.&lt;/p&gt;
+&lt;p&gt;Map implementation of Either will give us just the first error, we don’t have (yet) a way to accumulate errors.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -289,7 +289,7 @@ Using valid mail and phone number the output will be:&lt;/p&gt;
 
 &lt;p&gt;At this point we have a Option representation for each field, but what we really want is to validate the whole form!&lt;/p&gt;
 
-&lt;h3 id=&quot;map2-to-the-rescue&quot;&gt;Map2 to the rescue&lt;/h3&gt;
+&lt;h3 id=&quot;map-to-the-rescue&quot;&gt;Map to the rescue&lt;/h3&gt;
 
 &lt;p&gt;Our goal is to obtain an instance of Data when the form is valid:&lt;/p&gt;
 
@@ -299,20 +299,20 @@ Using valid mail and phone number the output will be:&lt;/p&gt;
 
 &lt;p&gt;but what we achieved so far are two Option.&lt;/p&gt;
 
-&lt;p&gt;Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map2 and we can use to build our &lt;em&gt;Data&lt;/em&gt; instance&lt;/p&gt;
+&lt;p&gt;Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map and we can use to build our &lt;em&gt;Data&lt;/em&gt; instance&lt;/p&gt;
 
 &lt;noscript&gt;&lt;pre&gt;400: Invalid request
 &lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/ebd2c82d44224c317dfdc9be45fc10c7.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map2 to merge them.&lt;/p&gt;
+&lt;p&gt;In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map to merge them.&lt;/p&gt;
 
-&lt;p&gt;With map2 we pass as last parameter a lambda that takes as input a Pair with the values of the two Options.
+&lt;p&gt;With map we pass as last parameter a lambda that takes as input a Pair with the values of the two Options.
 So in our case the lambda receives as input a Pair with two strings, the mail and the phone number, and returns a Data instance. (it.a is the first value of the pair, and it.b is the second value of the pair).&lt;/p&gt;
 
-&lt;p&gt;If we take a look at the return type of the validateData we discover that we are returning a Option of Data and not a Data directly, but we are not creating an instance of Option&lt;Data&gt; anywhere, so it must be the map2 method that wraps our result in a Option!&lt;/Data&gt;&lt;/p&gt;
+&lt;p&gt;If we take a look at the return type of the validateData we discover that we are returning a Option of Data and not a Data directly, but we are not creating an instance of Option&lt;Data&gt; anywhere, so it must be the map method that wraps our result in a Option!&lt;/Data&gt;&lt;/p&gt;
 
-&lt;p&gt;The real power of map2 method is that it allows us to write just the happy path in the lambda we pass and it will handle all other scenarios for us. If all arguments are Some (and not None) it will execute our lambda and wrap the result in a Option.&lt;/p&gt;
+&lt;p&gt;The real power of map method is that it allows us to write just the happy path in the lambda we pass and it will handle all other scenarios for us. If all arguments are Some (and not None) it will execute our lambda and wrap the result in a Option.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 

@@ -219,7 +219,7 @@
 
 <p>At this point we have a Option representation for each field, but what we really want is to validate the whole form!</p>
 
-<h3 id="map2-to-the-rescue">Map2 to the rescue</h3>
+<h3 id="map-to-the-rescue">Map to the rescue</h3>
 
 <p>Our goal is to obtain an instance of Data when the form is valid:</p>
 
@@ -229,20 +229,20 @@
 
 <p>but what we achieved so far are two Option.</p>
 
-<p>Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map2 and we can use to build our <em>Data</em> instance</p>
+<p>Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map and we can use to build our <em>Data</em> instance</p>
 
 <noscript><pre>400: Invalid request
 </pre></noscript>
 <script src="https://gist.github.com/ebd2c82d44224c317dfdc9be45fc10c7.js"> </script>
 
-<p>In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map2 to merge them.</p>
+<p>In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map to merge them.</p>
 
-<p>With map2 we pass as last parameter a lambda that takes as input a Pair with the values of the two Options.
+<p>With map we pass as last parameter a lambda that takes as input a Pair with the values of the two Options.
 So in our case the lambda receives as input a Pair with two strings, the mail and the phone number, and returns a Data instance. (it.a is the first value of the pair, and it.b is the second value of the pair).</p>
 
-<p>If we take a look at the return type of the validateData we discover that we are returning a Option of Data and not a Data directly, but we are not creating an instance of Option<Data> anywhere, so it must be the map2 method that wraps our result in a Option!</Data></p>
+<p>If we take a look at the return type of the validateData we discover that we are returning a Option of Data and not a Data directly, but we are not creating an instance of Option<Data> anywhere, so it must be the map method that wraps our result in a Option!</Data></p>
 
-<p>The real power of map2 method is that it allows us to write just the happy path in the lambda we pass and it will handle all other scenarios for us. If all arguments are Some (and not None) it will execute our lambda and wrap the result in a Option.</p>
+<p>The real power of map method is that it allows us to write just the happy path in the lambda we pass and it will handle all other scenarios for us. If all arguments are Some (and not None) it will execute our lambda and wrap the result in a Option.</p>
 
 <p><br /></p>
 
