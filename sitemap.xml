@@ -3,6 +3,21 @@
   
     
     <url>
+      <loc>/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/</loc>
+      
+        <lastmod>2020-03-12T07:00:00+01:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
       <loc>/blog/2018/02/android-functional-validation-4-validated/</loc>
       
         <lastmod>2018-02-10T23:16:01+01:00</lastmod>
@@ -246,7 +261,7 @@
     <url>
       <loc>/blog/404.html</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -261,7 +276,7 @@
     <url>
       <loc>/blog/about/</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -276,7 +291,7 @@
     <url>
       <loc>/blog/categories/</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -291,7 +306,7 @@
     <url>
       <loc>/blog/feed.xml</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -306,7 +321,7 @@
     <url>
       <loc>/blog/</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -323,7 +338,7 @@
     <url>
       <loc>/blog/tags/</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -338,7 +353,7 @@
     <url>
       <loc>/blog/page2/</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -353,7 +368,7 @@
     <url>
       <loc>/blog/page3/</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -368,7 +383,7 @@
     <url>
       <loc>/blog/page4/</loc>
       
-        <lastmod>2018-04-09T22:49:00+02:00</lastmod>
+        <lastmod>2020-03-12T19:40:12+01:00</lastmod>
       
       
         <changefreq>monthly</changefreq>

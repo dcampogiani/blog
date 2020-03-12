@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Android Functional Validation 4 - Validated</title>
+	<title>Use GitHub Pages and kscript to host and validate static JSON API</title>
 	
 	<meta name="author" content="Daniele Campogiani">
 
@@ -169,7 +169,7 @@
 
 	<div class="col-sm-9 col-sm-offset-3">
 		<div class="page-header">
-  <h1>Android Functional Validation 4 - Validated </h1>
+  <h1>Use GitHub Pages and kscript to host and validate static JSON API </h1>
 </div>
 	
 <article>
@@ -177,123 +177,108 @@
 	<div class="col-sm-10">
 	 <span class="post-date">
 	   
-	   February 
-	   10th,
+	   March 
+	   12th,
 	   
-	   2018
+	   2020
 	 </span>
 	  <div class="article_body">
-	  <p>This is the last post of the <a href="/blog/2018/02/android-functional-validation-1-intro/">Functional Validation</a> serie and we are going to use Validated, our last data type.</p>
+	  <p>In Bologna, we have a <a href="http://bit.ly/32VyE3w">community about Functional Programming</a>, and lately, I was looking for a quick and easy way to host all the data of the talks.</p>
 
-<p><a href="http://arrow-kt.io/docs/datatypes/validated/">Validated</a> is like Either with some additional power, and using it we can finally aggregate all errors and give proper feedback to our users.</p>
+<p>In this post, we will see how we can use GitHub pages to host the JSON files, and kscript to validate the data before “deploy”.</p>
 
-<h3 id="lets-use-validated">Let’s use Validated</h3>
+<h3 id="github-pages">Github Pages</h3>
 
-<p>Like Either, Validated will contain two possible values, one when the data is invalid, and one when the data is valid. But this time we are going to use different types.</p>
+<p>GitHub Pages is a quick way to host data for free so why don’t we use it also to store some static JSON and use it as API in an app?</p>
 
-<p>We will use</p>
+<p>To use it we just need a Github repo and enable the feature as explained in <a href="https://pages.github.com/">this guide</a></p>
+
+<p>Once done we can push the JSON file and it will be hosted for us for free.</p>
+
+<p>Example:</p>
+
 <ul>
   <li>
-    <p><code>Validated&lt;Nel&lt;ValidationError&gt;, String&gt;</code> for email</p>
+    <p>file in a git repo: <a href="https://github.com/fp-in-bo/data/blob/master/events/all.json">https://github.com/fp-in-bo/data/blob/master/events/all.json</a></p>
   </li>
   <li>
-    <p><code>Validated&lt;Nel&lt;ValidationError&gt;, String&gt;</code> for phone numbers</p>
-  </li>
-  <li>
-    <p><code>Validated&lt;Nel&lt;ValidationError&gt;, Data&gt;</code> for the whole form</p>
+    <p>same file hosted by GitHub Pages: <a href="https://fp-in-bo.github.io/data/events/all.json">https://fp-in-bo.github.io/data/events/all.json</a></p>
   </li>
 </ul>
 
-<p>ValidationError is a sealed class used to define all possible errors:</p>
+<p><br /></p>
+
+<h4 id="kscript">kscript</h4>
+
+<p>Kscript will bring enhanced scripting support for Kotlin on *nix-based systems, so we can use it fo validate our data before deploying it.</p>
+
+<p>After a quick <a href="https://github.com/holgerbrandl/kscript#installation">installation</a> we can start to write our validation script.</p>
+
+<p>To write our first kscript here’s what we need to do:</p>
+
+<ul>
+  <li>
+    <p>create empty file</p>
+
+    <p><code>touch script.kts</code></p>
+  </li>
+  <li>
+    <p>make a script automatically install kscript and its dependencies on the first run if necessary</p>
+
+    <p><code>kscript --add-bootstrap-header script.kts</code></p>
+  </li>
+  <li>
+    <p>open the script with some IDE / text editor (I’ll use IntelliJ)</p>
+
+    <p><code>kscript --idea script.kts</code></p>
+  </li>
+  <li>
+    <p>write our logic</p>
+  </li>
+</ul>
+
+<p>Kscript allows us to use dependencies, so we’re going to use Jackson in this example.
+To add the dependency in our script we just need to declare it directly inside the script like following:</p>
+
+<p><code>//DEPS com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1</code></p>
+
+<p>In this example we are going to read a file from arguments, then parse it using Jackson, here is the full <a href="https://github.com/fp-in-bo/data/blob/master/scripts/validateJson.kts">script</a>:</p>
 
 <noscript><pre>400: Invalid request
 </pre></noscript>
-<script src="https://gist.github.com/24bc1899fe7c16888f18aa9736a3f249.js"> </script>
+<script src="https://gist.github.com/f0d2f182f0397c779d23c28cf9ef0c97.js"> </script>
 
-<p>And Nel is a <a href="http://arrow-kt.io/docs/datatypes/nonemptylist/">NotEmptyList</a> that will aggregate errors.</p>
+<p>Another feature of kscript is to create standalone binaries, let’s do it because we’re gonna use it in our continuous integration:</p>
 
-<p>Validated has two possible values: Valid and Invalid and we will use the as following:</p>
-
-<p><br /></p>
-
-<h4 id="mail">Mail</h4>
-
-<div style="text-align:center"><img src="/blog/assets/Validated1.png" />
-</div>
+<p>kscript –package script.kts</p>
 
 <p><br /></p>
 
-<div style="text-align:center"><img src="/blog/assets/Validated2.png" />
-</div>
+<h4 id="continuous-integration">Continuous Integration</h4>
 
-<p><br /></p>
+<p>Our desired flow to publish a new talk to the repo is:</p>
 
-<h4 id="phone-number">Phone Number</h4>
+<ul>
+  <li>open a new branch</li>
+  <li>add a talk into the JSON</li>
+  <li>open a PR</li>
+  <li>waiting for checks in Continuous Integration</li>
+  <li>merge the PR</li>
+</ul>
 
-<div style="text-align:center"><img src="/blog/assets/Validated3.png" />
-</div>
+<p>This way once the PR will be merged to master, the new talk will be available in our API.
+In this repository, I’m using Travis for CI, and all we need is to invoke our script passing the right file</p>
 
-<p><br /></p>
+<p><code>scripts/validateJson events/all.json</code></p>
 
-<div style="text-align:center"><img src="/blog/assets/Validated4.png" />
-</div>
+<p><br />
+<br /></p>
 
-<p><br /></p>
+<p>That’s all.
+I find this approach and the mix of these two tools pragmatic and I suggest this approach if you need to host some data that will not change very frequently. <a href="https://github.com/fp-in-bo/data">You can find here the repo</a>.</p>
 
-<p>Once again we will use kotlin extension methods invoking <a href="/blog/2018/02/android-functional-validation-1-intro/">validMail and validNumber functions we have discussed in the first post</a> to build our instances.</p>
+<p>Thanks <a href="https://twitter.com/FChiusolo/">@FChiusolo</a> for the fish.</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/4f4221b3f149448feddb47234f0edbf2.js"> </script>
-
-<p>if the validation function returns true we will wrap the value using the .valid() method, otherwise we will create a Nel with the correct error and wrap it using the .invalid() method.</p>
-
-<h3 id="map-them">Map them</h3>
-
-<p>By now we are experts of map, let’s use it</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/b1a3213da53deee236b7d058caae5235.js"> </script>
-
-<p>Using Validated our map finally has the desired behaviour and we get all input errors in the list:</p>
-
-<p><br /></p>
-
-<div style="text-align:center"><img src="/blog/assets/Validated5.png" />
-</div>
-
-<p><br /></p>
-
-<h3 id="android-ui">Android UI</h3>
-
-<p>In our ViewModel we will use the previously discussed code to update a <code>&lt;Validated&lt;Nel&lt;ValidationError&gt;, Data&gt;&gt;</code></p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/54610009571b9c6628774d35818842ec.js"> </script>
-
-<p>In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we clear previous errors and then fold it.</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/21671e076f123f981053b0034721d469.js"> </script>
-
-<h4 id="fold">Fold</h4>
-
-<p>Once again we are using method reference with the following methods:</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/0c04304d56f6b27252296297a3490096.js"> </script>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/f390917f58a77a145d4cadede8c7ec25.js"> </script>
-
-<p>In the invalid path we using kotlin <code>when</code> to find the correct error message and TextInputLayout to notify the user, while in the valid path we just show data to user.</p>
-
-<p><a href="https://github.com/dcampogiani/AndroidFunctionalValidation/pull/4">You can find here the implementation using Either</a></p>
 
 	  </div>
 
@@ -303,28 +288,28 @@
 		  
 		  
 			 
-				<li><a href="/categories#android-ref">
-					android <span>(4)</span>
+				<li><a href="/categories#github-ref">
+					github <span>(1)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#functional-ref">
-					functional <span>(4)</span>
+				<li><a href="/categories#github-pages-ref">
+					github-pages <span>(1)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#validation-ref">
-					validation <span>(4)</span>
+				<li><a href="/categories#kscript-ref">
+					kscript <span>(1)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#kotlin-ref">
-					kotlin <span>(4)</span>
+				<li><a href="/categories#json-ref">
+					json <span>(1)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#arrow-ref">
-					arrow <span>(4)</span>
+				<li><a href="/categories#api-ref">
+					api <span>(1)</span>
 					
 				</a></li>
 			
@@ -339,7 +324,7 @@
 		<div>
       <section class="share col-sm-6">
         <h4 class="section-title">Share Post</h4>
-        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=Android Functional Validation 4 - Validated&via=dcampogiani"
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=Use GitHub Pages and kscript to host and validate static JSON API&via=dcampogiani"
            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
           <i class="fa fa-twitter fa-lg"></i>
           Twitter
@@ -384,10 +369,10 @@
 
 		<ul class="pager">
 		  
-		  <li class="previous"><a href="/2018/02/android-functional-validation-3-either/" title="Android Functional Validation 3 - Either">&larr; Previous</a></li>
+		  <li class="previous"><a href="/2018/02/android-functional-validation-4-validated/" title="Android Functional Validation 4 - Validated">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/" title="Use GitHub Pages and kscript to host and validate static JSON API">Next &rarr;</a></li>
+			<li class="next disabled"><a>Next &rarr;</a>
 		  
 		</ul>
 

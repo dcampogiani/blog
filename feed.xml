@@ -7,6 +7,110 @@
 		<atom:link href="/blog/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Use GitHub Pages and kscript to host and validate static JSON API</title>
+				<description>&lt;p&gt;In Bologna, we have a &lt;a href=&quot;http://bit.ly/32VyE3w&quot;&gt;community about Functional Programming&lt;/a&gt;, and lately, I was looking for a quick and easy way to host all the data of the talks.&lt;/p&gt;
+
+&lt;p&gt;In this post, we will see how we can use GitHub pages to host the JSON files, and kscript to validate the data before “deploy”.&lt;/p&gt;
+
+&lt;h3 id=&quot;github-pages&quot;&gt;Github Pages&lt;/h3&gt;
+
+&lt;p&gt;GitHub Pages is a quick way to host data for free so why don’t we use it also to store some static JSON and use it as API in an app?&lt;/p&gt;
+
+&lt;p&gt;To use it we just need a Github repo and enable the feature as explained in &lt;a href=&quot;https://pages.github.com/&quot;&gt;this guide&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Once done we can push the JSON file and it will be hosted for us for free.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;file in a git repo: &lt;a href=&quot;https://github.com/fp-in-bo/data/blob/master/events/all.json&quot;&gt;https://github.com/fp-in-bo/data/blob/master/events/all.json&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;same file hosted by GitHub Pages: &lt;a href=&quot;https://fp-in-bo.github.io/data/events/all.json&quot;&gt;https://fp-in-bo.github.io/data/events/all.json&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;kscript&quot;&gt;kscript&lt;/h4&gt;
+
+&lt;p&gt;Kscript will bring enhanced scripting support for Kotlin on *nix-based systems, so we can use it fo validate our data before deploying it.&lt;/p&gt;
+
+&lt;p&gt;After a quick &lt;a href=&quot;https://github.com/holgerbrandl/kscript#installation&quot;&gt;installation&lt;/a&gt; we can start to write our validation script.&lt;/p&gt;
+
+&lt;p&gt;To write our first kscript here’s what we need to do:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;create empty file&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;touch script.kts&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;make a script automatically install kscript and its dependencies on the first run if necessary&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;kscript --add-bootstrap-header script.kts&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;open the script with some IDE / text editor (I’ll use IntelliJ)&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;kscript --idea script.kts&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;write our logic&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Kscript allows us to use dependencies, so we’re going to use Jackson in this example.
+To add the dependency in our script we just need to declare it directly inside the script like following:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;//DEPS com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In this example we are going to read a file from arguments, then parse it using Jackson, here is the full &lt;a href=&quot;https://github.com/fp-in-bo/data/blob/master/scripts/validateJson.kts&quot;&gt;script&lt;/a&gt;:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/f0d2f182f0397c779d23c28cf9ef0c97.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Another feature of kscript is to create standalone binaries, let’s do it because we’re gonna use it in our continuous integration:&lt;/p&gt;
+
+&lt;p&gt;kscript –package script.kts&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;continuous-integration&quot;&gt;Continuous Integration&lt;/h4&gt;
+
+&lt;p&gt;Our desired flow to publish a new talk to the repo is:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;open a new branch&lt;/li&gt;
+  &lt;li&gt;add a talk into the JSON&lt;/li&gt;
+  &lt;li&gt;open a PR&lt;/li&gt;
+  &lt;li&gt;waiting for checks in Continuous Integration&lt;/li&gt;
+  &lt;li&gt;merge the PR&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This way once the PR will be merged to master, the new talk will be available in our API.
+In this repository, I’m using Travis for CI, and all we need is to invoke our script passing the right file&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;scripts/validateJson events/all.json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s all.
+I find this approach and the mix of these two tools pragmatic and I suggest this approach if you need to host some data that will not change very frequently. &lt;a href=&quot;https://github.com/fp-in-bo/data&quot;&gt;You can find here the repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks &lt;a href=&quot;https://twitter.com/FChiusolo/&quot;&gt;@FChiusolo&lt;/a&gt; for the fish.&lt;/p&gt;
+
+</description>
+				<pubDate>Thu, 12 Mar 2020 07:00:00 +0100</pubDate>
+				<link>/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/</link>
+				<guid isPermaLink="true">/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/</guid>
+			</item>
+		
+			<item>
 				<title>Android Functional Validation 4 - Validated</title>
 				<description>&lt;p&gt;This is the last post of the &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;Functional Validation&lt;/a&gt; serie and we are going to use Validated, our last data type.&lt;/p&gt;
 
@@ -120,7 +224,7 @@
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation/pull/4&quot;&gt;You can find here the implementation using Either&lt;/a&gt;&lt;/p&gt;
 </description>
-				<pubDate>Sat, 10 Feb 2018 16:16:01 -0600</pubDate>
+				<pubDate>Sat, 10 Feb 2018 23:16:01 +0100</pubDate>
 				<link>/blog/2018/02/android-functional-validation-4-validated/</link>
 				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-4-validated/</guid>
 			</item>
@@ -246,7 +350,7 @@ Using valid mail and phone number the output will be:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation/pull/2&quot;&gt;You can find here the implementation using Either&lt;/a&gt;&lt;/p&gt;
 
 </description>
-				<pubDate>Fri, 09 Feb 2018 16:16:01 -0600</pubDate>
+				<pubDate>Fri, 09 Feb 2018 23:16:01 +0100</pubDate>
 				<link>/blog/2018/02/android-functional-validation-3-either/</link>
 				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-3-either/</guid>
 			</item>
@@ -386,7 +490,7 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 &lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation/pull/1&quot;&gt;You can find here the implementation using Option&lt;/a&gt;&lt;/p&gt;
 
 </description>
-				<pubDate>Thu, 08 Feb 2018 16:16:01 -0600</pubDate>
+				<pubDate>Thu, 08 Feb 2018 23:16:01 +0100</pubDate>
 				<link>/blog/2018/02/android-functional-validation-2-option/</link>
 				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-2-option/</guid>
 			</item>
@@ -462,7 +566,7 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 
 &lt;p&gt;The source code for this article is available &lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
-				<pubDate>Wed, 07 Feb 2018 16:16:01 -0600</pubDate>
+				<pubDate>Wed, 07 Feb 2018 23:16:01 +0100</pubDate>
 				<link>/blog/2018/02/android-functional-validation-1-intro/</link>
 				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-1-intro/</guid>
 			</item>
@@ -1128,32 +1232,6 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 				<pubDate>Wed, 25 Jun 2014 10:30:17 +0200</pubDate>
 				<link>/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</link>
 				<guid isPermaLink="true">/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</guid>
-			</item>
-		
-			<item>
-				<title>Applicazioni Ibride e Native #1 - Introduzione</title>
-				<description>&lt;p&gt;Ho deciso di pubblicare sul blog la relazione dell'attività progettuale che ho realizzato per l'università.&lt;/p&gt;
-&lt;p&gt;La relazione è composta di sei capitoli e ne pubblicherò uno a settimana, ad eccezione di questa prima settimana in cui pubblico i primi due capitoli, poiché il primo è di introduzione.&lt;/p&gt;
-&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
-&lt;h1&gt;Introduzione&lt;/h1&gt;
-&lt;p class=&quot;western&quot;&gt;Lo scopo di questa attività progettuale è studiare le possibilità offerte dalla realizzazione di applicazioni mobili chiamate &lt;i&gt;Ibride&lt;/i&gt;, ossia scritte usando strumenti pensati per il web, ma avendo anche a disposizione API per l'accesso al dispositivo.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;L'argomento è stato scelto per capire se attualmente un approccio di questo tipo può essere utilizzato per la realizzazione di una applicazione completa, permettendo allo sviluppatore di scrivere una sola applicazione e poterla poi distribuire su diverse piattaforme, evitando così di dover scriver un'applicazione per ogni specifica piattaforma.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Per poter utilizzare API native utilizzando tecnologie web è stato utilizzato Apache Cordova, e per strutturare l'applicazione è stato utilizzato il framework javascript scritto da Google chiamato AngularJS.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;L'applicazione realizzata permette all'utente di scattare delle fotografie, aggiungere una descrizione per ognuna di esse e poi visualizzarle in una timeline oppure in una mappa, posizionando ogni foto nelle coordinate in cui è stata scattata. L'utente può anche decidere di condividere ogni foto utilizzando altre applicazioni installate nel dispositivo.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Al fine di valutare le performances ottenute con una applicazione ibrida, è stata poi realizzata un'applicazione &lt;i&gt;nativa,&lt;/i&gt; utilizzando Java su piattaforma Android, con le stesse funzionalità.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;E' disponibile online il codice sorgente sia per l'applicazione ibrida, al seguente indirizzo:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Photo-Diary&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;https://github.com/dcampogiani/My-Photo-Diary&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot; lang=&quot;zxx&quot;&gt;sia per l'applicazione nativa, all'indirizzo:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/My-Native-Photo-Diary&quot;&gt;&lt;span lang=&quot;zxx&quot;&gt;&lt;span style=&quot;font-style: normal;&quot;&gt;https://github.com/dcampogiani/My-Native-Photo-Diary&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-</description>
-				<pubDate>Wed, 25 Jun 2014 10:29:41 +0200</pubDate>
-				<link>/blog/2014/06/applicazioni-ibride-e-native-1-introduzione/</link>
-				<guid isPermaLink="true">/blog/2014/06/applicazioni-ibride-e-native-1-introduzione/</guid>
 			</item>
 		
 	</channel>
