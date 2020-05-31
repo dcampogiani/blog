@@ -208,16 +208,14 @@
 
 <p>Once again to obtain such behaviour we can use kotlin extension methods invoking <a href="/blog/2018/02/android-functional-validation-1-intro/">validMail and validNumber functions we have discussed in the first post</a></p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/f802341c805f30a1cdb0e3759dfbd695.js"> </script>
 
 <h3 id="map-them">Map them</h3>
 
 <p>We have already discusse how map works in <a href="/blog/2018/02/android-functional-validation-2-option/">the previous post</a>, so let’s use it:</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/8876147299beeff1c5d729dd029b087e.js"> </script>
 
 <p>The <code>&lt;String&gt;</code> you are reading in the code is needed because we are using Strings to model errors.
@@ -271,26 +269,22 @@ Using valid mail and phone number the output will be:</p>
 
 <p>In our ViewModel we will use the previously discussed code to update a <code>LiveData&lt;Either&lt;String, Data&gt;&gt;</code></p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/a91242dd045dec5c06a51a0303886a1f.js"> </script>
 
 <p>In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we fold it.</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/1eb74b2125073ac8a2f6cfcb5c580df4.js"> </script>
 
 <h4 id="fold">Fold</h4>
 
 <p>Once again we are using method reference with the following methods:</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/68962a658ad3ea54b19b4e34f40bfe62.js"> </script>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/38f2be2734328f7dc359b0d9dea4d26f.js"> </script>
 
 <p>This time we are getting an input in each method, in the first one we are getting a String that represents the error, while in the second we are getting the value of the Right, a Data instance in our implementation.</p>
@@ -310,27 +304,27 @@ Using valid mail and phone number the output will be:</p>
 		  
 		  
 			 
-				<li><a href="/categories#android-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#android-ref">
 					android <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#functional-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#functional-ref">
 					functional <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#validation-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#validation-ref">
 					validation <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#kotlin-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#kotlin-ref">
 					kotlin <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#arrow-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#arrow-ref">
 					arrow <span>(4)</span>
 					
 				</a></li>
@@ -391,10 +385,10 @@ Using valid mail and phone number the output will be:</p>
 
 		<ul class="pager">
 		  
-		  <li class="previous"><a href="/2018/02/android-functional-validation-2-option/" title="Android Functional Validation 2 - Option">&larr; Previous</a></li>
+		  <li class="previous"><a href="https://danielecampogiani.com/blog/2018/02/android-functional-validation-2-option/" title="Android Functional Validation 2 - Option">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="/2018/02/android-functional-validation-4-validated/" title="Android Functional Validation 4 - Validated">Next &rarr;</a></li>
+		  <li class="next"><a href="https://danielecampogiani.com/blog/2018/02/android-functional-validation-4-validated/" title="Android Functional Validation 4 - Validated">Next &rarr;</a></li>
 		  
 		</ul>
 

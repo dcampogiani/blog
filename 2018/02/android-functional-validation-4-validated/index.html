@@ -206,8 +206,7 @@
 
 <p>ValidationError is a sealed class used to define all possible errors:</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/24bc1899fe7c16888f18aa9736a3f249.js"> </script>
 
 <p>And Nel is a <a href="http://arrow-kt.io/docs/datatypes/nonemptylist/">NotEmptyList</a> that will aggregate errors.</p>
@@ -242,8 +241,7 @@
 
 <p>Once again we will use kotlin extension methods invoking <a href="/blog/2018/02/android-functional-validation-1-intro/">validMail and validNumber functions we have discussed in the first post</a> to build our instances.</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/4f4221b3f149448feddb47234f0edbf2.js"> </script>
 
 <p>if the validation function returns true we will wrap the value using the .valid() method, otherwise we will create a Nel with the correct error and wrap it using the .invalid() method.</p>
@@ -252,8 +250,7 @@
 
 <p>By now we are experts of map, let’s use it</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/b1a3213da53deee236b7d058caae5235.js"> </script>
 
 <p>Using Validated our map finally has the desired behaviour and we get all input errors in the list:</p>
@@ -269,26 +266,22 @@
 
 <p>In our ViewModel we will use the previously discussed code to update a <code>&lt;Validated&lt;Nel&lt;ValidationError&gt;, Data&gt;&gt;</code></p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/54610009571b9c6628774d35818842ec.js"> </script>
 
 <p>In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we clear previous errors and then fold it.</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/21671e076f123f981053b0034721d469.js"> </script>
 
 <h4 id="fold">Fold</h4>
 
 <p>Once again we are using method reference with the following methods:</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/0c04304d56f6b27252296297a3490096.js"> </script>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/f390917f58a77a145d4cadede8c7ec25.js"> </script>
 
 <p>In the invalid path we using kotlin <code>when</code> to find the correct error message and TextInputLayout to notify the user, while in the valid path we just show data to user.</p>
@@ -303,27 +296,27 @@
 		  
 		  
 			 
-				<li><a href="/categories#android-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#android-ref">
 					android <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#functional-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#functional-ref">
 					functional <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#validation-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#validation-ref">
 					validation <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#kotlin-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#kotlin-ref">
 					kotlin <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#arrow-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#arrow-ref">
 					arrow <span>(4)</span>
 					
 				</a></li>
@@ -384,10 +377,10 @@
 
 		<ul class="pager">
 		  
-		  <li class="previous"><a href="/2018/02/android-functional-validation-3-either/" title="Android Functional Validation 3 - Either">&larr; Previous</a></li>
+		  <li class="previous"><a href="https://danielecampogiani.com/blog/2018/02/android-functional-validation-3-either/" title="Android Functional Validation 3 - Either">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/" title="Use GitHub Pages and kscript to host and validate static JSON API">Next &rarr;</a></li>
+		  <li class="next"><a href="https://danielecampogiani.com/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/" title="Use GitHub Pages and kscript to host and validate static JSON API">Next &rarr;</a></li>
 		  
 		</ul>
 

@@ -213,8 +213,7 @@
 
 <p>To obtain such behaviour we can use kotlin extension methods invoking <a href="/blog/2018/02/android-functional-validation-1-intro/">validMail and validNumber functions we have discussed in previous post</a></p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/619ee31c4dd3b84cf17f137688a56a8e.js"> </script>
 
 <p>At this point we have a Option representation for each field, but what we really want is to validate the whole form!</p>
@@ -223,16 +222,14 @@
 
 <p>Our goal is to obtain an instance of Data when the form is valid:</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/2fb34a1b6404190612572d47a21fe095.js"> </script>
 
 <p>but what we achieved so far are two Option.</p>
 
 <p>Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map and we can use to build our <em>Data</em> instance</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/ebd2c82d44224c317dfdc9be45fc10c7.js"> </script>
 
 <p>In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map to merge them.</p>
@@ -285,14 +282,12 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 
 <p>In our ViewModel we will use the previously discussed code to update a <code>LiveData&lt;Option&lt;Data&gt;&gt;</code></p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/c511f06239b7a6d53a4cf27aced5a4db.js"> </script>
 
 <p>In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we fold it.</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/2eb139a19b3307044d45c9fd24da1c34.js"> </script>
 
 <h4 id="what-is-fold">What is Fold?</h4>
@@ -301,12 +296,10 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 
 <p>In our case we are using method reference with the following methods:</p>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/a0ece7a02d6a2093ae0c08efbd814d7b.js"> </script>
 
-<noscript><pre>400: Invalid request
-</pre></noscript>
+<noscript><pre>400: Invalid request</pre></noscript>
 <script src="https://gist.github.com/4230debf17ef25689c0d6f0cb96512c9.js"> </script>
 
 <p>As you can see in the second method we receive as input the value of the Option, while in the first method we don’t get any input. So, as previously discussed, using Option we cannot notify our user which field is wrong.</p>
@@ -324,32 +317,32 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 		  
 		  
 			 
-				<li><a href="/categories#android-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#android-ref">
 					android <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#functional-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#functional-ref">
 					functional <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#validation-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#validation-ref">
 					validation <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#kotlin-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#kotlin-ref">
 					kotlin <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#arrow-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#arrow-ref">
 					arrow <span>(4)</span>
 					,
 				</a></li>
 			 
-				<li><a href="/categories#option-ref">
+				<li><a href="https://danielecampogiani.com/blog/categories#option-ref">
 					option <span>(1)</span>
 					
 				</a></li>
@@ -410,10 +403,10 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 
 		<ul class="pager">
 		  
-		  <li class="previous"><a href="/2018/02/android-functional-validation-1-intro/" title="Android Functional Validation 1 - Introduction">&larr; Previous</a></li>
+		  <li class="previous"><a href="https://danielecampogiani.com/blog/2018/02/android-functional-validation-1-intro/" title="Android Functional Validation 1 - Introduction">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="/2018/02/android-functional-validation-3-either/" title="Android Functional Validation 3 - Either">Next &rarr;</a></li>
+		  <li class="next"><a href="https://danielecampogiani.com/blog/2018/02/android-functional-validation-3-either/" title="Android Functional Validation 3 - Either">Next &rarr;</a></li>
 		  
 		</ul>
 

@@ -3,8 +3,8 @@
 	<channel>
 		<title>Daniele Campogiani</title>
 		<description>Daniele Campogiani</description>
-		<link>/blog/</link>
-		<atom:link href="/blog/feed.xml" rel="self" type="application/rss+xml" />
+		<link>https://danielecampogiani.com/blog/</link>
+		<atom:link href="https://danielecampogiani.com/blog/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
 				<title>Use GitHub Pages and kscript to host and validate static JSON API</title>
@@ -69,8 +69,7 @@ To add the dependency in our script we just need to declare it directly inside t
 
 &lt;p&gt;In this example we are going to read a file from arguments, then parse it using Jackson, here is the full &lt;a href=&quot;https://github.com/fp-in-bo/data/blob/master/scripts/validateJson.kts&quot;&gt;script&lt;/a&gt;:&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/f0d2f182f0397c779d23c28cf9ef0c97.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;Another feature of kscript is to create standalone binaries, let’s do it because we’re gonna use it in our continuous integration:&lt;/p&gt;
@@ -106,8 +105,8 @@ I find this approach and the mix of these two tools pragmatic and I suggest this
 
 </description>
 				<pubDate>Thu, 12 Mar 2020 07:00:00 +0100</pubDate>
-				<link>/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/</link>
-				<guid isPermaLink="true">/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/</guid>
+				<link>https://danielecampogiani.com/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/</guid>
 			</item>
 		
 			<item>
@@ -135,8 +134,7 @@ I find this approach and the mix of these two tools pragmatic and I suggest this
 
 &lt;p&gt;ValidationError is a sealed class used to define all possible errors:&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/24bc1899fe7c16888f18aa9736a3f249.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;And Nel is a &lt;a href=&quot;http://arrow-kt.io/docs/datatypes/nonemptylist/&quot;&gt;NotEmptyList&lt;/a&gt; that will aggregate errors.&lt;/p&gt;
@@ -171,8 +169,7 @@ I find this approach and the mix of these two tools pragmatic and I suggest this
 
 &lt;p&gt;Once again we will use kotlin extension methods invoking &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;validMail and validNumber functions we have discussed in the first post&lt;/a&gt; to build our instances.&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/4f4221b3f149448feddb47234f0edbf2.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;if the validation function returns true we will wrap the value using the .valid() method, otherwise we will create a Nel with the correct error and wrap it using the .invalid() method.&lt;/p&gt;
@@ -181,8 +178,7 @@ I find this approach and the mix of these two tools pragmatic and I suggest this
 
 &lt;p&gt;By now we are experts of map, let’s use it&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/b1a3213da53deee236b7d058caae5235.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;Using Validated our map finally has the desired behaviour and we get all input errors in the list:&lt;/p&gt;
@@ -198,26 +194,22 @@ I find this approach and the mix of these two tools pragmatic and I suggest this
 
 &lt;p&gt;In our ViewModel we will use the previously discussed code to update a &lt;code&gt;&amp;lt;Validated&amp;lt;Nel&amp;lt;ValidationError&amp;gt;, Data&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/54610009571b9c6628774d35818842ec.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we clear previous errors and then fold it.&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/21671e076f123f981053b0034721d469.js&quot;&gt; &lt;/script&gt;
 
 &lt;h4 id=&quot;fold&quot;&gt;Fold&lt;/h4&gt;
 
 &lt;p&gt;Once again we are using method reference with the following methods:&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/0c04304d56f6b27252296297a3490096.js&quot;&gt; &lt;/script&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/f390917f58a77a145d4cadede8c7ec25.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;In the invalid path we using kotlin &lt;code&gt;when&lt;/code&gt; to find the correct error message and TextInputLayout to notify the user, while in the valid path we just show data to user.&lt;/p&gt;
@@ -225,8 +217,8 @@ I find this approach and the mix of these two tools pragmatic and I suggest this
 &lt;p&gt;&lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation/pull/4&quot;&gt;You can find here the implementation using Either&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Sat, 10 Feb 2018 23:16:01 +0100</pubDate>
-				<link>/blog/2018/02/android-functional-validation-4-validated/</link>
-				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-4-validated/</guid>
+				<link>https://danielecampogiani.com/blog/2018/02/android-functional-validation-4-validated/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2018/02/android-functional-validation-4-validated/</guid>
 			</item>
 		
 			<item>
@@ -256,16 +248,14 @@ I find this approach and the mix of these two tools pragmatic and I suggest this
 
 &lt;p&gt;Once again to obtain such behaviour we can use kotlin extension methods invoking &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;validMail and validNumber functions we have discussed in the first post&lt;/a&gt;&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/f802341c805f30a1cdb0e3759dfbd695.js&quot;&gt; &lt;/script&gt;
 
 &lt;h3 id=&quot;map-them&quot;&gt;Map them&lt;/h3&gt;
 
 &lt;p&gt;We have already discusse how map works in &lt;a href=&quot;/blog/2018/02/android-functional-validation-2-option/&quot;&gt;the previous post&lt;/a&gt;, so let’s use it:&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/8876147299beeff1c5d729dd029b087e.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;The &lt;code&gt;&amp;lt;String&amp;gt;&lt;/code&gt; you are reading in the code is needed because we are using Strings to model errors.
@@ -319,26 +309,22 @@ Using valid mail and phone number the output will be:&lt;/p&gt;
 
 &lt;p&gt;In our ViewModel we will use the previously discussed code to update a &lt;code&gt;LiveData&amp;lt;Either&amp;lt;String, Data&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/a91242dd045dec5c06a51a0303886a1f.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we fold it.&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/1eb74b2125073ac8a2f6cfcb5c580df4.js&quot;&gt; &lt;/script&gt;
 
 &lt;h4 id=&quot;fold&quot;&gt;Fold&lt;/h4&gt;
 
 &lt;p&gt;Once again we are using method reference with the following methods:&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/68962a658ad3ea54b19b4e34f40bfe62.js&quot;&gt; &lt;/script&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/38f2be2734328f7dc359b0d9dea4d26f.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;This time we are getting an input in each method, in the first one we are getting a String that represents the error, while in the second we are getting the value of the Right, a Data instance in our implementation.&lt;/p&gt;
@@ -351,8 +337,8 @@ Using valid mail and phone number the output will be:&lt;/p&gt;
 
 </description>
 				<pubDate>Fri, 09 Feb 2018 23:16:01 +0100</pubDate>
-				<link>/blog/2018/02/android-functional-validation-3-either/</link>
-				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-3-either/</guid>
+				<link>https://danielecampogiani.com/blog/2018/02/android-functional-validation-3-either/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2018/02/android-functional-validation-3-either/</guid>
 			</item>
 		
 			<item>
@@ -387,8 +373,7 @@ Using valid mail and phone number the output will be:&lt;/p&gt;
 
 &lt;p&gt;To obtain such behaviour we can use kotlin extension methods invoking &lt;a href=&quot;/blog/2018/02/android-functional-validation-1-intro/&quot;&gt;validMail and validNumber functions we have discussed in previous post&lt;/a&gt;&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/619ee31c4dd3b84cf17f137688a56a8e.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;At this point we have a Option representation for each field, but what we really want is to validate the whole form!&lt;/p&gt;
@@ -397,16 +382,14 @@ Using valid mail and phone number the output will be:&lt;/p&gt;
 
 &lt;p&gt;Our goal is to obtain an instance of Data when the form is valid:&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/2fb34a1b6404190612572d47a21fe095.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;but what we achieved so far are two Option.&lt;/p&gt;
 
 &lt;p&gt;Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map and we can use to build our &lt;em&gt;Data&lt;/em&gt; instance&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/ebd2c82d44224c317dfdc9be45fc10c7.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map to merge them.&lt;/p&gt;
@@ -459,14 +442,12 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 
 &lt;p&gt;In our ViewModel we will use the previously discussed code to update a &lt;code&gt;LiveData&amp;lt;Option&amp;lt;Data&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/c511f06239b7a6d53a4cf27aced5a4db.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we fold it.&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/2eb139a19b3307044d45c9fd24da1c34.js&quot;&gt; &lt;/script&gt;
 
 &lt;h4 id=&quot;what-is-fold&quot;&gt;What is Fold?&lt;/h4&gt;
@@ -475,12 +456,10 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 
 &lt;p&gt;In our case we are using method reference with the following methods:&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/a0ece7a02d6a2093ae0c08efbd814d7b.js&quot;&gt; &lt;/script&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/4230debf17ef25689c0d6f0cb96512c9.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;As you can see in the second method we receive as input the value of the Option, while in the first method we don’t get any input. So, as previously discussed, using Option we cannot notify our user which field is wrong.&lt;/p&gt;
@@ -491,8 +470,8 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 
 </description>
 				<pubDate>Thu, 08 Feb 2018 23:16:01 +0100</pubDate>
-				<link>/blog/2018/02/android-functional-validation-2-option/</link>
-				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-2-option/</guid>
+				<link>https://danielecampogiani.com/blog/2018/02/android-functional-validation-2-option/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2018/02/android-functional-validation-2-option/</guid>
 			</item>
 		
 			<item>
@@ -540,20 +519,17 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 
 &lt;p&gt;We are going to use one activity and one viewmodel for each data type, sharing the same xml view with two different TextInputLayout.&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/da0665c4271cf4e2243a40aab6ee6fe6.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;The input of our validation will be a data class with two strings.&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/2fb34a1b6404190612572d47a21fe095.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;To validate mail and phone number we are going to use two pure functions in a kotlin file.&lt;/p&gt;
 
-&lt;noscript&gt;&lt;pre&gt;400: Invalid request
-&lt;/pre&gt;&lt;/noscript&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
 &lt;script src=&quot;https://gist.github.com/5101541b8415d058d05b56f088bd6113.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;Enough for first post, we can start to see some real code in following posts:&lt;/p&gt;
@@ -567,8 +543,8 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 &lt;p&gt;The source code for this article is available &lt;a href=&quot;https://github.com/dcampogiani/AndroidFunctionalValidation&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
 				<pubDate>Wed, 07 Feb 2018 23:16:01 +0100</pubDate>
-				<link>/blog/2018/02/android-functional-validation-1-intro/</link>
-				<guid isPermaLink="true">/blog/2018/02/android-functional-validation-1-intro/</guid>
+				<link>https://danielecampogiani.com/blog/2018/02/android-functional-validation-1-intro/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2018/02/android-functional-validation-1-intro/</guid>
 			</item>
 		
 			<item>
@@ -631,8 +607,8 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Inoltre per la scrittura di una applicazione nativa, il produttore della piattaforma fornisce uno stack completo di supporto (dall'interfaccia grafica all'accesso all'hardware) mentre Cordova fornisce solo un set di API per l'accesso al dispositivo e nessun supporto per la realizzazione di UI, e ho dovuto quindi utilizzare un framework esterno.&lt;/span&gt;&lt;/p&gt;
 </description>
 				<pubDate>Fri, 01 Aug 2014 15:16:38 +0200</pubDate>
-				<link>/blog/2014/08/applicazioni-ibride-e-native-6-confronto/</link>
-				<guid isPermaLink="true">/blog/2014/08/applicazioni-ibride-e-native-6-confronto/</guid>
+				<link>https://danielecampogiani.com/blog/2014/08/applicazioni-ibride-e-native-6-confronto/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2014/08/applicazioni-ibride-e-native-6-confronto/</guid>
 			</item>
 		
 			<item>
@@ -709,8 +685,8 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 &lt;/ul&gt;
 </description>
 				<pubDate>Wed, 16 Jul 2014 22:46:39 +0200</pubDate>
-				<link>/blog/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</link>
-				<guid isPermaLink="true">/blog/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</guid>
+				<link>https://danielecampogiani.com/blog/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2014/07/applicazioni-ibride-e-native-5-realizzazione-di-una-applicazione-nativa/</guid>
 			</item>
 		
 			<item>
@@ -872,8 +848,8 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Anche yeoman è reperibile con npm.&lt;/span&gt;&lt;/p&gt;
 </description>
 				<pubDate>Wed, 09 Jul 2014 14:00:39 +0200</pubDate>
-				<link>/blog/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</link>
-				<guid isPermaLink="true">/blog/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</guid>
+				<link>https://danielecampogiani.com/blog/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2014/07/applicazioni-ibride-e-native-4-realizzazione-di-una-applicazione-ibrida/</guid>
 			</item>
 		
 			<item>
@@ -1104,8 +1080,8 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 &lt;p class=&quot;western&quot;&gt;&lt;span style=&quot;font-family: Helvetica, sans-serif;&quot;&gt;Le &lt;i&gt;promises&lt;/i&gt; sono profondamente integrate in AngularJS, infatti anche i services built-in come &lt;i&gt;$http&lt;/i&gt; le utilizzano per restituire i risultati ai chiamanti.&lt;/span&gt;&lt;/p&gt;
 </description>
 				<pubDate>Wed, 02 Jul 2014 14:00:58 +0200</pubDate>
-				<link>/blog/2014/07/applicazioni-ibride-e-native-3-angularjs/</link>
-				<guid isPermaLink="true">/blog/2014/07/applicazioni-ibride-e-native-3-angularjs/</guid>
+				<link>https://danielecampogiani.com/blog/2014/07/applicazioni-ibride-e-native-3-angularjs/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2014/07/applicazioni-ibride-e-native-3-angularjs/</guid>
 			</item>
 		
 			<item>
@@ -1230,8 +1206,8 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 &lt;p lang=&quot;zxx&quot;&gt;
 </description>
 				<pubDate>Wed, 25 Jun 2014 10:30:17 +0200</pubDate>
-				<link>/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</link>
-				<guid isPermaLink="true">/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</guid>
+				<link>https://danielecampogiani.com/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</guid>
 			</item>
 		
 	</channel>
