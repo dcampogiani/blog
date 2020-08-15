@@ -7,6 +7,204 @@
 		<atom:link href="https://danielecampogiani.com/blog/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Card Scanner on Android using CameraX and MLKit</title>
+				<description>&lt;p&gt;Having to insert card details manually into an app could be a pain for users, but thanks to CameraX and MLKit, we can easily add a scanning feature in our app with minimal effort.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;camerax&quot;&gt;CameraX&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.android.com/training/camerax&quot;&gt;CameraX&lt;/a&gt; is a Jetpack library to use camera APIs with device compatibility issues already handled for us and with lifecycle support.&lt;/p&gt;
+
+&lt;p&gt;The library is based on uses cases and we are going to use two of them: Preview and Image Capture.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;library-setup&quot;&gt;Library Setup&lt;/h4&gt;
+
+&lt;p&gt;For this post, we are going to use the following dependencies:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/c363e7a0ec0f3768207235deaccdf7b6.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;preview&quot;&gt;Preview&lt;/h4&gt;
+
+&lt;p&gt;This use case will allow us to display on-screen what the camera is capturing in real-time.&lt;/p&gt;
+
+&lt;p&gt;To do so, we need to add androidx.camera.view.PreviewView to our layout:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/adf7fdce76ff7fe6efad966354e22467.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Then in code, we can build the Preview use case as follows:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/c4ab58963843d472d9b0742f56c1007d.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;To run our use cases we need a CameraProvider and a CameraSelector, I’ve created some extension using Kotlin Coroutines to get a CameraProvider:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/ba31f3dce3dee62c1fe24850e096ce4e.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;While for the CameraSelector this is all we need:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/ab9356ece505656b21af79bfc0e2b5ca.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;We can now bind our use cases in this way:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/673d3c718728e256835050614ab51c79.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;image-capture&quot;&gt;Image Capture&lt;/h4&gt;
+
+&lt;p&gt;This is another CameraX use case, and the setup is pretty similar to the previous one.&lt;/p&gt;
+
+&lt;p&gt;We can create the use case in this way:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/f92b8dbe6f1b1d6e1549cc99c257b51f.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;It’s time to update our bindUseCases method and also use this new one, but since CameraX is using a callback, and we would like to use
+kotlin coroutines let’s add a convenient extension method:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/45310c066867e20cb91024de8ab3a411.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Now we can update bindUseCases function like the following:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/e9dcc7d3aa216684c103ad34cafd9e20.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mlkit&quot;&gt;MLKit&lt;/h3&gt;
+
+&lt;p&gt;Now that we have our image is time to extract data from it. For this purpose, we are going to use &lt;a href=&quot;https://developers.google.com/ml-kit/vision/text-recognition&quot;&gt;MLKit Text Recognition.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;library-setup-1&quot;&gt;Library Setup&lt;/h4&gt;
+
+&lt;p&gt;We need to add this dependency :&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/039730c31c3e3d7b6a049ad8dd0893f5.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;and update our Manifest to download the ML model to the device after our app is installed:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/880a645f3e5fab52001ab5b75ec44237.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Let’s create an ExtractDataUseCase to encapsulate the MLKit integration:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/d0dcbf2953bf9161ac3b1e4e5d95e19d.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;In this use case, we are accepting an instance of TextRecognizer that could be retrieved with &lt;code&gt;TextRecognition.getClient().&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To extract data from our image we first need to transform it into something MLKit can understand. Luckily for us, there is the
+&lt;code&gt;InputImage.fromMediaImage(image, rotationDegrees)&lt;/code&gt; fatory method designed just for that.&lt;/p&gt;
+
+&lt;p&gt;Now that we have an image MLKit can understand we can pass it to our textRecognizer and await the text result.&lt;/p&gt;
+
+&lt;p&gt;Once again, we are using Kotlin coroutines so we can use &lt;a href=&quot;https://github.com/dcampogiani/CreditCardScanner/blob/4255757dead02cd472b98ac0249a64b59fc11a47/app/src/main/java/com/danielecampogiani/creditcardscanner/utils/TaskExtensions.kt#L18&quot;&gt;this extension&lt;/a&gt; as a bridge from Task (returned by textRecognizer) and our suspend method.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;data-extraction&quot;&gt;Data Extraction&lt;/h3&gt;
+
+&lt;p&gt;Thanks to CameraX we got the image, and then thanks to MLKit we were able to extract the text on it.
+Now is our turn to do some minimal logic and pass from raw data to some useful information.&lt;/p&gt;
+
+&lt;p&gt;As a first step let’s define what we can extract from the image, and create a data class:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/adec3a13f37b58c930212804ac388a02.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;All fields are optional because I have several (debit) cards and on each of them I have a different layout, some of them have the owner
+on the same side of the number, some of them no.&lt;/p&gt;
+
+&lt;p&gt;Same for the expiration date, so ¯_(ツ)_/¯.&lt;/p&gt;
+
+&lt;p&gt;Now we can encapsulate our data extraction logic inside a Kotlin Object:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/c69ce11196c83f68c88fba88084d8429.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Let’s extract some data:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/4eae9a66f18ae039991bd8368479846f.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Here the rationale is to try to get the string that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;contains at least a space char (between name and surname)&lt;/li&gt;
+  &lt;li&gt;contains no digits (I think you can’t have them in a name)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If we have more than one match, choose the longest one.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/da5ea7ce965c3d9d94fd22326ec34534.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;For the number, we are picking the first line that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;has at lease a space (between numbers)&lt;/li&gt;
+  &lt;li&gt;has all the chars as digits&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/eb525de334e504cd1976acedd386035a.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Expiration could be something like 08/20 or, 08/2020 this is why I’m choosing the line with&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;5 chars (like 08/20) o 7 chars (like 08/2020)&lt;/li&gt;
+  &lt;li&gt;’/’ as third char&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now that we have found the expiration line we need to separate the month from the year&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/23ef44ae1ef274dca181d572cf6e733d.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;final-touches&quot;&gt;Final touches&lt;/h3&gt;
+
+&lt;p&gt;We can now update the activity to use our ExtractDataUseCase&lt;/p&gt;
+
+&lt;p&gt;Let’s create it&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/16b52e35a46501689edd927306b8978d.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;And then use it&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/4815bb1cc7800c401a41f40ac827bb8c.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;We can now finally bind our result to UI:&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/b29ddfaf2d418688e489f2992224f448.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;That’s all folks!
+You can find the complete source code at &lt;a href=&quot;https://github.com/dcampogiani/CreditCardScanner&quot;&gt;https://github.com/dcampogiani/CreditCardScanner&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Sat, 15 Aug 2020 08:00:00 +0200</pubDate>
+				<link>https://danielecampogiani.com/blog/2020/08/card-scanner-on-android-using-camerax-and-mlkit/</link>
+				<guid isPermaLink="true">https://danielecampogiani.com/blog/2020/08/card-scanner-on-android-using-camerax-and-mlkit/</guid>
+			</item>
+		
+			<item>
 				<title>Use GitHub Pages and kscript to host and validate static JSON API</title>
 				<description>&lt;p&gt;In Bologna, we have a &lt;a href=&quot;http://bit.ly/32VyE3w&quot;&gt;community about Functional Programming&lt;/a&gt;, and lately, I was looking for a quick and easy way to host all the data of the talks.&lt;/p&gt;
 
@@ -1082,132 +1280,6 @@ Some common patterns expressed as datatypes are absence handling with &lt;a href
 				<pubDate>Wed, 02 Jul 2014 14:00:58 +0200</pubDate>
 				<link>https://danielecampogiani.com/blog/2014/07/applicazioni-ibride-e-native-3-angularjs/</link>
 				<guid isPermaLink="true">https://danielecampogiani.com/blog/2014/07/applicazioni-ibride-e-native-3-angularjs/</guid>
-			</item>
-		
-			<item>
-				<title>Applicazioni Ibride e Native #2 - Apache Cordova</title>
-				<description>&lt;h2&gt;Introduzione&lt;/h2&gt;
-&lt;p class=&quot;western&quot;&gt;Apache Cordova è un framework open source per la realizzazione di applicazioni cross-platform usando HTML5. L'approccio usato da Cordova è però unico nel suo genere, perché fonde le capacità native di un dispositivo con la possibilità di realizzare applicazioni usando gli standard web, dando così vita alle applicazioni chiamate &lt;i&gt;ibride&lt;/i&gt;.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;&lt;!--more--&gt;&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Il punto di debolezza delle applicazioni web su dispositivi mobili è sempre stato la mancanza della possibilità di usare funzionalità fornite dal produttore per interfacciarsi con i vari componenti hardware, e mentre si spera che in un futuro questa limitatezza possa essere superata attraverso sforzi di standardizzazione, Cordova fornisce una serie di API alle applicazioni che vengono eseguite all'interno del suo container per poter accedere a tali funzionalità, ad esempio sarà possibile utilizzare la fotocamera, l'accelerometro ed il gps.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Cordova si occupa anche di realizzare il pacchetto applicativo (ad esempio file .apk per Android ed .ipa per iOS) per ogni piattaforma supportata a partire dai file della web application.&lt;/p&gt;
-&lt;p&gt;[caption id=&quot;attachment_1992&quot; align=&quot;aligncenter&quot; width=&quot;953&quot;]&lt;img class=&quot;size-full wp-image-1992&quot; src=&quot;/blog/assets/Packaging.png&quot; alt=&quot;Packaging Cordova&quot; width=&quot;953&quot; height=&quot;560&quot; /&gt; Packaging Cordova[/caption]&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;L'applicazione nativa consisterà in una webview (un browser integrato) che mostrerà il contenuto utilizzando tutto lo schermo disponibile. Questo browser embedded potrà utilizzare l'interprete di Javascript fornito dal sistema operativo che ospita l'applicazione ed in più le API esposte da Cordova.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Attualmente Cordova supporta le &lt;a href=&quot;http://cordova.apache.org/docs/en/3.5.0/guide_support_index.md.html#Platform%20Support&quot;&gt;seguenti piattaforme&lt;/a&gt; :&lt;/p&gt;
-&lt;p&gt;[caption id=&quot;attachment_1993&quot; align=&quot;aligncenter&quot; width=&quot;833&quot;]&lt;img class=&quot;size-full wp-image-1993&quot; src=&quot;/blog/assets/Piattaforme.png&quot; alt=&quot;Piattaforme Cordova&quot; width=&quot;833&quot; height=&quot;646&quot; /&gt; Piattaforme Cordova[/caption]&lt;/p&gt;
-&lt;h2&gt;Architettura&lt;/h2&gt;
-&lt;p class=&quot;western&quot;&gt;A partire dalla versione 3.0 (al momento della scrittura siamo alla versione 3.5.0-0.24) le API sono state separate in diversi plugin, per poter includere nel progetto solamente quelli necessari, e per avere un'architettura più facilmente estensibile anche con plugin di terze parti.&lt;/p&gt;
-&lt;p&gt;[caption id=&quot;attachment_1994&quot; align=&quot;aligncenter&quot; width=&quot;633&quot;]&lt;img class=&quot;size-full wp-image-1994&quot; src=&quot;/blog/assets/Architettura.png&quot; alt=&quot;Architettura Cordova&quot; width=&quot;633&quot; height=&quot;790&quot; /&gt; Architettura Cordova[/caption]&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Dalla figura (tratta dal libro &lt;a href=&quot;http://www.cordovaprogramming.com/&quot;&gt;Apache Cordova 3 Programming&lt;/a&gt;) si può notare come ogni singolo plugin sia composto da una parte in Javascript e una parte invece scritta nel linguaggio supportato dalla specifica piattaforma.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Attualmente Cordova fornisce questi plugin:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Battery Status&lt;/li&gt;
-&lt;li&gt;Camera&lt;/li&gt;
-&lt;li&gt;Console&lt;/li&gt;
-&lt;li&gt;Contacts&lt;/li&gt;
-&lt;li&gt;Device&lt;/li&gt;
-&lt;li&gt;Device Motion&lt;/li&gt;
-&lt;li&gt;Device Orientation&lt;/li&gt;
-&lt;li&gt;Dialogs&lt;/li&gt;
-&lt;li&gt;File&lt;/li&gt;
-&lt;li&gt;File Transfer&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Command Line Interface&lt;/h2&gt;
-&lt;p class=&quot;western&quot;&gt;Cordova fornisce un tool, chiamato &lt;i&gt;Command Line Interface&lt;/i&gt; (CLI) per aiutare lo sviluppatore nella creazione, gestione e deploy di un progetto. Il CLI utilizza i vari sdk delle singole piattaforme che vanno installati manualmente.&lt;/p&gt;
-&lt;h3 class=&quot;western&quot;&gt;Installazione&lt;/h3&gt;
-&lt;p class=&quot;western&quot;&gt;Per installare cli di cordova è prima necessario scaricare ed installare &lt;i&gt;node.js&lt;/i&gt; e poi eseguire:&lt;/p&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;sudo npm install -g cordova&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;npm è il package manager di node, l'opzione -g specifica di installare il pacchetto globalmente e cordova è il nome del pacchetto da installare.&lt;/p&gt;
-&lt;h3 class=&quot;western&quot;&gt;Creazione di una applicazione&lt;/h3&gt;
-&lt;p class=&quot;western&quot;&gt;Con il comando&lt;/p&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova create hello com.example.hello HelloWorld&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;cordova creerà la cartella &lt;i&gt;hello&lt;/i&gt; contenente il progetto per l'applicazione con l'identificatore &lt;i&gt;com.example.hello&lt;/i&gt;. La sottocartella www contiene i file &lt;i&gt;html/css/javascript&lt;/i&gt; scritti dallo sviluppatore, e il file &lt;i&gt;config.xml&lt;/i&gt; specifica i metadati necessari per la generazione e la distribuzione dell'applicazione. Il terzo parametro sarà il nome user-friendly dell'applicazione, se omesso viene utilizzato il nome &lt;i&gt;HelloCordova&lt;/i&gt;.&lt;/p&gt;
-&lt;h3 class=&quot;western&quot;&gt;Gestione delle piattaforme&lt;/h3&gt;
-&lt;p class=&quot;western&quot;&gt;Una volta nella cartella dell'applicazione è possibile gestire le piattaforme per le quali si intende fare il deploy attraverso il comando&lt;/p&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova platform&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;seguito da un'opzione (&lt;i&gt;add/rm&lt;/i&gt;) ed il nome della piattaforma. Per ottenere una lista delle piattaforme correntemente attive per il progetto basterà utilizzare l'opzione &lt;i&gt;ls&lt;/i&gt; dopo il comando platform.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Per ogni piattaforma attiva verrà utilizzata una cartella nel path &lt;i&gt;nomeProgetto/platforms/nome&lt;/i&gt;&lt;i&gt;P&lt;/i&gt;&lt;i&gt;iattaforma&lt;/i&gt;.&lt;/p&gt;
-&lt;h3 class=&quot;western&quot;&gt;Build&lt;/h3&gt;
-&lt;p class=&quot;western&quot;&gt;Attraverso il comando&lt;/p&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova build (nomePiattaforma)&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;verrà generato il codice specifico per ogni piattaforma attualmente attiva. Si può limitare il build ad una singola piattaforma, specificandone il nome dopo il comando build.&lt;/p&gt;
-&lt;h3 class=&quot;western&quot;&gt;Test e Run&lt;/h3&gt;
-&lt;p class=&quot;western&quot;&gt;Laddove il produttore della piattaforma fornisca anche un emulatore/simulatore per desktop quest'ultimo può essere lanciato per testare l'applicazione attraverso il comando&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;cordova emulate nomePiattaforma&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;mentre per testare l'applicazione direttamente sul dispositivo fisico si utilizza&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;cordova run nomePiattaforma&lt;/p&gt;&lt;/blockquote&gt;
-&lt;h3&gt;Gestione Plugins&lt;/h3&gt;
-&lt;p class=&quot;western&quot;&gt;Come precedentemente spiegato, Cordova utilizza una architettura fortemente basata su plugin. Fino ad ora non è stato aggiunto nessuno, e quello che otteniamo è la possibilità di avere una normale applicazione web con il vantaggio di avere tutti i file in locale (potendo quindi funzionare anche in assenza di connettività) e resa disponibile come pacchetto per la piattaforma specifica.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Ma per poter sfruttare a pieno le potenzialità di Cordova e quindi poter accedere ad &lt;i&gt;API native&lt;/i&gt; vediamo come aggiungere un plugin.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Apache ha creato un repository web nel quale cercare i plugin, per poter leggere una breve descrizione e la documentazione. Questo repository è disponibile al seguente indirizzo:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;&lt;a href=&quot;http://plugins.cordova.io/&quot;&gt;http://plugins.cordova.io/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;Oltre ai plugin resi disponibili direttamente da Apache, è possibile trovare anche plugin di terze parti resi disponibili da sviluppatori. Il repository è nuovo, quindi non sono ancora presenti tutti i plugin sviluppati, per cui consiglio di fare una ricerca anche su github.com.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Una volta ottenuto l'identificativo di un plugin (ad esempio org.apache.cordova.camera) l'installazione è semplice, basterà utilizzare il comando&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;cordova plugin add “identificatore plugin”&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;Per rimuovere un plugin basta sostituire &lt;i&gt;add&lt;/i&gt; con &lt;i&gt;rm&lt;/i&gt; al comando qui sopra, è possibile ottenere una lista dei plugin correntemente attivi attraverso:&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;cordova plugin ls&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;h2&gt;Realizzazione di un Plugin&lt;/h2&gt;
-&lt;p class=&quot;western&quot;&gt;Un plugin è composto da un opportuno file contenente metadati chiamato &lt;i&gt;plugin.xml,&lt;/i&gt; del codice Javascript, che esporrà le API utilizzabili dall'applicazione e opzionalmente del codice nativo. Il codice nativo è opzionale e nel caso sia assente il plugin è completamente realizzato in Javascript, e non potrà quindi utilizzare le API native fornite dal produttore della piattaforma.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Per comprendere meglio la anatomia di un plugin cordova riporterò come esempio (tratta dal libro &lt;a href=&quot;http://www.cordovaprogramming.com/&quot;&gt;Apache Cordova 3 Programming&lt;/a&gt;) un plugin che permette di ottenere il nome dell'operatore e il codice del paese in cui è il dispositivo.&lt;/p&gt;
-&lt;h3 class=&quot;western&quot;&gt;Javascript&lt;/h3&gt;
-&lt;p class=&quot;western&quot;&gt;Attraverso la chiamata al metodo &lt;i&gt;cordova.exec&lt;/i&gt; avviene il passaggio di controllo al codice nativo di ogni piattaforma, per cui il codice Javascript del plugin andrà ad invocare questo metodo.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Una volta che il codice nativo ha terminalo l'esecuzione invocherà una funzione di callback e restituisce il valore di ritorno all'oggetto Javascript. La signature completa del metodo &lt;i&gt;exec&lt;/i&gt; è la seguente:&lt;/p&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova.exec(successCallback, errorCallback, 'PluginObject', 'pluginMethod', [arguments])&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;I primi due parametri specificano che funzioni eseguire in caso di successo o errore lato codice Javascript, il parametro &lt;i&gt;PluginObject&lt;/i&gt; è una stringa che identifica l'oggetto nativo che contiene il metodo richiesto specificato dal parametro &lt;i&gt;pluginMethod&lt;/i&gt;. L'ultimo argomento opzionale è un array che contiene gli argomenti da passare al metodo nativo.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Il codice Javascript del plugin sarà:&lt;/p&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;var cordova = require('cordova');&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;var carrier = {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;getCarrierName : function(successCallback, errorCallback) {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova.exec(successCallback, errorCallback, 'CarrierPlugin', 'getCarrierName', []);&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;},&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;getCountryCode : function(successCallback, errorCallback{&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;cordova.exec(successCallback, errorCallback, 'CarrierPlugin', 'getCountryCode', []);&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;};&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;module.exports = carrier;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p class=&quot;western&quot;&gt;L'ultima riga serve a rendere visibile l'oggetto carrier all'intero delle applicazioni che sono in esecuzione all'interno del container Cordova.&lt;/p&gt;
-&lt;h3 class=&quot;western&quot;&gt;Java&lt;/h3&gt;
-&lt;p class=&quot;western&quot;&gt;Per implementare il plugin lato codice nativo su piattaforma Android occorre estendere la classe &lt;i&gt;CordovaPlugin&lt;/i&gt; fornita da Cordova, e realizzare i metodi &lt;i&gt;initialize()&lt;/i&gt; e &lt;i&gt;execute()&lt;/i&gt;.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Il primo serve a rendere il codice Java &lt;i&gt;“aware”&lt;/i&gt; del container Cordova, mentre il secondo realizza il dispatch dei metodi e fornisce l'implementazione dei metodi richiedibili da Javascript.&lt;/p&gt;
-&lt;p class=&quot;western&quot;&gt;Utilizzando quindi le API native fornite da Android, il plugin sarà realizzato come segue:&lt;/p&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public class CarrierPlugin extends &lt;b&gt;CordovaPlugin&lt;/b&gt; {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public static final String ACTION_GET_CARRIER_NAME = &quot;getCarrierName&quot;;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public static final String ACTION_GET_COUNTRY_CODE = &quot;getCountryCode&quot;;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public TelephonyManager tm;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public void &lt;b&gt;initialize&lt;/b&gt;(CordovaInterface cordova, CordovaWebView webView){&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;super.initialize(cordova, webView);&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;Context context = this.cordova.getActivity().getApplicationContext();&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;public boolean &lt;b&gt;execute&lt;/b&gt;(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;try {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;if (ACTION_GET_CARRIER_NAME.equals(action)) {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;callbackContext.success(tm.getSimOperatorName());&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return true;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;else {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;if (ACTION_GET_COUNTRY_CODE.equals(action)) {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;callbackContext.success(tm.getSimCountryIso());&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return true;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;callbackContext.error(&quot;Invalid Action&quot;);&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return false;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;} catch (Exception e) {&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;System.err.println(&quot;Exception: &quot; + e.getMessage());&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;callbackContext.error(e.getMessage());&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;return false;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote lang=&quot;zxx&quot;&gt;&lt;p&gt;}&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p lang=&quot;zxx&quot;&gt;
-</description>
-				<pubDate>Wed, 25 Jun 2014 10:30:17 +0200</pubDate>
-				<link>https://danielecampogiani.com/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</link>
-				<guid isPermaLink="true">https://danielecampogiani.com/blog/2014/06/applicazioni-ibride-e-native-2-apache-cordova/</guid>
 			</item>
 		
 	</channel>

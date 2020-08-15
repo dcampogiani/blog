@@ -3,6 +3,21 @@
   
     
     <url>
+      <loc>https://danielecampogiani.com/blog/2020/08/card-scanner-on-android-using-camerax-and-mlkit/</loc>
+      
+        <lastmod>2020-08-15T08:00:00+02:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
       <loc>https://danielecampogiani.com/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/</loc>
       
         <lastmod>2020-03-12T07:00:00+01:00</lastmod>
@@ -261,7 +276,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/404.html</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -276,7 +291,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/about/</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -291,7 +306,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/categories/</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -306,7 +321,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/feed.xml</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -321,7 +336,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -338,7 +353,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/tags/</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -353,7 +368,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/page2/</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -368,7 +383,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/page3/</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -383,7 +398,7 @@
     <url>
       <loc>https://danielecampogiani.com/blog/page4/</loc>
       
-        <lastmod>2020-05-31T11:12:17+02:00</lastmod>
+        <lastmod>2020-08-15T17:30:10+02:00</lastmod>
       
       
         <changefreq>monthly</changefreq>

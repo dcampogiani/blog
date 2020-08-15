@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Android Functional Validation 2 - Option</title>
+	<title>Card Scanner on Android using CameraX and MLKit</title>
 	
 	<meta name="author" content="Daniele Campogiani">
 
@@ -169,7 +169,7 @@
 
 	<div class="col-sm-9 col-sm-offset-3">
 		<div class="page-header">
-  <h1>Android Functional Validation 2 - Option </h1>
+  <h1>Card Scanner on Android using CameraX and MLKit </h1>
 </div>
 	
 <article>
@@ -177,137 +177,202 @@
 	<div class="col-sm-10">
 	 <span class="post-date">
 	   
-	   February 
-	   8th,
+	   August 
+	   15th,
 	   
-	   2018
+	   2020
 	 </span>
 	  <div class="article_body">
-	  <p>In this implementation of <a href="/blog/2018/02/android-functional-validation-1-intro/">Functional Validation</a> we are going to use Option.</p>
+	  <p>Having to insert card details manually into an app could be a pain for users, but thanks to CameraX and MLKit, we can easily add a scanning feature in our app with minimal effort.</p>
 
-<p>Quoting Arrow doc:</p>
-<blockquote>
-  <p>Option<a> is a container for an optional value of type A. If the value of type A is present, the Option<a> is an instance of Some<a>, containing the present value of type A. If the value is absent, the Option<a> is the object None.</a></a></a></a></p>
-</blockquote>
+<p><br /></p>
 
-<p>So basically is a sealed class with two different implementations:</p>
+<h3 id="camerax">CameraX</h3>
+
+<p><a href="https://developer.android.com/training/camerax">CameraX</a> is a Jetpack library to use camera APIs with device compatibility issues already handled for us and with lifecycle support.</p>
+
+<p>The library is based on uses cases and we are going to use two of them: Preview and Image Capture.</p>
+
+<p><br /></p>
+
+<h4 id="library-setup">Library Setup</h4>
+
+<p>For this post, we are going to use the following dependencies:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/c363e7a0ec0f3768207235deaccdf7b6.js"> </script>
+
+<p><br /></p>
+
+<h4 id="preview">Preview</h4>
+
+<p>This use case will allow us to display on-screen what the camera is capturing in real-time.</p>
+
+<p>To do so, we need to add androidx.camera.view.PreviewView to our layout:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/adf7fdce76ff7fe6efad966354e22467.js"> </script>
+
+<p>Then in code, we can build the Preview use case as follows:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/c4ab58963843d472d9b0742f56c1007d.js"> </script>
+
+<p>To run our use cases we need a CameraProvider and a CameraSelector, I’ve created some extension using Kotlin Coroutines to get a CameraProvider:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/ba31f3dce3dee62c1fe24850e096ce4e.js"> </script>
+
+<p>While for the CameraSelector this is all we need:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/ab9356ece505656b21af79bfc0e2b5ca.js"> </script>
+
+<p>We can now bind our use cases in this way:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/673d3c718728e256835050614ab51c79.js"> </script>
+
+<p><br /></p>
+
+<h4 id="image-capture">Image Capture</h4>
+
+<p>This is another CameraX use case, and the setup is pretty similar to the previous one.</p>
+
+<p>We can create the use case in this way:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/f92b8dbe6f1b1d6e1549cc99c257b51f.js"> </script>
+
+<p>It’s time to update our bindUseCases method and also use this new one, but since CameraX is using a callback, and we would like to use
+kotlin coroutines let’s add a convenient extension method:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/45310c066867e20cb91024de8ab3a411.js"> </script>
+
+<p>Now we can update bindUseCases function like the following:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/e9dcc7d3aa216684c103ad34cafd9e20.js"> </script>
+
+<p><br /></p>
+
+<h3 id="mlkit">MLKit</h3>
+
+<p>Now that we have our image is time to extract data from it. For this purpose, we are going to use <a href="https://developers.google.com/ml-kit/vision/text-recognition">MLKit Text Recognition.</a></p>
+
+<p><br /></p>
+
+<h4 id="library-setup-1">Library Setup</h4>
+
+<p>We need to add this dependency :</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/039730c31c3e3d7b6a049ad8dd0893f5.js"> </script>
+
+<p>and update our Manifest to download the ML model to the device after our app is installed:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/880a645f3e5fab52001ab5b75ec44237.js"> </script>
+
+<p>Let’s create an ExtractDataUseCase to encapsulate the MLKit integration:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/d0dcbf2953bf9161ac3b1e4e5d95e19d.js"> </script>
+
+<p>In this use case, we are accepting an instance of TextRecognizer that could be retrieved with <code>TextRecognition.getClient().</code></p>
+
+<p>To extract data from our image we first need to transform it into something MLKit can understand. Luckily for us, there is the
+<code>InputImage.fromMediaImage(image, rotationDegrees)</code> fatory method designed just for that.</p>
+
+<p>Now that we have an image MLKit can understand we can pass it to our textRecognizer and await the text result.</p>
+
+<p>Once again, we are using Kotlin coroutines so we can use <a href="https://github.com/dcampogiani/CreditCardScanner/blob/4255757dead02cd472b98ac0249a64b59fc11a47/app/src/main/java/com/danielecampogiani/creditcardscanner/utils/TaskExtensions.kt#L18">this extension</a> as a bridge from Task (returned by textRecognizer) and our suspend method.</p>
+
+<p><br /></p>
+
+<h3 id="data-extraction">Data Extraction</h3>
+
+<p>Thanks to CameraX we got the image, and then thanks to MLKit we were able to extract the text on it.
+Now is our turn to do some minimal logic and pass from raw data to some useful information.</p>
+
+<p>As a first step let’s define what we can extract from the image, and create a data class:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/adec3a13f37b58c930212804ac388a02.js"> </script>
+
+<p>All fields are optional because I have several (debit) cards and on each of them I have a different layout, some of them have the owner
+on the same side of the number, some of them no.</p>
+
+<p>Same for the expiration date, so ¯_(ツ)_/¯.</p>
+
+<p>Now we can encapsulate our data extraction logic inside a Kotlin Object:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/c69ce11196c83f68c88fba88084d8429.js"> </script>
+
+<p>Let’s extract some data:</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/4eae9a66f18ae039991bd8368479846f.js"> </script>
+
+<p>Here the rationale is to try to get the string that:</p>
+
 <ul>
-  <li>Some</li>
-  <li>None</li>
+  <li>contains at least a space char (between name and surname)</li>
+  <li>contains no digits (I think you can’t have them in a name)</li>
 </ul>
 
-<p>The main idea is to wrap a value that can be present or absent. Wrapping this value in a container such as Option allows us to use this data without worrying to check each time if the value is present or not. We can just use some <em>standard</em> functions like map and flatmap to manipulate the content and write less boilerplate code.</p>
-
-<h3 id="lets-use-option">Let’s use Option</h3>
-
-<p>We are going to use one Option to represent the mail, one Option to represent the phone number and then we will <em>merge</em> them to obtain the output of our validation</p>
-
-<p>In our representation will use Some to wrap valid input and None for invalid input, so for example:</p>
-
-<p><br /></p>
-
-<div style="text-align:center"><img src="/blog/assets/Option1.png" />
-</div>
-
-<p><br /></p>
-
-<p>To obtain such behaviour we can use kotlin extension methods invoking <a href="/blog/2018/02/android-functional-validation-1-intro/">validMail and validNumber functions we have discussed in previous post</a></p>
+<p>If we have more than one match, choose the longest one.</p>
 
 <noscript><pre>400: Invalid request</pre></noscript>
-<script src="https://gist.github.com/619ee31c4dd3b84cf17f137688a56a8e.js"> </script>
+<script src="https://gist.github.com/da5ea7ce965c3d9d94fd22326ec34534.js"> </script>
 
-<p>At this point we have a Option representation for each field, but what we really want is to validate the whole form!</p>
+<p>For the number, we are picking the first line that:</p>
 
-<h3 id="map-to-the-rescue">Map to the rescue</h3>
-
-<p>Our goal is to obtain an instance of Data when the form is valid:</p>
-
-<noscript><pre>400: Invalid request</pre></noscript>
-<script src="https://gist.github.com/2fb34a1b6404190612572d47a21fe095.js"> </script>
-
-<p>but what we achieved so far are two Option.</p>
-
-<p>Luckily for us there is a useful method that accept two Option as inputs, and returns whatever we want. This method is called map and we can use to build our <em>Data</em> instance</p>
+<ul>
+  <li>has at lease a space (between numbers)</li>
+  <li>has all the chars as digits</li>
+</ul>
 
 <noscript><pre>400: Invalid request</pre></noscript>
-<script src="https://gist.github.com/ebd2c82d44224c317dfdc9be45fc10c7.js"> </script>
+<script src="https://gist.github.com/eb525de334e504cd1976acedd386035a.js"> </script>
 
-<p>In this snippet we first wrap mail and phoneNumbers arguments to Option, then use map to merge them.</p>
+<p>Expiration could be something like 08/20 or, 08/2020 this is why I’m choosing the line with</p>
 
-<p>With map we pass as last parameter a lambda that takes as input a Pair with the values of the two Options.
-So in our case the lambda receives as input a Pair with two strings, the mail and the phone number, and returns a Data instance. (it.a is the first value of the pair, and it.b is the second value of the pair).</p>
+<ul>
+  <li>5 chars (like 08/20) o 7 chars (like 08/2020)</li>
+  <li>’/’ as third char</li>
+</ul>
 
-<p>If we take a look at the return type of the validateData we discover that we are returning a Option of Data and not a Data directly, but we are not creating an instance of Option<Data> anywhere, so it must be the map method that wraps our result in a Option!</Data></p>
+<p>Now that we have found the expiration line we need to separate the month from the year</p>
 
-<p>The real power of map method is that it allows us to write just the happy path in the lambda we pass and it will handle all other scenarios for us. If all arguments are Some (and not None) it will execute our lambda and wrap the result in a Option.</p>
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/23ef44ae1ef274dca181d572cf6e733d.js"> </script>
 
 <p><br /></p>
 
-<div style="text-align:center"><img src="/blog/assets/Option2.png" />
-</div>
+<h3 id="final-touches">Final touches</h3>
 
-<p><br /></p>
+<p>We can now update the activity to use our ExtractDataUseCase</p>
 
-<p>Cool, but…</p>
-
-<h3 id="option-limits">Option limits</h3>
-
-<p>What happens when at least one input is None?</p>
-
-<p>In this case our happy path lambda will be ignored and None is returned.</p>
-
-<p><br /></p>
-
-<div style="text-align:center"><img src="/blog/assets/Option3.png" />
-</div>
-
-<p><br /></p>
-
-<p>and exact same result for</p>
-
-<p><br /></p>
-
-<div style="text-align:center"><img src="/blog/assets/Option4.png" />
-</div>
-
-<p><br /></p>
-
-<p>Since we are getting None in both cases we can’t know which input is wrong!</p>
-
-<h3 id="android-ui">Android UI</h3>
-
-<p>Let’s use this code to build an android form.</p>
-
-<p>I’m using <a href="https://developer.android.com/topic/libraries/architecture/index.html">Android Architecture Components</a>, so the glue code will be in a ViewModel, while the activity will do just UI rendering.</p>
-
-<p>In our ViewModel we will use the previously discussed code to update a <code>LiveData&lt;Option&lt;Data&gt;&gt;</code></p>
+<p>Let’s create it</p>
 
 <noscript><pre>400: Invalid request</pre></noscript>
-<script src="https://gist.github.com/c511f06239b7a6d53a4cf27aced5a4db.js"> </script>
+<script src="https://gist.github.com/16b52e35a46501689edd927306b8978d.js"> </script>
 
-<p>In the activity we retrieve the viewModel, register click listener and observe the result of the validation. Once we get the result we fold it.</p>
-
-<noscript><pre>400: Invalid request</pre></noscript>
-<script src="https://gist.github.com/2eb139a19b3307044d45c9fd24da1c34.js"> </script>
-
-<h4 id="what-is-fold">What is Fold?</h4>
-
-<p>Fold is a method defined on Option that takes to functions, the first one will be executed if the Option is empty, while the second one if the Option contains a value.</p>
-
-<p>In our case we are using method reference with the following methods:</p>
+<p>And then use it</p>
 
 <noscript><pre>400: Invalid request</pre></noscript>
-<script src="https://gist.github.com/a0ece7a02d6a2093ae0c08efbd814d7b.js"> </script>
+<script src="https://gist.github.com/4815bb1cc7800c401a41f40ac827bb8c.js"> </script>
+
+<p>We can now finally bind our result to UI:</p>
 
 <noscript><pre>400: Invalid request</pre></noscript>
-<script src="https://gist.github.com/4230debf17ef25689c0d6f0cb96512c9.js"> </script>
+<script src="https://gist.github.com/b29ddfaf2d418688e489f2992224f448.js"> </script>
 
-<p>As you can see in the second method we receive as input the value of the Option, while in the first method we don’t get any input. So, as previously discussed, using Option we cannot notify our user which field is wrong.</p>
-
-<p>So, Option is not a great choice for validation, but don’t worry we will fix this issue in the <a href="/blog/2018/02/android-functional-validation-3-either/">next post</a> using a different data type.</p>
-
-<p><a href="https://github.com/dcampogiani/AndroidFunctionalValidation/pull/1">You can find here the implementation using Option</a></p>
-
+<p>That’s all folks!
+You can find the complete source code at <a href="https://github.com/dcampogiani/CreditCardScanner">https://github.com/dcampogiani/CreditCardScanner</a></p>
 
 	  </div>
 
@@ -317,33 +382,33 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 		  
 		  
 			 
+				<li><a href="https://danielecampogiani.com/blog/categories#card-ref">
+					card <span>(1)</span>
+					,
+				</a></li>
+			 
+				<li><a href="https://danielecampogiani.com/blog/categories#scanner-ref">
+					scanner <span>(1)</span>
+					,
+				</a></li>
+			 
 				<li><a href="https://danielecampogiani.com/blog/categories#android-ref">
 					android <span>(5)</span>
 					,
 				</a></li>
 			 
-				<li><a href="https://danielecampogiani.com/blog/categories#functional-ref">
-					functional <span>(4)</span>
+				<li><a href="https://danielecampogiani.com/blog/categories#camerax-ref">
+					camerax <span>(1)</span>
 					,
 				</a></li>
 			 
-				<li><a href="https://danielecampogiani.com/blog/categories#validation-ref">
-					validation <span>(4)</span>
+				<li><a href="https://danielecampogiani.com/blog/categories#mlkit-ref">
+					mlkit <span>(1)</span>
 					,
 				</a></li>
 			 
-				<li><a href="https://danielecampogiani.com/blog/categories#kotlin-ref">
-					kotlin <span>(4)</span>
-					,
-				</a></li>
-			 
-				<li><a href="https://danielecampogiani.com/blog/categories#arrow-ref">
-					arrow <span>(4)</span>
-					,
-				</a></li>
-			 
-				<li><a href="https://danielecampogiani.com/blog/categories#option-ref">
-					option <span>(1)</span>
+				<li><a href="https://danielecampogiani.com/blog/categories#vision-ref">
+					vision <span>(1)</span>
 					
 				</a></li>
 			
@@ -358,7 +423,7 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 		<div>
       <section class="share col-sm-6">
         <h4 class="section-title">Share Post</h4>
-        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=Android Functional Validation 2 - Option&via=dcampogiani"
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=Card Scanner on Android using CameraX and MLKit&via=dcampogiani"
            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
           <i class="fa fa-twitter fa-lg"></i>
           Twitter
@@ -403,10 +468,10 @@ So in our case the lambda receives as input a Pair with two strings, the mail an
 
 		<ul class="pager">
 		  
-		  <li class="previous"><a href="https://danielecampogiani.com/blog/2018/02/android-functional-validation-1-intro/" title="Android Functional Validation 1 - Introduction">&larr; Previous</a></li>
+		  <li class="previous"><a href="https://danielecampogiani.com/blog/2020/03/use-github-pages-and-kscript-to-host-and-validate-static-json-api/" title="Use GitHub Pages and kscript to host and validate static JSON API">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="https://danielecampogiani.com/blog/2018/02/android-functional-validation-3-either/" title="Android Functional Validation 3 - Either">Next &rarr;</a></li>
+			<li class="next disabled"><a>Next &rarr;</a>
 		  
 		</ul>
 
